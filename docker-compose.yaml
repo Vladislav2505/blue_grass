@@ -8,7 +8,7 @@ services:
       - "80:80"
     volumes:
       - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./src:/var/www/laravel
+      - ./:/var/www/laravel
     depends_on:
       - mysql
       - php
@@ -18,7 +18,7 @@ services:
       context: docker/php
       dockerfile: php.Dockerfile
     volumes:
-      - ./src:/var/www/laravel
+      - ./:/var/www/laravel
   mysql:
     container_name: "blue_grass_db"
     image: mysql:8.0
@@ -35,14 +35,14 @@ services:
       context: docker/php
       dockerfile: composer.Dockerfile
     volumes:
-      - ./src:/var/www/laravel
+      - ./:/var/www/laravel
   artisan:
     container_name: "blue_grass_artisan"
     build:
       context: docker/php
       dockerfile: php.Dockerfile
     volumes:
-      - ./src:/var/www/laravel
+      - ./:/var/www/laravel
     entrypoint: [ "php", "/var/www/laravel/artisan" ]
 
 volumes:
