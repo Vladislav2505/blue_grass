@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return view('partials.burger-menu');
 });
+
+Route::get('/menu', function () {
+    return view('html.header');
+});

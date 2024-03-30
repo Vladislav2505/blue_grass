@@ -1,10 +1,11 @@
-@extends('layout.app')
+@extends('layouts.app')
+@section('title', 'test')
 @section('content')
-    @include('partials.header')
     <div class="flex justify-center items-center">
         <div class="container">
-            fsdfsdf
+            <p>
+                <img src="{{Vite::asset('resources/images/burger.svg')}}">
+            </p>
         </div>
     </div>
-    @include('partials.footer')
 @endsection

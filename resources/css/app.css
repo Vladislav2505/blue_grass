@@ -3,19 +3,41 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply font-roboto font-medium;
+    html {
+        @apply h-full
     }
+
+    body {
+        @apply font-roboto bg-lightpink text-main h-full;
+    }
+
     button {
         @apply font-roboto;
     }
+
     h1, h2, h3, h4 {
         @apply font-roboto;
+    }
+
+    main {
+        flex: 1 1 auto;
     }
 }
 
 @layer components {
     .container {
         @apply max-w-[1380px] bg-white rounded-[5px] my-[60px] mx-[10px] py-[40px] px-[45px]
+    }
+
+    .btn-hover {
+        @apply hover:bg-[#168fd8] transition-colors;
+    }
+
+    .wrapper {
+        @apply flex flex-col min-h-full
+    }
+
+    .social:hover img {
+        @apply invert;
     }
 }
