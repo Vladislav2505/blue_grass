@@ -30,7 +30,7 @@
                      alt="profile">
             </a>
             <button
-                class="bg-lightblue w-[150px] h-[45px] rounded-[5px] ml-[15px] text-white text-[16px] font-medium lg:w-[200px] lg:text-[20px] lg:ml-[36px] btn-hover">
+                class="bg-lightblue rounded-[5px] text-white font-medium py-3 px-3 ml-9 btn-hover">
                 Задать вопрос
             </button>
         </div>

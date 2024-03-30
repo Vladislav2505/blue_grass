@@ -22,6 +22,10 @@
     main {
         flex: 1 1 auto;
     }
+
+    a, button, input {
+        @apply focus:outline-none;
+    }
 }
 
 @layer components {
@@ -39,5 +43,9 @@
 
     .social:hover img {
         @apply invert;
+    }
+
+    .auth_input_text {
+        @apply py-2 px-2 rounded-[5px] border border-[#b6b6b6] font-light;
     }
 }
