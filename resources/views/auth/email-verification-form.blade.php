@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="flex items-center mx-auto my-8">
-        <form class="flex flex-col items-center mx-2 bg-white py-5 px-6 rounded-[5px] sm:py-8 sm:px-28" action=""
+        <form class="flex flex-col items-center mx-2 bg-white py-5 px-10 rounded-[5px] sm:py-8 sm:px-28" action=""
               method="post">
             <div class="text-center pb-6">
                 <h2 class="text-3xl font-bold mb-1 sm:text-5xl">Верификация</h2>

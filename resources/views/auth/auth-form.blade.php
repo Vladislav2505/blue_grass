@@ -24,13 +24,13 @@
                 </div>
                 <div class="flex justify-between">
                     <div class="flex">
-                        <input type="checkbox" class="w-5 rounded-[5px]" id="personal-data" name="personal-data">
+                        <input type="checkbox" class="w-5 rounded-[5px] cursor-pointer" id="personal-data" name="personal-data">
                         <label for="personal-data" class="text-[14px] ml-2">Запомнить меня</label>
                     </div>
                     <a href="/" class="text-lightblue text-[12px] xs:text-[14px]">Забыли пароль?</a>
                 </div>
                 <input type="submit" value="Войти"
-                       class="py-2 bg-lightblue rounded-[5px] text-white font-medium btn-hover">
+                       class="py-2 bg-lightblue rounded-[5px] text-white font-medium btn-hover cursor-pointer">
             </div>
         </form>
     </div>
