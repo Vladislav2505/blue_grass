@@ -14,6 +14,7 @@
                 </p>
             </div>
             <div class="w-full flex flex-col gap-4">
+                <x-forms.input input-name="last_name" input-label="Фамилия" input-placeholder="Введите Фамилию"/>
                 <div class="flex flex-col">
                     <label for="last_name" class="font-medium">Фамилия</label>
                     <input type="text" class="auth_input_text" id="last_name" name="last_name"
