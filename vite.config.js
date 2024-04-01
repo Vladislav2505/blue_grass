@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/js/app.js',
                 'resources/js/forms/registration.js',
+                'resources/js/forms/auth.js',
             ],
             refresh: true,
         }),

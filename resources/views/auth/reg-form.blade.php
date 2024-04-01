@@ -3,64 +3,25 @@
 @vite('resources/js/forms/registration.js')
 
 @section('content')
-    <div class="flex items-center mx-auto my-8">
-        <form
-            class="flex flex-col items-center mx-2 bg-white py-5 px-6 rounded-[5px] max-w-[390px] sm:py-8 sm:px-28 sm:max-w-[560px]"
-            action="{{route('register')}}" method="post">
-            @csrf
-            <div class="text-center pb-6">
-                <h2 class="text-3xl font-bold mb-1 sm:text-5xl">Регистрация</h2>
-                <p class="text-secondary">У вас уже есть учетная запись? <a href="/" class="text-lightblue">Войти</a>
-                </p>
-            </div>
-            <div class="w-full flex flex-col gap-4">
-                <x-forms.input input-name="last_name" input-label="Фамилия" input-placeholder="Введите Фамилию"/>
-                <div class="flex flex-col">
-                    <label for="last_name" class="font-medium">Фамилия</label>
-                    <input type="text" class="auth_input_text" id="last_name" name="last_name"
-                           value="{{old('last_name')}}"
-                           placeholder="Введите Фамилию" autocomplete="new-last-name">
-                    <p id="last_name_error" class="text-red-500 text-[14px]">{{$errors->first('last_name')}}</p>
-                </div>
-                <div class="flex flex-col">
-                    <label for="first_name" class="font-medium">Имя</label>
-                    <input type="text" class="auth_input_text" id="first_name" name="first_name"
-                           value="{{old('first_name')}}"
-                           placeholder="Введите Имя" autocomplete="new-first-name">
-                    <p id="first_name_error"
-                       class="text-red-500 text-[14px] w-full">{{$errors->first('first_name')}}</p>
-                </div>
-                <div class="flex flex-col">
-                    <label for="email" class="font-medium">E-mail</label>
-                    <input type="text" class="auth_input_text" id="email" name="email" value="{{old('email')}}"
-                           placeholder="Введите E-mail" autocomplete="new-email">
-                    <p id="email_error" class="text-red-500 text-[14px]">{{$errors->first('email')}}</p>
-                </div>
-                <div class="flex flex-col">
-                    <label for="password" class="font-medium">Пароль</label>
-                    <input type="password" class="auth_input_text" id="password" name="password"
-                           placeholder="Введите Пароль" autocomplete="new-password">
-                    <p id="password_error" class="text-red-500 text-[14px]">{{$errors->first('password')}}</p>
-                </div>
-                <div class="flex flex-col">
-                    <label for="password_confirmation" class="font-medium">Подтверждения пароля</label>
-                    <input type="password" class="auth_input_text" id="password_confirmation"
-                           name="password_confirmation"
-                           placeholder="Подтвердите пароль" autocomplete="new-password">
-                </div>
-                <div class="flex flex-col">
-                    <div class="flex">
-                        <input id="personal-data" type="checkbox" class="w-5 rounded-[5px] cursor-pointer"
-                               name="personal-data" value="true">
-                        <label id="personal-data-label" for="personal-data" class="text-[14px] ml-2">
-                            Я согласен на обработку <a href="/" class="text-lightblue">персональных данных</a>
-                        </label>
-                    </div>
-                    <p id="personal-data_error" class="text-red-500 text-[14px]">{{$errors->first('personal-data')}}</p>
-                </div>
-                <input type="submit" value="Зарегистрироваться"
-                       class="py-2 bg-lightblue rounded-[5px] text-white font-medium btn-hover cursor-pointer">
-            </div>
-        </form>
-    </div>
+    <x-forms.auth-form :form-action="'register'">
+        <div class="text-center pb-6">
+            <h2 class="text-4xl font-bold mb-1 sm:text-5xl">Регистрация</h2>
+            <p class="text-secondary">У вас уже есть учетная запись? <a href="{{route('login')}}"
+                                                                        class="text-lightblue">Войти</a>
+            </p>
+        </div>
+        <div class="w-full flex flex-col gap-4">
+            <x-forms.input input-name="last_name" input-label="Фамилия" input-placeholder="Введите Фамилию"/>
+            <x-forms.input input-name="first_name" input-label="Имя" input-placeholder="Введите Имя"/>
+            <x-forms.input input-name="email" input-label="E-mail" input-placeholder="Введите E-mail"/>
+            <x-forms.input input-name="password" input-label="Пароль" input-placeholder="Введите Пароль"
+                           input-type="password"/>
+            <x-forms.input input-name="password_confirmation" input-label="Подтверждения пароля"
+                           input-placeholder="Подтвердите пароль" input-type="password"/>
+            <x-forms.checkbox checkbox-name="personal-data">
+                Я согласен на обработку <a href="/" class="text-lightblue">персональных данных</a>
+            </x-forms.checkbox>
+            <x-forms.submit submit-label="Зарегистрироваться"/>
+        </div>
+    </x-forms.auth-form>
 @endsection

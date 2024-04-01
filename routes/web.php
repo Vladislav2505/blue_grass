@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ Route::get('/rec', function () {
 });
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/register', [RegistrationController::class, 'create'])->name('register');
-    Route::post('/register', [RegistrationController::class, 'store'])->name('register');
+    Route::get('/register', [RegistrationController::class, 'render'])->name('register');
+    Route::post('/register', [RegistrationController::class, 'register'])->name('register');
+
+    Route::get('/login', [LoginController::class, 'render'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
 });

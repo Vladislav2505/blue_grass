@@ -6,16 +6,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Input extends Component
+class AuthForm extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $inputName,
-        public string $inputLabel,
-        public string $inputPlaceholder,
-        public string $inputType = 'text',
+        public string $formAction,
     ) {
     }
 
@@ -24,6 +21,6 @@ class Input extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.forms.input');
+        return view('components.forms.auth-form');
     }
 }

@@ -14,12 +14,12 @@ use Illuminate\Validation\Rules\Password;
 
 class RegistrationController extends Controller
 {
-    public function create(): Response
+    public function render(): Response
     {
         return \Response::view('auth.reg-form');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function register(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'last_name' => ['required', 'string', 'max:180'],

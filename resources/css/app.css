@@ -26,6 +26,10 @@
     a, button, input {
         @apply focus:outline-none;
     }
+
+    form {
+        margin-block-end: 0;
+    }
 }
 
 @layer components {
