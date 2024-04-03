@@ -16,7 +16,7 @@ class RegistrationController extends Controller
 {
     public function render(): Response
     {
-        return \Response::view('auth.reg-form');
+        return \Response::view('auth.register');
     }
 
     public function register(Request $request): RedirectResponse

@@ -13,6 +13,8 @@ class AuthForm extends Component
      */
     public function __construct(
         public string $formAction,
+        public string $formTitle,
+        public string $formLabel = '',
     ) {
     }
 

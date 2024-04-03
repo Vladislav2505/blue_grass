@@ -1,16 +1,25 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/logout', function () {
+    Auth::logout();
+
+    return redirect(RouteServiceProvider::HOME);
+});
+
 Route::get('/', function () {
-    return view('auth.reg-form');
+    return view('welcome');
 });
 
 Route::get('/ver', function () {
     return view('auth.email-verification-form');
-})->name('ver');
+})->name('ver')->middleware('auth');
 
 Route::get('/auth', function () {
     return view('auth.auth-form');
@@ -26,4 +35,9 @@ Route::middleware(['guest'])->group(function () {
 
     Route::get('/login', [LoginController::class, 'render'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'render'])->name('forgot-password');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendEmail'])->name('forgot-password');
+
+    Route::get('/reset-password', [ResetPasswordController::class, 'render'])->name('password.reset');
 });

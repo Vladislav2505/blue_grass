@@ -15,21 +15,28 @@ class LoginController extends Controller
 {
     public function render(): Response
     {
-        return \Response::view('auth.auth-form');
+        return \Response::view('auth.login');
     }
 
     public function login(Request $request): RedirectResponse
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
+            'remember-me' => ['sometimes', 'in:on,true'],
         ]);
 
-        if (! Auth::attempt($credentials)) {
+        $email = $request->string('email');
+        $password = $request->string('password');
+        $remember = $request->boolean('remember-me');
+
+        if (! Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
             throw ValidationException::withMessages([
                 'email' => 'Имя пользователя или пароль не совпадают.',
             ]);
         }
+
+        $request->session()->regenerate();
 
         return Redirect::intended(RouteServiceProvider::HOME);
     }

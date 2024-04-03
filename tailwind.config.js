@@ -26,6 +26,7 @@ export default {
                 lightblue: '#4FB3EF',
                 lightpink: '#F3DEDE',
                 white: '#FFFFFF',
+                success: '#20bb33',
             },
         },
     },
