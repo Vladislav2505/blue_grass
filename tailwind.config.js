@@ -27,6 +27,7 @@ export default {
                 lightpink: '#F3DEDE',
                 white: '#FFFFFF',
                 success: '#20bb33',
+                error: '#EF4444',
             },
         },
     },

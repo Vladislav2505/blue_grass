@@ -7,16 +7,17 @@ use App\Models\User;
 use Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class RegistrationController extends Controller
 {
-    public function render(): Response
+    public function render(): HttpResponse
     {
-        return \Response::view('auth.register');
+        return Response::view('auth.register');
     }
 
     public function register(Request $request): RedirectResponse
@@ -24,7 +25,7 @@ class RegistrationController extends Controller
         $validatedData = $request->validate([
             'last_name' => ['required', 'string', 'max:180'],
             'first_name' => ['required', 'string', 'max:180'],
-            'email' => ['required', 'email', 'max:80', Rule::unique('users')],
+            'email' => ['required', 'email:rfc,dns', 'max:80', Rule::unique('users')],
             'password' => ['required', 'string', 'confirmed', Password::min(8)->max(255)->letters()->numbers()->symbols()],
             'personal-data' => ['accepted'],
         ]);

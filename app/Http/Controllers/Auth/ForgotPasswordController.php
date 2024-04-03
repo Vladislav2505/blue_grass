@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Response;
 
 class ForgotPasswordController extends Controller
 {
-    public function render(): Response
+    public function render(): HttpResponse
     {
-        return \Response::view('auth.forgot-password');
+        return Response::view('auth.forgot-password');
     }
 
-    public function sendEmail(Request $request): RedirectResponse
+    public function send(Request $request): RedirectResponse
     {
         $request->validate([
             'email' => ['required', 'email'],

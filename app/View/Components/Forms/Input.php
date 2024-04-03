@@ -13,8 +13,9 @@ class Input extends Component
      */
     public function __construct(
         public string $inputName,
-        public string $inputLabel,
-        public string $inputPlaceholder,
+        public ?string $inputValue = '',
+        public string $inputLabel = '',
+        public string $inputPlaceholder = '',
         public string $inputType = 'text',
     ) {
     }

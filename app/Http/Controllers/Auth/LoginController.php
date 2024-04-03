@@ -7,15 +7,16 @@ use App\Providers\RouteServiceProvider;
 use Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    public function render(): Response
+    public function render(): HttpResponse
     {
-        return \Response::view('auth.login');
+        return Response::view('auth.login');
     }
 
     public function login(Request $request): RedirectResponse

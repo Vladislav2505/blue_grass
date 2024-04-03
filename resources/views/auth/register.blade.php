@@ -8,11 +8,14 @@
 
 @section('content')
     <x-forms.auth-form form-action="register" form-title="Регистрация" :form-label="$formLabel">
-        <x-forms.input input-name="last_name" input-label="Фамилия" input-placeholder="Введите Фамилию"/>
-        <x-forms.input input-name="first_name" input-label="Имя" input-placeholder="Введите Имя"/>
-        <x-forms.input input-name="email" input-label="E-mail" input-placeholder="Введите E-mail"/>
+        <x-forms.input input-name="last_name" input-label="Фамилия" input-placeholder="Введите Фамилию"
+                       :input-value="old('last_name')"/>
+        <x-forms.input input-name="first_name" input-label="Имя" input-placeholder="Введите Имя"
+                       :input-value="old('first_name')"/>
+        <x-forms.input input-name="email" input-label="E-mail" input-placeholder="Введите E-mail"
+                       :input-value="old('email')"/>
         <x-forms.input input-name="password" input-label="Пароль" input-placeholder="Введите Пароль"
-                       input-type="password"/>
+                       input-type="password" :input-value="old('password')"/>
         <x-forms.input input-name="password_confirmation" input-label="Подтверждения пароля"
                        input-placeholder="Подтвердите пароль" input-type="password"/>
         <x-forms.checkbox checkbox-name="personal-data">

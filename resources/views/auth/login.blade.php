@@ -8,9 +8,12 @@
 
 @section('content')
     <x-forms.auth-form form-action="login" form-title="Авторизация" :form-label="$formLabel">
-        <x-forms.input input-name="email" input-label="E-mail" input-placeholder="Введите E-mail" input-type="email"/>
+        @if(session('status'))
+            <p class="text-success font-bold text-center">{{session('status')}}</p>
+        @endif
+        <x-forms.input input-name="email" input-label="E-mail" input-placeholder="Введите E-mail" input-type="email" :input-value="old('email')"/>
         <x-forms.input input-name="password" input-label="Пароль" input-placeholder="Введите Пароль"
-                       input-type="password"/>
+                       input-type="password" :input-value="old('password')"/>
         <div class="flex justify-between">
             <div class="flex">
                 <input type="checkbox" class="w-5 rounded-[5px] cursor-pointer" id="remember-me"
