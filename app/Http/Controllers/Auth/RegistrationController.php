@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Auth;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
@@ -33,6 +36,8 @@ class RegistrationController extends Controller
         $user = User::create($validatedData);
         Auth::login($user);
 
-        return Redirect::route('ver');
+        Event::dispatch(new Registered($user));
+
+        return Redirect::route(RouteServiceProvider::PROFILE);
     }
 }

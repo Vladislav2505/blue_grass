@@ -12,9 +12,10 @@ class AuthForm extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $formAction,
-        public string $formTitle,
+        public string $formAction = '',
+        public string $formTitle = '',
         public string $formLabel = '',
+        public string $formMethod = 'POST',
     ) {
     }
 

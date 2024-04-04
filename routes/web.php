@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
@@ -18,16 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/ver', function () {
-    return view('auth.email-verification-form');
-})->name('ver')->middleware('auth');
-
-Route::get('/auth', function () {
-    return view('auth.auth-form');
-});
-
-Route::get('/rec', function () {
-    return view('auth.password-recovery-form');
-});
+    return view('auth.email-verification');
+})->middleware(['verified'])->name('ver');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegistrationController::class, 'render'])->name('register');
@@ -41,4 +34,17 @@ Route::middleware(['guest'])->group(function () {
 
     Route::get('/reset-password', [ResetPasswordController::class, 'render'])->name('password.reset');
     Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.reset');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['verified'])->group(function () {
+        Route::get('/profile', function () {
+            return '123123123';
+        })->name('profile');
+    });
+
+    Route::prefix('email')->group(function () {
+        Route::get('/verify', [EmailVerificationController::class, 'notice'])->name('verification.notice');
+        Route::get('/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
+    });
 });
