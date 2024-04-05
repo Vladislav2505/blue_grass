@@ -1,49 +1,94 @@
 name: "blue_grass"
 
 services:
-  nginx:
+
+  # App Service
+  app:
+    container_name: blue_grass_app
+    build:
+      context: .
+      target: php
+      args:
+        - APP_ENV=${APP_ENV}
+    environment:
+      - APP_ENV=${APP_ENV}
+      - CONTAINER_ROLE=app
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - server
+      - database
+      - node
+      - queue
+    networks:
+      - blue_grass_network
+
+  # Laravel Queue
+  queue:
+    container_name: blue_grass_queue
+    build:
+      context: .
+      target: php
+      args:
+        - APP_ENV=${APP_ENV}
+    environment:
+      - APP_ENV=${APP_ENV}
+      - CONTAINER_ROLE=queue
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - blue_grass_network
+
+  # Server Service
+  server:
     container_name: "blue_grass_server"
     image: nginx:stable-alpine
     ports:
       - "80:80"
     volumes:
-      - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./:/var/www/laravel
-    depends_on:
-      - mysql
-      - php
-  php:
-    container_name: "blue_grass_php"
-    build:
-      context: docker/php
-      dockerfile: php.Dockerfile
-    volumes:
-      - ./:/var/www/laravel
-  mysql:
-    container_name: "blue_grass_db"
+      - ./docker/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./:/var/www
+    restart: always
+    networks:
+      - blue_grass_network
+
+  # Database Service
+  database:
+    container_name: blue_grass_db
     image: mysql:8.0
     ports:
-      - "3306:3306"
-    env_file:
-      - docker/env/mysql.env
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql
+      - db-data:/var/lib/mysql
+    networks:
+      - blue_grass_network
 
-  composer:
-    container_name: "blue_grass_composer"
+  # Npm Service
+  node:
+    container_name: blue_grass_npm
     build:
-      context: docker/php
-      dockerfile: composer.Dockerfile
+      context: .
+      target: node
+    ports:
+      - 5173:5173
     volumes:
-      - ./:/var/www/laravel
-  artisan:
-    container_name: "blue_grass_artisan"
-    build:
-      context: docker/php
-      dockerfile: php.Dockerfile
-    volumes:
-      - ./:/var/www/laravel
-    entrypoint: [ "php", "/var/www/laravel/artisan" ]
+      - .:/usr/src
+      - ./node_modules:/usr/src/node_modules
+      - ./:/var/www
+    tty: true
+    networks:
+      - blue_grass_network
 
 volumes:
-  db_data:
+  db-data: ~
+
+networks:
+  blue_grass_network:
+    driver: bridge
