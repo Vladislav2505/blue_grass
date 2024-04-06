@@ -5,16 +5,15 @@ if [ ! -f "vendor/autoload.php" ]; then
 fi
 
 if [ ! -f ".env" ]; then
-    echo "Creating env file for env $APP_ENV"
+    echo "Creating env file for env"
     cp .env.example .env
 else
     echo "env file exists"
 fi
 
-role=${CONTAINER_ROLE:-app}
+export role=${CONTAINER_ROLE:-app}
 
 if [ "$role" = "app" ]; then
-    php artisan migrate
     php artisan key:generate
     php artisan cache:clear
     php artisan config:clear
@@ -22,5 +21,5 @@ if [ "$role" = "app" ]; then
     exec docker-php-entrypoint "$@"
 elif [ "$role" = "queue" ]; then
     echo "Running the queue ..."
-    php /var/www/artisan queue:work --verbose --tries=3 --timeout=180
+    php artisan queue:work database --sleep=3 --tries=3 --verbose
 fi

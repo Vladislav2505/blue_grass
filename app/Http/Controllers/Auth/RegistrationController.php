@@ -23,7 +23,7 @@ class RegistrationController extends Controller
         return Response::view('auth.register');
     }
 
-    public function register(Request $request): RedirectResponse
+    public function register(Request $request)
     {
         $validatedData = $request->validate([
             'last_name' => ['required', 'string', 'max:180'],
@@ -38,6 +38,6 @@ class RegistrationController extends Controller
 
         Event::dispatch(new Registered($user));
 
-        return Redirect::route(RouteServiceProvider::PROFILE);
+        return Redirect::route('verification.notice')->with(['message' => __('auth.send_verification_notification')]);
     }
 }

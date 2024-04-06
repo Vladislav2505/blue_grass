@@ -1,10 +1,14 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Вызываем функцию, передавая массив id полей ввода
+    handleInputValidation(['last_name', 'first_name', 'email', 'password']);
+});
+
 export function handleInputValidation(inputIds) {
     inputIds.forEach(function (inputId) {
         const input = document.getElementById(inputId);
         const error = document.getElementById(inputId + '_error');
 
         if (!input || !error) {
-            console.error('Input or error element not found for id: ' + inputId);
             return;
         }
 

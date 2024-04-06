@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -18,6 +19,10 @@ class ForgotPasswordController extends Controller
 
     public function send(Request $request): RedirectResponse
     {
+        if ($request->has('accept') && !$request->has('email')) {
+            return Response::redirectToRoute('login');
+        }
+
         $request->validate([
             'email' => ['required', 'email'],
         ]);

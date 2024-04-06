@@ -13,6 +13,7 @@ class Submit extends Component
      */
     public function __construct(
         public string $submitLabel,
+        public string $submitName = '',
     ) {
     }
 

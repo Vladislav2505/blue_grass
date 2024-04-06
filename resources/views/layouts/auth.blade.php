@@ -10,7 +10,7 @@
     <title>{{config('app.name')}} - @yield('title')</title>
 
     <!-- Styles -->
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/js/form.js'])
 </head>
 <body>
 <main>

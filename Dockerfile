@@ -3,9 +3,14 @@
 
 FROM php:8.2-fpm as php
 
+RUN groupadd -g 1000 tvlad \
+    && useradd -m -u 1000 -g tvlad tvlad
+
 RUN apt-get update -y
 RUN apt-get install -y unzip libpq-dev libicu-dev libcurl4-gnutls-dev
 RUN docker-php-ext-install pdo pdo_mysql bcmath intl
+
+USER tvlad
 
 WORKDIR /var/www
 COPY . .

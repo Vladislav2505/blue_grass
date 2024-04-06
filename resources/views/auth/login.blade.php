@@ -1,6 +1,5 @@
 @extends('layouts.auth')
 @section('title', 'Авторизация')
-@vite('resources/js/forms/auth.js')
 
 @php
     $formLabel = 'У вас нет учетной записи? <a href="' . route('register') . '" class="text-lightblue">Регистрация</a>'

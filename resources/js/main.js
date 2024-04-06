@@ -1,5 +1,5 @@
-document.getElementById('open_burger').addEventListener('click', openMenu);
-document.getElementById('close_burger').addEventListener('click', closeMenu);
+document.getElementById('open_burger')?.addEventListener('click', openMenu);
+document.getElementById('close_burger')?.addEventListener('click', closeMenu);
 window.addEventListener('resize', hideMenuOnResize);
 
 function openMenu() {
