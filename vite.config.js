@@ -12,8 +12,9 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/js/app.js',
-                'resources/js/forms/registration.js',
-                'resources/js/forms/auth.js',
+                'resources/js/main.js',
+                'resources/js/form.js',
+                'resources/js/admin.js',
             ],
             refresh: true,
         }),

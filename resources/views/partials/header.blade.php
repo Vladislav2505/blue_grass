@@ -1,38 +1,26 @@
 <header class="bg-white sticky top-0 w-full z-50 shadow">
-    <div class="flex justify-between items-center max-w-[1420px] mx-auto px-6 py-1">
-        <a href="/">
-            <div class="flex items-center">
-                <img class="object-contain max-w-[110px] sm:max-w-[140px] lg:max-w-[140px]"
-                     src="{{Vite::asset('resources/images/logo.svg')}}"
-                     alt="logo">
-                <div class="ml-[22px]">
-                    <h1 class="font-bold xs:text-2xl sm:text-3xl">Blue Grass</h1>
-                    <p class="hidden xs:block text-secondary text-[15px]">Арт академия</p>
-                </div>
-            </div>
-        </a>
+    <div class="flex justify-between items-center max-w-[1420px] mx-auto px-2 xs:px-6 py-3">
+        <x-main.logo width="100"/>
+
         <nav class="px-[15px]">
             @include('partials.burger-menu')
+
             <ul class="hidden space-x-[60px] font-light xl:space-x-[70px] lg:text-xl lg:flex">
-                <li><a href="/partners" class="hover:text-lightblue transition-colors">Партнеры</a></li>
-                <li><a href="/gallery" class="hover:text-lightblue transition-colors">Галерея</a></li>
-                <li><a href="/news" class="hover:text-lightblue transition-colors">Новости</a></li>
+                @foreach(config('menu.main') as $url => $point)
+                    <li><a href="{{$url}}" class="hover:text-lightblue transition-colors">{{$point}}</a></li>
+                @endforeach
             </ul>
 
             <button id="open_burger" class="lg:hidden flex items-center">
                 <img src="{{Vite::asset('resources/images/burger.svg')}}" alt="burger" class="w-[24px] y-[24px]">
             </button>
         </nav>
-        <div class="hidden lg:flex">
-            <a href="/profile" class="flex">
+        <div class="hidden lg:flex gap-7">
+            <a href="{{route('profile')}}" class="flex">
                 <img src="{{Vite::asset('resources/images/profile.svg')}}"
-                     class="max-w-[28px] max-y-[28px] lg:max-w-[32px] lg:max-y-[32px]"
                      alt="profile">
             </a>
-            <button
-                class="bg-lightblue rounded-[5px] text-white font-medium py-3 px-3 ml-9 btn-hover">
-                Задать вопрос
-            </button>
+            <x-main.button button-label="Задать вопрос"/>
         </div>
     </div>
 </header>

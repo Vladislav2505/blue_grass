@@ -3,7 +3,7 @@
 
 @section('content')
     <x-forms.auth-form form-action="verification.resend"
-                       :form-label="session('message') ?: 'Вы должны подтвердить свой адрес электронной почты. На указанный вами адрес было отправлено письмо.'">
+                       :form-label="session('message') ?: __('auth.verification_notice')">
         @if(!session('message'))
             <input type="submit" name="send" value="Отправить код повторно"
                    class="text-lightblue flex items-start w-fit cursor-pointer"/>

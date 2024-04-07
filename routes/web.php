@@ -38,13 +38,13 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::prefix('email')->middleware(['confirmed'])->group(function () {
         Route::get('/verify', [EmailVerificationController::class, 'notice'])->name('verification.notice');
-        Route::get('/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
         Route::post('/verify', [EmailVerificationController::class, 'resend'])->name('verification.resend');
+        Route::get('/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
     });
 
     Route::middleware(['verified'])->group(function () {
         Route::get('/profile', function () {
-            return '123123123';
+            return view('test');
         })->name('profile');
     });
 });

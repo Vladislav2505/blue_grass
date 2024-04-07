@@ -23,6 +23,7 @@ export default {
             colors: {
                 main: '#111827',
                 secondary: '#696262',
+                darkblue: '#1A2852',
                 lightblue: '#4FB3EF',
                 lightpink: '#F3DEDE',
                 white: '#FFFFFF',

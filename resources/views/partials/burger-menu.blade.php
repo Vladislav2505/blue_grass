@@ -4,19 +4,10 @@
         <div class="flex items-center justify-between mb-[45px]">
             <button id="close_burger"><img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close">
             </button>
-            <div>
-                <a href="/" class="flex">
-                    <img src="{{Vite::asset('resources/images/favicon.svg')}}" alt="logo"
-                         class="min-w-[50px] min-y-[50px] mr-[8px]">
-                    <div>
-                        <h2 class="text-main font-bold text-[20px] md:text-[24px]">
-                            Blue Grass
-                        </h2>
-                        <p class="text-secondary font-bold text-[14px] leading-[15px]">Арт академия</p>
-                    </div>
-                </a>
-            </div>
-            <a href="/profile"><img src="{{Vite::asset('resources/images/menu/profile.svg')}}" alt="profile"></a>
+            <x-main.logo width="62"/>
+            <a href="{{route('profile')}}">
+                <img src="{{Vite::asset('resources/images/profile.svg')}}" alt="profile">
+            </a>
         </div>
 
         <ul class="text-secondary text-[24px] space-y-[20px]">
@@ -50,8 +41,5 @@
             </li>
         </ul>
     </div>
-    <button
-        class="bg-lightblue h-[50px] rounded-[5px] text-white font-medium text-[20px] w-full btn-hover">
-        Задать вопрос
-    </button>
+    <x-main.button button-label="Задать вопрос" class="text-xl"/>
 </div>

@@ -1,27 +1,27 @@
 <footer class="bg-white w-full">
-    <div class="py-5 px-20 flex flex-col items-center max-w-[1420px] mx-auto lg:flex-row lg:justify-between lg:px-6">
+    <div class="py-5 px-10 flex flex-col items-center max-w-[1420px] mx-auto md:flex-row md:justify-between md:px-6">
         <div>
-            <a href="/" class="text-2xl font-bold lg:text-3xl">Blue Grass</a>
+            <a href="{{route('home')}}" class="text-2xl font-bold lg:text-3xl">{{config('site.name')}}</a>
         </div>
-        <div class="text-[14px] font-light my-7 flex flex-col items-center lg:text-[18px]">
-            <p class="w-full text-center">E-mail: crescendo2017@mail.ru</p>
-            <p class="w-full text-center">Тел: +7-960-168-98-83 (Звонки по WhatsApp бесплатно)</p>
+        <div class="text-[14px] font-light my-7 flex flex-col items-center text-center lg:text-[18px]">
+            <p class="w-full text-center">E-mail: {{config('site.email')}}</p>
+            <p class="w-full text-center">Тел: {{config('site.phone')}} (Звонки по WhatsApp бесплатно)</p>
         </div>
-        <div>
-            <div class="flex justify-center items-center space-x-10 mb-[16px] lg:justify-end">
-                <a href="/"
+        <div class="max-w-xl">
+            <div class="flex justify-center items-center space-x-10 mb-[16px] md:justify-end">
+                <a href="{{config('site.vk')}}"
                    class="social rounded-[5px] px-[5px] py-[10px] hover:bg-lightblue transition-colors duration-300">
                     <img src="{{Vite::asset('resources/images/vk.svg')}}" alt="vk"
-                         class="min-w-[25px] lg:min-w-[40px] transition-colors duration-300">
+                         class="min-w-[35px] lg:min-w-[40px] transition-colors duration-300">
                 </a>
-                <a href="/"
+                <a href="{{config('site.tg')}}"
                    class="social rounded-[5px] px-[5px] py-[5px] hover:bg-lightblue transition-colors duration-300">
                     <img src="{{Vite::asset('resources/images/tg.svg')}}" alt="tg"
-                         class="min-w-[25px] lg:min-w-[40px] transition-colors duration-300">
+                         class="min-w-[35px] lg:min-w-[40px] transition-colors duration-300">
                 </a>
             </div>
             <div>
-                <a href="/" class="text-[14px] text-secondary hover:text-[#a29999] text-center">Политика конфиденциальности</a>
+                <a href="/" class="text-[14px] text-secondary font-light hover:text-[#a29999] text-right lg:text-[18px]">Политика конфиденциальности</a>
             </div>
         </div>
     </div>

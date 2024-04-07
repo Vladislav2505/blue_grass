@@ -21,5 +21,5 @@ if [ "$role" = "app" ]; then
     exec docker-php-entrypoint "$@"
 elif [ "$role" = "queue" ]; then
     echo "Running the queue ..."
-    php artisan queue:work database --sleep=3 --tries=3 --verbose
+    php artisan queue:work database --sleep=3 --tries=3 --verbose --timeout=20
 fi

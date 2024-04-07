@@ -1,3 +1,6 @@
+@php
+    $currentUrl = url()->current() . '/'
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -10,15 +13,21 @@
     <title>{{config('app.name')}} - @yield('title')</title>
 
     <!-- Styles -->
-    @vite(['resources/js/app.js', 'resources/js/main.js'])
+    @vite(['resources/js/app.js', 'resources/js/admin.js'])
 </head>
-<body>
-<div class="wrapper">
-    @include('partials.header')
-    <main class="flex">
-        @yield('content')
-    </main>
-    @include('partials.footer')
+<body class="bg-white">
+<div id="wrapper" class="flex flex-row justify-between">
+    @include('partials.admin.sidebar')
+
+    <div class="flex-grow">
+        @include('partials.admin.header')
+
+        <main>
+            <div class="mx-9 my-10 px-6 py-8 border-2 shadow rounded-[5px]">
+                @yield('content')
+            </div>
+        </main>
+    </div>
 </div>
 </body>
 </html>
