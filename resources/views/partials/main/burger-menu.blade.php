@@ -4,8 +4,8 @@
         <div class="flex items-center justify-between mb-[45px]">
             <button id="close_burger"><img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close">
             </button>
-            <x-main.logo width="62"/>
-            <a href="{{route('profile')}}">
+            <x-main.logo small/>
+            <a href="{{route(\App\Providers\RouteServiceProvider::PROFILE)}}">
                 <img src="{{Vite::asset('resources/images/profile.svg')}}" alt="profile">
             </a>
         </div>

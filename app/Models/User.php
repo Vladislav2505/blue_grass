@@ -33,7 +33,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'is_admin'
     ];
+
+    protected $guarded = [
+        'is_admin',
+    ];
+
+    protected $appends = ['full_name'];
 
     /**
      * The attributes that should be cast.
@@ -45,14 +52,25 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    public function isAdmin(): bool
+    {
+        return $this->is_admin === 1;
+    }
+
     /**
      * Отправить пользователю уведомление о сбросе пароля.
      *
-     * @param  string  $token
+     * @param string $token
      */
     public function sendPasswordResetNotification($token): void
     {
         $url = route('password.reset', compact('token'));
         $this->notify(new ResetPasswordNotification($url));
     }
+
+    public function getFullNameAttribute(): string
+    {
+        return trim($this->last_name . ' ' . $this->first_name . ' ' . $this->patronymic);
+    }
+
 }

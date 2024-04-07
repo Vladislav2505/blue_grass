@@ -7,18 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title>{{config('app.name')}} - @yield('title')</title>
+    <title>@yield('title') - {{config('app.name')}}</title>
 
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/main.js'])
 </head>
 <body>
 <div class="wrapper">
-    @include('partials.header')
+    @include('partials.main.header')
     <main class="flex">
         @yield('content')
     </main>
-    @include('partials.footer')
+    @include('partials.main.footer')
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <footer class="bg-white w-full">
     <div class="py-5 px-10 flex flex-col items-center max-w-[1420px] mx-auto md:flex-row md:justify-between md:px-6">
         <div>
-            <a href="{{route('home')}}" class="text-2xl font-bold lg:text-3xl">{{config('site.name')}}</a>
+            <a href="{{route(\App\Providers\RouteServiceProvider::HOME)}}" class="text-2xl font-bold lg:text-3xl">{{config('site.name')}}</a>
         </div>
         <div class="text-[14px] font-light my-7 flex flex-col items-center text-center lg:text-[18px]">
             <p class="w-full text-center">E-mail: {{config('site.email')}}</p>

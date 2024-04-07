@@ -1,26 +1,21 @@
 <?php
 
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/logout', function () {
     Auth::logout();
-
-    return redirect()->route('home');
+    return redirect()->route('index');
 });
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
-
-Route::get('/ver', function () {
-    return view('auth.email-verification');
-})->middleware(['verified'])->name('ver');
+})->name('index');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegistrationController::class, 'render'])->name('register');
@@ -42,9 +37,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');
     });
 
-    Route::middleware(['verified'])->group(function () {
-        Route::get('/profile', function () {
-            return view('test');
-        })->name('profile');
+    Route::name('profile.')->prefix('profile')->middleware(['verified', 'user'])->group(function () {
+        Route::get('/', function () {
+            return view('test2');
+        })->name('dashboard');
+    });
+
+    Route::name('admin.')->prefix('admin')->middleware(['admin'])->group(function () {
+        Route::redirect('/', 'admin/events')->name('dashboard');
+
+        Route::resources([
+            'events' => EventController::class,
+        ]);
     });
 });

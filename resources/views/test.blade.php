@@ -2,6 +2,6 @@
 @section('title', 'test')
 @section('content')
 
-    qweqweqwewq
+    Админка
 
 @endsection

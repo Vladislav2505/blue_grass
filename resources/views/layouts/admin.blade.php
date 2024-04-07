@@ -1,6 +1,7 @@
 @php
-    $currentUrl = url()->current() . '/'
+    $currentUrl = url()->current();
 @endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -10,13 +11,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title>{{config('app.name')}} - @yield('title')</title>
+    <title>@yield('title') - {{config('app.name')}}</title>
 
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/admin.js'])
 </head>
 <body class="bg-white">
-<div id="wrapper" class="flex flex-row justify-between">
+<div id="wrapper" class="flex flex-row justify-between h-full w-full">
     @include('partials.admin.sidebar')
 
     <div class="flex-grow">

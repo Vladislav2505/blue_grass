@@ -39,6 +39,6 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return Redirect::intended(RouteServiceProvider::PROFILE);
+        return Redirect::intended();
     }
 }

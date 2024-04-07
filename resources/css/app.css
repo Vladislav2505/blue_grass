@@ -30,6 +30,7 @@
     form {
         margin-block-end: 0;
     }
+
 }
 
 @layer components {
@@ -51,5 +52,18 @@
 
     .auth_input_text {
         @apply py-2 px-2 rounded-[5px] border border-[#b6b6b6] font-light;
+    }
+
+    .logo-big {
+        width: 100px;
+    }
+
+    .logo-small {
+        width: 50px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        max-width: 100%;
     }
 }
