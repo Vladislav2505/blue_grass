@@ -2,7 +2,8 @@
 export default {
     content: [
         "./resources/**/*.blade.php",
-        "./resources/**/*.js"
+        "./resources/**/*.js",
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
     ],
     theme: {
         screens: {
@@ -23,7 +24,9 @@ export default {
             colors: {
                 main: '#111827',
                 secondary: '#696262',
+                lightgray: '#d1d5db',
                 darkblue: '#1A2852',
+                blue: '#1e40af',
                 lightblue: '#4FB3EF',
                 lightpink: '#F3DEDE',
                 white: '#FFFFFF',

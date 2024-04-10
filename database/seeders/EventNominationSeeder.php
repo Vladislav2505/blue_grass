@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\EventNomination;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class EventNominationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(20)->create();
+        EventNomination::factory(20)->create();
     }
 }

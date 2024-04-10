@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply font-roboto bg-lightpink text-main h-full;
+        @apply font-roboto text-main h-screen w-full antialiased;
     }
 
     button {
@@ -17,10 +17,6 @@
 
     h1, h2, h3, h4 {
         @apply font-roboto;
-    }
-
-    main {
-        flex: 1 1 auto;
     }
 
     a, button, input {
@@ -65,5 +61,14 @@
     .table-container {
         overflow-x: auto;
         max-width: 100%;
+    }
+
+    .main {
+        flex: 1 1 auto;
+    }
+
+    .main-admin {
+        overflow-y: auto;
+        height: calc(100vh - 80px);
     }
 }

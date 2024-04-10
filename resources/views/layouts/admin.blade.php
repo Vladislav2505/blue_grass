@@ -2,7 +2,7 @@
     $currentUrl = url()->current();
 @endphp
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -16,18 +16,20 @@
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/admin.js'])
 </head>
-<body class="bg-white">
-<div id="wrapper" class="flex flex-row justify-between h-full w-full">
-    @include('partials.admin.sidebar')
 
-    <div class="flex-grow">
+<body class="bg-white">
+<div class="flex flex-row-reverse justify-end overflow-y-hidden">
+    <div class="w-full h-screen">
         @include('partials.admin.header')
 
-        <main>
+        <main class="main-admin">
             <div class="mx-9 my-10 px-6 py-8 border-2 shadow rounded-[5px]">
                 @yield('content')
             </div>
         </main>
+    </div>
+    <div class="w-fit h-screen">
+        @include('partials.admin.sidebar')
     </div>
 </div>
 </body>

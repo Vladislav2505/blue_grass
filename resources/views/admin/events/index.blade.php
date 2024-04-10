@@ -2,16 +2,16 @@
 @section('title', 'Мероприятия')
 @section('content')
 
-    <div class="font-medium text-4xl mb-4 mx-auto text-center">
+    <div class="font-medium text-4xl mb-10 md:mb-4 mx-auto text-left">
         <h2>Мероприятия</h2>
     </div>
 
-    <div class="flex flex-col">
-        <div class="flex justify-end mb-4">
+    <div class="flex flex-col gap-4">
+        <div class="flex justify-end">
             <x-admin.button button-label="Добавить мероприятие"/>
         </div>
 
-        <div class="text-secondary border border-[#d1d5db] rounded-[5px] overflow-x-auto overflow-y-hidden">
+        <div class="border border-[#d1d5db] rounded-[5px] overflow-x-auto overflow-y-hidden">
             <table class="table-auto w-full whitespace-nowrap max-w-none">
                 <thead class="border-b border-[#d1d5db]">
                 <tr class="text-left">
@@ -22,7 +22,7 @@
                     <th class="px-6 py-2">Created At</th>
                 </tr>
                 </thead>
-                <tbody class="font-light">
+                <tbody class="">
                 @foreach($users as $user)
                     <tr>
                         <td class="px-6 py-2">{{ $user->last_name }}</td>
@@ -35,6 +35,7 @@
                 </tbody>
             </table>
         </div>
+        {{ $users->onEachSide(2)->links()}}
     </div>
 
 @endsection

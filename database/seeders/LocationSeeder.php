@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Location;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class LocationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(20)->create();
+        Location::factory(20)->create();
     }
 }

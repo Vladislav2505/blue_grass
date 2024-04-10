@@ -12,10 +12,10 @@
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/main.js'])
 </head>
-<body>
+<body class="bg-lightpink">
 <div class="wrapper">
     @include('partials.main.header')
-    <main class="flex">
+    <main class="main flex">
         @yield('content')
     </main>
     @include('partials.main.footer')

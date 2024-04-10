@@ -15,8 +15,8 @@ class EventController extends Controller
      */
     public function index(): HttpResponse
     {
-        $users = User::query()->take(15)->get();
-
+        $users = User::query()->paginate(15);
+//        dd($users);
         return Response::view('admin.events.index', compact('users'));
     }
 

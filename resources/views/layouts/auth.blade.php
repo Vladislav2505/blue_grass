@@ -12,7 +12,7 @@
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/form.js'])
 </head>
-<body>
+<body class="bg-lightpink">
 <main>
     @yield('content')
 </main>
