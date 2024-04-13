@@ -1,27 +1,25 @@
 @extends('layouts.admin')
-@section('title', 'Мероприятия')
+@section('title', 'Темы')
 
 @section('content')
     <div class="font-medium text-4xl mb-10 md:mb-4 mx-auto text-left">
-        <h2>Мероприятия</h2>
+        <h2>Темы</h2>
     </div>
 
     <div class="flex flex-col gap-4">
         <div class="flex justify-end">
-            <a href="{{route('admin.events.create')}}">
-                <x-admin.button button-label="Добавить мероприятие"/>
+            <a href="{{route('admin.themes.create')}}">
+                <x-admin.button button-label="Добавить тему"/>
             </a>
         </div>
 
-        @if($events->isNotEmpty())
+        @if($themes->isNotEmpty())
             <x-admin.table :table-headers="$tableHeaders">
-                @foreach($events->getCollection() as $row)
+                @foreach($themes->getCollection() as $row)
                     <tr>
                         <x-admin.table.table-data>{{$row->id}}</x-admin.table.table-data>
                         <x-admin.table.table-data>{{$row->name}}</x-admin.table.table-data>
-                        <x-admin.table.table-data>{{$row->date_of}}</x-admin.table.table-data>
-                        <x-admin.table.table-data>{{$row->location->name}}</x-admin.table.table-data>
-                        <x-admin.table.table-data>{{$row->theme->name}}</x-admin.table.table-data>
+                        <x-admin.table.table-data>{{$row->updated_at}}</x-admin.table.table-data>
                         <x-admin.table.table-data>
                             <x-admin.table.active-label :is-active="$row->is_active"/>
                         </x-admin.table.table-data>
@@ -31,7 +29,7 @@
                     </tr>
                 @endforeach
             </x-admin.table>
-            <x-admin.pagination :items="$events"/>
+            <x-admin.pagination :items="$themes"/>
         @endif
     </div>
 @endsection

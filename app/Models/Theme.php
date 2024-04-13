@@ -12,6 +12,16 @@ class Theme extends Model
 
     protected $table = 'themes';
 
+    protected $fillable = [
+        'name',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     // Relations
     public function events(): HasMany
     {

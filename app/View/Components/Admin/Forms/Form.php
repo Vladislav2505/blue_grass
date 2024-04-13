@@ -1,19 +1,22 @@
 <?php
 
-namespace App\View\Components\Admin;
+namespace App\View\Components\Admin\Forms;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 
-class Button extends Component
+class Form extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $buttonLabel,
-        public string $buttonName = '',
+        public string $formAction,
+        public string $formBackUrl,
+        public string $formMethod = 'POST',
+        public ?array $formActionParam = null,
     )
     {
     }
@@ -23,6 +26,6 @@ class Button extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.button');
+        return view('components.admin.forms.form');
     }
 }

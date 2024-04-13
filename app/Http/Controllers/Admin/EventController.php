@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Event;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use \Illuminate\Http\Response as HttpResponse;
@@ -15,9 +16,14 @@ class EventController extends Controller
      */
     public function index(): HttpResponse
     {
-        $users = User::query()->paginate(15);
-//        dd($users);
-        return Response::view('admin.events.index', compact('users'));
+        $tableHeaders = ['ID', 'Название мероприятия', 'Дата проведения', 'Место проведения', 'Тема', 'Активность'];
+
+        $events = Event::query()
+            ->select(['id', 'name', 'date_of', 'location_id', 'theme_id', 'is_active'])
+            ->with(['location:id,name', 'theme:id,name'])
+            ->paginate(self::PER_PAGE);
+
+        return Response::view('admin.events.index', compact('events', 'tableHeaders'));
     }
 
     /**
@@ -47,9 +53,10 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Event $event): HttpResponse
     {
-        //
+
+        return Response::view('admin.events.edit', compact('event'));
     }
 
     /**
@@ -63,8 +70,10 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event): RedirectResponse
     {
-        //
+        $event->delete();
+
+        return Response::redirectToRoute('admin.events.index');
     }
 }

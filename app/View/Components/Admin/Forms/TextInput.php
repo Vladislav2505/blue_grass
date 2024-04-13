@@ -1,19 +1,20 @@
 <?php
 
-namespace App\View\Components\Admin;
+namespace App\View\Components\Admin\Forms;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Button extends Component
+class TextInput extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $buttonLabel,
-        public string $buttonName = '',
+        public string $inputName,
+        public string $inputLabel,
+        public string $inputValue = '',
     )
     {
     }
@@ -23,6 +24,6 @@ class Button extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.button');
+        return view('components.admin.forms.text-input');
     }
 }

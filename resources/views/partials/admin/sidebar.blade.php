@@ -10,7 +10,7 @@
                         <div>
                             <div
                                 class="{{Str::contains($currentUrl, $url) ? 'bg-[#495270]' : 'bg-[#3c486c] hover:bg-[#495270]'}} p-2 rounded-t-[5px] transition-colors">
-                                <a href="{{$url}}" class="flex items-center gap-2">
+                                <a href="/admin/{{$url}}" class="flex items-center gap-2">
                                     <img src="{{Vite::asset("resources/images/admin/menu/$url.svg")}}" alt="{{$url}}"/>
                                     <h2>{{$point['name']}}</h2>
                                 </a>
@@ -18,8 +18,8 @@
                             <div class="bg-[#25335b] rounded-b-[5px]">
                                 <ul class="text-[14px] font-light">
                                     @foreach($point['items'] as $childUrl => $childLabel)
-                                        <li class="hover:bg-[#495270] pl-7 transition-colors">
-                                            <a href="{{$childUrl}}" class="p-2 block">
+                                        <li class="{{Str::contains($currentUrl, $childUrl) ? 'bg-[#495270]' : 'hover:bg-[#495270]'}} pl-7 transition-colors">
+                                            <a href="/admin/{{$childUrl}}" class="p-2 block">
                                                 {{$childLabel}}
                                             </a>
                                         </li>
@@ -31,7 +31,7 @@
                         <div>
                             <ul class="space-y-3">
                                 <li class="hover:bg-[#495270] rounded-[5px] transition-colors">
-                                    <a href="{{$url}}" class="flex items-center w-full p-3 gap-2">
+                                    <a href="/admin/{{$url}}" class="flex items-center w-full p-3 gap-2">
                                         <img src="{{Vite::asset("resources/images/admin/menu/$url.svg")}}"
                                              alt="{{$url}}"/>
                                         {{$point}}

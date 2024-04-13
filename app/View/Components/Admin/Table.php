@@ -4,16 +4,16 @@ namespace App\View\Components\Admin;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
-class Button extends Component
+class Table extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $buttonLabel,
-        public string $buttonName = '',
+        public array $tableHeaders,
     )
     {
     }
@@ -23,6 +23,6 @@ class Button extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.button');
+        return view('components.admin.table.table');
     }
 }

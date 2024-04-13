@@ -1,3 +1,5 @@
+import './admin/modalDelete.js'
+
 document.getElementById('open_sidebar')?.addEventListener('click', openSidebar);
 document.getElementById('close_sidebar')?.addEventListener('click', closeSidebar);
 window.addEventListener('resize', hideMenuOnResize);

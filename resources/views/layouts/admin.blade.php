@@ -19,7 +19,7 @@
 
 <body class="bg-white">
 <div class="flex flex-row-reverse justify-end overflow-y-hidden">
-    <div class="w-full h-screen">
+    <div class="w-full h-screen overflow-x-auto">
         @include('partials.admin.header')
 
         <main class="main-admin">

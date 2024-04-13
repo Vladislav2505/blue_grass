@@ -16,6 +16,12 @@ use Str;
 
 class ResetPasswordController extends Controller
 {
+    /**
+     * Рендеринг формы сброса пароля.
+     *
+     * @param Request $request Запрос пользователя.
+     * @return RedirectResponse|HttpResponse
+     */
     public function render(Request $request): RedirectResponse|HttpResponse
     {
         $token = $request->string('token')->toString();
@@ -29,6 +35,12 @@ class ResetPasswordController extends Controller
         return Response::view('auth.reset-password', compact('token'));
     }
 
+    /**
+     * Сброс пароля пользователя.
+     *
+     * @param Request $request Запрос пользователя.
+     * @return RedirectResponse
+     */
     public function reset(Request $request): RedirectResponse
     {
         $request->validate([
