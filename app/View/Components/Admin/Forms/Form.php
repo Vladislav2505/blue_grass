@@ -4,7 +4,6 @@ namespace App\View\Components\Admin\Forms;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 
 class Form extends Component
@@ -17,8 +16,7 @@ class Form extends Component
         public string $formBackUrl,
         public string $formMethod = 'POST',
         public ?array $formActionParam = null,
-    )
-    {
+    ) {
     }
 
     /**

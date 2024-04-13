@@ -14,11 +14,11 @@ class EnsureEmailIsConfirmed
     /**
      * Handle an incoming request.
      *
-     * @param Closure(Request): (Response) $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->user() || ($request->user() instanceof MustVerifyEmail && $request->user()->hasVerifiedEmail())) {
+        if (! $request->user() || ($request->user() instanceof MustVerifyEmail && $request->user()->hasVerifiedEmail())) {
             $request->expectsJson()
                 ? abort(403, 'Your email address has already been verified')
                 : Redirect::route(RouteServiceProvider::PROFILE);

@@ -7,8 +7,8 @@ use App\Models\Location;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Response;
-use \Illuminate\Http\Response as HttpResponse;
 use Illuminate\Validation\ValidationException;
 
 class LocationController extends Controller
@@ -45,8 +45,9 @@ class LocationController extends Controller
         try {
             Location::query()->create([
                 'name' => $data['name'],
-                'is_active' => (boolean) ($data['is_active'] ?? false),
+                'is_active' => (bool) ($data['is_active'] ?? false),
             ]);
+
             return Response::redirectToRoute('admin.locations.index')
                 ->with(['success' => __('admin.location_creation_success', ['name' => $data['name']])]);
         } catch (Exception) {
@@ -76,8 +77,9 @@ class LocationController extends Controller
         try {
             $location->update([
                 'name' => $data['name'],
-                'is_active' => (boolean) ($data['is_active'] ?? false),
+                'is_active' => (bool) ($data['is_active'] ?? false),
             ]);
+
             return Response::redirectToRoute('admin.locations.index')
                 ->with(['success' => __('admin.location_update_success', ['name' => $data['name']])]);
         } catch (Exception) {
@@ -93,11 +95,12 @@ class LocationController extends Controller
     {
         if ($location->events()->exists()) {
             throw ValidationException::withMessages(
-                ['error' => __('admin.location_delete_error'),],
+                ['error' => __('admin.location_delete_error')],
             );
         }
 
         $location->delete();
+
         return Response::redirectToRoute('admin.locations.index')
             ->with(['success' => __('admin.location_delete_success', ['name' => $location->name])]);
     }

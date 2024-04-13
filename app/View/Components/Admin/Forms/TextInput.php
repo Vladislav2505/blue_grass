@@ -15,8 +15,7 @@ class TextInput extends Component
         public string $inputName,
         public string $inputLabel,
         public string $inputValue = '',
-    )
-    {
+    ) {
     }
 
     /**

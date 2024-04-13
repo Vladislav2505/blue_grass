@@ -18,7 +18,7 @@
                             <div class="bg-[#25335b] rounded-b-[5px]">
                                 <ul class="text-[14px] font-light">
                                     @foreach($point['items'] as $childUrl => $childLabel)
-                                        <li class="{{Str::contains($currentUrl, $childUrl) ? 'bg-[#495270]' : 'hover:bg-[#495270]'}} pl-7 transition-colors">
+                                        <li class="{{Str::contains($currentUrl, $childUrl) ? 'bg-[#495270]' : 'hover:bg-[#495270]'}} pl-7 transition-colors rounded-[2px]">
                                             <a href="/admin/{{$childUrl}}" class="p-2 block">
                                                 {{$childLabel}}
                                             </a>

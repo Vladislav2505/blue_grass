@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/logout', function () {
     Auth::logout();
+
     return redirect()->route('index');
 });
 

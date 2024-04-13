@@ -16,8 +16,7 @@ class ActionButtons extends Component
         public Model $model,
         public bool $isUpdatable = true,
         public bool $isDeletable = true,
-    )
-    {
+    ) {
     }
 
     /**

@@ -19,8 +19,7 @@ class ResetPasswordController extends Controller
     /**
      * Рендеринг формы сброса пароля.
      *
-     * @param Request $request Запрос пользователя.
-     * @return RedirectResponse|HttpResponse
+     * @param  Request  $request  Запрос пользователя.
      */
     public function render(Request $request): RedirectResponse|HttpResponse
     {
@@ -38,8 +37,7 @@ class ResetPasswordController extends Controller
     /**
      * Сброс пароля пользователя.
      *
-     * @param Request $request Запрос пользователя.
-     * @return RedirectResponse
+     * @param  Request  $request  Запрос пользователя.
      */
     public function reset(Request $request): RedirectResponse
     {

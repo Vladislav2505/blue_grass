@@ -18,7 +18,7 @@ class ForgotPasswordController extends Controller
 
     public function send(Request $request): RedirectResponse
     {
-        if ($request->has('accept') && !$request->has('email')) {
+        if ($request->has('accept') && ! $request->has('email')) {
             return Response::redirectToRoute('login');
         }
 

@@ -35,7 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
-        'is_admin'
+        'is_admin',
     ];
 
     protected $guarded = [
@@ -62,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Отправить пользователю уведомление о сбросе пароля.
      *
-     * @param string $token
+     * @param  string  $token
      */
     public function sendPasswordResetNotification($token): void
     {
@@ -72,7 +72,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute(): string
     {
-        return trim($this->last_name . ' ' . $this->first_name . ' ' . $this->patronymic);
+        return trim($this->last_name.' '.$this->first_name.' '.$this->patronymic);
     }
-
 }

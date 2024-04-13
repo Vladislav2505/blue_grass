@@ -13,12 +13,12 @@ class CheckIsAdmin
     /**
      * Handle an incoming request.
      *
-     * @param Closure(Request): (Response) $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next)
     {
-        if (is_null($request->user()) || !$request->user()->isAdmin()) {
-           return Redirect::route(RouteServiceProvider::HOME);
+        if (is_null($request->user()) || ! $request->user()->isAdmin()) {
+            return Redirect::route(RouteServiceProvider::HOME);
         }
 
         return $next($request);

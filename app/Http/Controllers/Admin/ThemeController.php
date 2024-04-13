@@ -7,8 +7,8 @@ use App\Models\Theme;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Response;
-use \Illuminate\Http\Response as HttpResponse;
 use Illuminate\Validation\ValidationException;
 
 class ThemeController extends Controller
@@ -45,8 +45,9 @@ class ThemeController extends Controller
         try {
             Theme::query()->create([
                 'name' => $data['name'],
-                'is_active' => (boolean) ($data['is_active'] ?? false),
+                'is_active' => (bool) ($data['is_active'] ?? false),
             ]);
+
             return Response::redirectToRoute('admin.themes.index')
                 ->with(['success' => __('admin.theme_creation_success', ['name' => $data['name']])]);
         } catch (Exception) {
@@ -76,8 +77,9 @@ class ThemeController extends Controller
         try {
             $theme->update([
                 'name' => $data['name'],
-                'is_active' => (boolean) ($data['is_active'] ?? false),
+                'is_active' => (bool) ($data['is_active'] ?? false),
             ]);
+
             return Response::redirectToRoute('admin.themes.index')
                 ->with(['success' => __('admin.theme_update_success', ['name' => $data['name']])]);
         } catch (Exception) {
@@ -93,11 +95,12 @@ class ThemeController extends Controller
     {
         if ($theme->events()->exists()) {
             throw ValidationException::withMessages(
-                ['error' => __('admin.theme_delete_error'),],
+                ['error' => __('admin.theme_delete_error')],
             );
         }
 
         $theme->delete();
+
         return Response::redirectToRoute('admin.themes.index')
             ->with(['success' => __('admin.theme_delete_success', ['name' => $theme->name])]);
     }

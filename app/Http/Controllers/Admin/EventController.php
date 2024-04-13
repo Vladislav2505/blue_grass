@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Response;
-use \Illuminate\Http\Response as HttpResponse;
 
 class EventController extends Controller
 {
