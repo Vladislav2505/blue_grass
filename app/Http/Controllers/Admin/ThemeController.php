@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Theme;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -48,7 +49,7 @@ class ThemeController extends Controller
             ]);
             return Response::redirectToRoute('admin.themes.index')
                 ->with(['success' => __('admin.theme_creation_success', ['name' => $data['name']])]);
-        } catch (\Exception) {
+        } catch (Exception) {
             return Response::redirectToRoute('admin.themes.index')
                 ->withErrors(['error' => __('admin.theme_creation_error')]);
         }
@@ -79,7 +80,7 @@ class ThemeController extends Controller
             ]);
             return Response::redirectToRoute('admin.themes.index')
                 ->with(['success' => __('admin.theme_update_success', ['name' => $data['name']])]);
-        } catch (\Exception) {
+        } catch (Exception) {
             return Response::redirectToRoute('admin.themes.index')
                 ->withErrors(['error' => __('admin.theme_update_error')]);
         }

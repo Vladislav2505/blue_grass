@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -50,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resources([
             'events' => EventController::class,
             'themes' => ThemeController::class,
+            'locations' => LocationController::class,
         ]);
     });
 });

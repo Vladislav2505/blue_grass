@@ -11,7 +11,17 @@ class Location extends Model
     use HasFactory;
 
     protected $table = 'locations';
-    
+
+    protected $fillable = [
+        'name',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     // Relations
     public function events(): HasMany
     {
