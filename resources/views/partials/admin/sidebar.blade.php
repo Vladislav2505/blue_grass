@@ -1,5 +1,5 @@
 <aside id="sidebar"
-       class="hidden fixed -translate-x-full transform duration-500 xl:flex xl:translate-x-0 xl:static xl:duration-0 h-screen">
+       class="hidden z-50 fixed -translate-x-full transform duration-500 xl:flex xl:translate-x-0 xl:static xl:duration-0 h-screen">
     <div id="12" class="flex flex-col bg-darkblue text-white px-5 py-3 gap-6 w-72">
         <x-main.logo small/>
 

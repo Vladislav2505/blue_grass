@@ -12,10 +12,20 @@ class Nomination extends Model
 
     protected $table = 'nominations';
 
+    protected $fillable = [
+        'name',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     // Relations
     public function events(): BelongsToMany
     {
         return $this->belongsToMany(Event::class,
-            'event_nominations', 'nomination_id', 'event_id');
+            'event_nomination', 'nomination_id', 'event_id');
     }
 }

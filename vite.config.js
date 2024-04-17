@@ -13,7 +13,7 @@ export default defineConfig({
             input: [
                 'resources/js/app.js',
                 'resources/js/main.js',
-                'resources/js/form.js',
+                'resources/js/auth.js',
                 'resources/js/admin.js',
             ],
             refresh: true,

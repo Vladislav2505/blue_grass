@@ -13,6 +13,25 @@ class Event extends Model
 
     protected $table = 'events';
 
+    protected $fillable = [
+        'name',
+        'date_of',
+        'image',
+        'award',
+        'description',
+        'request_access',
+        'is_active',
+        'theme_id',
+        'location_id',
+    ];
+
+    protected $casts = [
+        'date_of' => 'datetime:Y-m-d H:i',
+        'request_access' => 'boolean',
+        'is_active' => 'boolean',
+        'description' => 'json',
+    ];
+
     // Relations
     public function theme(): BelongsTo
     {
@@ -27,6 +46,6 @@ class Event extends Model
     public function nominations(): BelongsToMany
     {
         return $this->belongsToMany(Nomination::class,
-            'event_nominations', 'event_id', 'nomination_id');
+            'event_nomination', 'event_id', 'nomination_id');
     }
 }

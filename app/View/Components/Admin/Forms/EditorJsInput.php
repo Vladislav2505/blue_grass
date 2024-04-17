@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class TextInput extends Component
+class EditorJsInput extends Component
 {
     /**
      * Create a new component instance.
@@ -14,9 +14,9 @@ class TextInput extends Component
     public function __construct(
         public string $inputName,
         public string $inputLabel,
-        public ?string $inputValue = '',
-        public bool $isRequired = false,
-    ) {
+        public string $editorData = '',
+    )
+    {
     }
 
     /**
@@ -24,6 +24,6 @@ class TextInput extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.forms.text-input');
+        return view('components.admin.forms.editor-js-input');
     }
 }

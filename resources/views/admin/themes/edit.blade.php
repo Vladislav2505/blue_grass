@@ -7,7 +7,7 @@
     </div>
 
     <x-admin.forms.form form-action="admin.themes.update" :form-action-param="['theme' => $theme]" form-back-url="admin.themes.index" form-method="PUT">
-        <x-admin.forms.text-input input-name="name" input-label="Название" :input-value="$theme->name"/>
+        <x-admin.forms.text-input input-name="name" input-label="Название" :input-value="$theme->name" :is-required="true"/>
         <x-admin.forms.checkbox-input input-name="is_active" input-label="Активность" :input-is-checked="$theme->is_active"/>
     </x-admin.forms.form>
 @endsection

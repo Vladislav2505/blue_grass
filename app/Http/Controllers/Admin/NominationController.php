@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Location;
+use App\Models\Nomination;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 
-class LocationController extends Controller
+class NominationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): HttpResponse
     {
-        $tableHeaders = ['ID', 'Место проведения', 'Дата обновления', 'Активность'];
-        $locations = Location::query()->orderBy('updated_at', 'desc')->paginate(self::PER_PAGE);
+        $tableHeaders = ['ID', 'Название', 'Дата обновления', 'Активность'];
+        $nominations = Nomination::query()->orderBy('updated_at', 'desc')->paginate(self::PER_PAGE);
 
-        return Response::view('admin.locations.index', compact('locations', 'tableHeaders'));
+        return Response::view('admin.nominations.index', compact('nominations', 'tableHeaders'));
     }
 
     /**
@@ -30,7 +30,7 @@ class LocationController extends Controller
      */
     public function create(): HttpResponse
     {
-        return Response::view('admin.locations.create');
+        return Response::view('admin.nominations.create');
     }
 
     /**
@@ -44,32 +44,32 @@ class LocationController extends Controller
         ]);
 
         try {
-            Location::query()->create([
+            Nomination::query()->create([
                 'name' => $data['name'],
                 'is_active' => (bool) ($data['is_active'] ?? false),
             ]);
 
-            return Response::redirectToRoute('admin.locations.index')
-                ->with(['success' => __('admin.location_creation_success', ['name' => $data['name']])]);
+            return Response::redirectToRoute('admin.nominations.index')
+                ->with(['success' => __('admin.nomination_creation_success', ['name' => $data['name']])]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return Response::redirectToRoute('admin.locations.index')
-                ->withErrors(['error' => __('admin.location_creation_error')]);
+            return Response::redirectToRoute('admin.nominations.index')
+                ->withErrors(['error' => __('admin.nomination_creation_error')]);
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Location $location): HttpResponse
+    public function edit(Nomination $nomination): HttpResponse
     {
-        return Response::view('admin.locations.edit', compact('location'));
+        return Response::view('admin.nominations.edit', compact('nomination'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Location $location): RedirectResponse
+    public function update(Request $request, Nomination $nomination): RedirectResponse
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:80'],
@@ -77,34 +77,34 @@ class LocationController extends Controller
         ]);
 
         try {
-            $location->update([
+            $nomination->update([
                 'name' => $data['name'],
                 'is_active' => (bool) ($data['is_active'] ?? false),
             ]);
 
-            return Response::redirectToRoute('admin.locations.index')
-                ->with(['success' => __('admin.location_update_success', ['name' => $data['name']])]);
+            return Response::redirectToRoute('admin.nominations.index')
+                ->with(['success' => __('admin.nomination_creation_success', ['name' => $data['name']])]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return Response::redirectToRoute('admin.locations.index')
-                ->withErrors(['error' => __('admin.location_update_error')]);
+            return Response::redirectToRoute('admin.nominations.index')
+                ->withErrors(['error' => __('admin.nomination_creation_error')]);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Location $location): RedirectResponse
+    public function destroy(Nomination $nomination): RedirectResponse
     {
-        if ($location->events()->exists()) {
+        if ($nomination->events()->exists()) {
             throw ValidationException::withMessages(
-                ['error' => __('admin.location_delete_error')],
+                ['error' => __('admin.nomination_delete_error')],
             );
         }
 
-        $location->delete();
+        $nomination->delete();
 
-        return Response::redirectToRoute('admin.locations.index')
-            ->with(['success' => __('admin.location_delete_success', ['name' => $location->name])]);
+        return Response::redirectToRoute('admin.nominations.index')
+            ->with(['success' => __('admin.nomination_delete_success', ['name' => $nomination->name])]);
     }
 }

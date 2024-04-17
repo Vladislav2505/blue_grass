@@ -19,6 +19,8 @@ WORKDIR /var/www
 COPY . .
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+ADD ./docker/php/custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
+
 CMD ["php-fpm"]
 ENTRYPOINT ["docker/entrypoint.sh"]
 

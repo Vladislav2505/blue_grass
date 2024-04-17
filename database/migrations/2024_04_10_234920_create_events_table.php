@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->dateTime('date_of');
-            $table->string('image_url')->nullable();
+            $table->string('image')->nullable();
             $table->string('award')->nullable();
-            $table->text('description')->nullable();
+            $table->json('description')->nullable();
             $table->boolean('request_access')->default(true);
             $table->boolean('is_active')->default(true);
             $table->unsignedBigInteger('theme_id');

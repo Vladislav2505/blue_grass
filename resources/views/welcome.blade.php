@@ -2,5 +2,5 @@
 @section('title', 'Главная')
 
 @section('content')
-
+    {!! $html !!}
 @endsection

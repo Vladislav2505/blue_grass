@@ -1,8 +1,8 @@
-<form class="flex flex-col" method="POST" action="{{route($formAction, $formActionParam)}}">
+<form class="flex flex-col" method="POST" action="{{route($formAction, $formActionParam)}}" enctype="multipart/form-data">
     @method($formMethod)
     @csrf
 
-    <div class="grid grid-cols-1 md:grid-cols-[minmax(200px,420px)_auto]">
+    <div class="grid grid-cols-1 xl:grid-cols-[minmax(200px,420px)_auto]">
         {{$slot}}
     </div>
     <div class="flex flex-row justify-end gap-3">

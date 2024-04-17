@@ -10,7 +10,7 @@
     <title>@yield('title') - {{config('app.name')}}</title>
 
     <!-- Styles -->
-    @vite(['resources/js/app.js', 'resources/js/modalDelete.js'])
+    @vite(['resources/js/app.js', 'resources/js/auth.js'])
 </head>
 <body class="bg-lightpink">
 <main>

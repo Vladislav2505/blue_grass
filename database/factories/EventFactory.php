@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Event;
 use App\Models\Location;
 use App\Models\Theme;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
+ * @extends Factory<Event>
  */
 class EventFactory extends Factory
 {
@@ -21,7 +22,7 @@ class EventFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'date_of' => $this->faker->dateTime(),
-            'image_url' => $this->faker->imageUrl(),
+            'image' => $this->faker->imageUrl(),
             'award' => $this->faker->word(),
             'description' => $this->faker->paragraph(),
             'request_access' => $this->faker->boolean(),

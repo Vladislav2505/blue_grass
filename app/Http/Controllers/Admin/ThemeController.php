@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 
@@ -50,7 +51,9 @@ class ThemeController extends Controller
 
             return Response::redirectToRoute('admin.themes.index')
                 ->with(['success' => __('admin.theme_creation_success', ['name' => $data['name']])]);
-        } catch (Exception) {
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
             return Response::redirectToRoute('admin.themes.index')
                 ->withErrors(['error' => __('admin.theme_creation_error')]);
         }
@@ -82,7 +85,9 @@ class ThemeController extends Controller
 
             return Response::redirectToRoute('admin.themes.index')
                 ->with(['success' => __('admin.theme_update_success', ['name' => $data['name']])]);
-        } catch (Exception) {
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
             return Response::redirectToRoute('admin.themes.index')
                 ->withErrors(['error' => __('admin.theme_update_error')]);
         }

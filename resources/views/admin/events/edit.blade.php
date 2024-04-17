@@ -1,33 +1,39 @@
 @extends('layouts.admin')
-@section('title', 'Мероприятия')
+@section('title', 'Редактирование мероприятия')
 
 @section('content')
-    <div class="font-medium text-4xl mb-10 md:mb-4 mx-auto text-left">
-        <h2>Мероприятия</h2>
+    <div class="font-medium text-4xl mb-10 mx-auto text-center">
+        <h2>Редактирование мероприятия</h2>
     </div>
 
-    <div class="flex flex-col gap-4">
-        <div class="flex justify-end">
-            <x-admin.button button-label="Добавить мероприятие"/>
-        </div>
-
-        <x-admin.table :table-headers="$tableHeaders">
-            @foreach($events->getCollection() as $row)
-                <tr>
-                    <x-admin.table.table-data>{{$row->id}}</x-admin.table.table-data>
-                    <x-admin.table.table-data>{{$row->name}}</x-admin.table.table-data>
-                    <x-admin.table.table-data>{{$row->date_of}}</x-admin.table.table-data>
-                    <x-admin.table.table-data>{{$row->location->name}}</x-admin.table.table-data>
-                    <x-admin.table.table-data>{{$row->theme->name}}</x-admin.table.table-data>
-                    <x-admin.table.table-data>
-                        <x-admin.table.active-label :is-active="$row->is_active"/>
-                    </x-admin.table.table-data>
-                    <x-admin.table.table-data>
-                        <x-admin.table.action-buttons :is-updatable="true" :is-deletable="true" :model="$row"/>
-                    </x-admin.table.table-data>
-                </tr>
-            @endforeach
-        </x-admin.table>
-        <x-admin.pagination :items="$events"/>
-    </div>
+    <x-admin.forms.form form-action="admin.events.update" form-back-url="admin.events.index"
+                        :form-action-param="['event' => $event]" form-method="PUT">
+        <x-admin.forms.text-input input-name="name" input-label="Название" :is-required="true"
+                                  :input-value="$event->name"/>
+        <x-admin.forms.date-time-input input-label="Дата проведения" input-name="date_of" :is-required="true"
+                                       :input-value="$event->toArray()['date_of']"/>
+        <x-admin.forms.select :is-multiple="false" select-label="Тема" select-name="theme_id" :is-required="true"
+                              :selected-options="$event->theme_id"
+                              :select-options="$themes"
+        />
+        <x-admin.forms.select :is-multiple="false" select-label="Место проведения" select-name="location_id"
+                              :is-required="true"
+                              :select-options="$locations"
+                              :selected-options="$event->location_id"
+        />
+        <x-admin.forms.image-input input-name="image" input-label="Фото" input-accept=".png, .jpg, .jpeg"
+                                   :is-required="true" :input-value="$event->image_url"/>
+        <x-admin.forms.select :is-multiple="true" select-label="Номинации" select-name="nominations"
+                              :is-required="true"
+                              :select-options="$nominations"
+                              :selected-options="$event->nomination_ids"
+        />
+        <x-admin.forms.text-input input-name="award" input-label="Главный приз" :input-value="$event->award"/>
+        <x-admin.forms.editor-js-input input-name="description" input-label="Описание"
+                                       :editor-data="$event->description"/>
+        <x-admin.forms.checkbox-input input-name="request_access" input-label="Можно оставлять заявки"
+                                      :input-is-checked="$event->request_access"/>
+        <x-admin.forms.checkbox-input input-name="is_active" input-label="Активность"
+                                      :input-is-checked="$event->is_active"/>
+    </x-admin.forms.form>
 @endsection

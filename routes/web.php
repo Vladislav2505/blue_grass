@@ -2,18 +2,28 @@
 
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\NominationController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use Durlecode\EJSParser\Parser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/logout', function () {
     Auth::logout();
 
     return redirect()->route('index');
+});
+
+Route::get('/test', function () {
+    $event = \App\Models\Event::query()->find(1);
+    $html = Parser::parse($event->description)->getBlocks();
+    dd($event->description, $html);
+
+    return view('welcome', compact('event', 'html'));
 });
 
 Route::get('/', function () {
@@ -53,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
             'events' => EventController::class,
             'themes' => ThemeController::class,
             'locations' => LocationController::class,
+            'nominations' => NominationController::class,
         ]);
     });
 });

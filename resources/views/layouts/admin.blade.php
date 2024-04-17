@@ -22,8 +22,8 @@
     <div class="w-full h-screen overflow-x-auto">
         @include('partials.admin.header')
 
-        <main class="main-admin">
-            <div class="mx-9 my-10 px-6 py-8 border-2 shadow rounded-[5px]">
+        <main class="main-admin max-w-full">
+            <div class="relative max-w-full mx-9 my-10 px-6 py-8 border-2 shadow rounded-[5px]">
                 @yield('content')
             </div>
         </main>
