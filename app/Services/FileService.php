@@ -6,11 +6,12 @@ use App\Enums\StorageType;
 use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
 
-class FileService
+final class FileService
 {
     /**
      * Сохраняет файл.
@@ -55,5 +56,16 @@ class FileService
         }
 
         return '';
+    }
+
+    public function getFileName(string $path, string $disk = 'public'): string
+    {
+        if (! Storage::disk($disk)->exists($path)) {
+            return '';
+        }
+
+        $fileName = File::basename($path);
+
+        return Str::after($fileName, '_');
     }
 }

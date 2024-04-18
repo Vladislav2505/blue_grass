@@ -30,7 +30,7 @@
                     @else
                         <div>
                             <ul class="space-y-3">
-                                <li class="hover:bg-[#495270] rounded-[5px] transition-colors">
+                                <li class="{{Str::contains($currentUrl, $url) ? "bg-[#495270]" : 'hover:bg-[#495270]'}}  rounded-[5px] transition-colors">
                                     <a href="/admin/{{$url}}" class="flex items-center w-full p-3 gap-2">
                                         <img src="{{Vite::asset("resources/images/admin/menu/$url.svg")}}"
                                              alt="{{$url}}"/>

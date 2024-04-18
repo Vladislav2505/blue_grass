@@ -202,6 +202,8 @@ return [
         'theme_id' => '"Тема"',
         'location_id' => '"Место проведения"',
         'nomination_id' => '"Номинации"',
+        'date' => '"Дата"',
+        'file' => '"Файл"',
+        'is_downloadable' => '"Можно скачать"',
     ],
-
 ];

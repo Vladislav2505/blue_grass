@@ -28,4 +28,11 @@ return [
     'nomination_update_error' => 'Не удалось обновить номинацию. Пожалуйста, попробуйте еще раз.',
     'nomination_delete_error' => 'Не удалось удалить номинацию. На нее ссылаются мероприятия.',
     'nomination_delete_success' => 'Номинация ":name" успешно удалена.',
+
+    'protocol_creation_success' => 'Протокол ":name" успешно создан.',
+    'protocol_creation_error' => 'Не удалось создать протокол. Пожалуйста, попробуйте еще раз.',
+    'protocol_update_success' => 'Протокол ":name" успешно обновлен.',
+    'protocol_update_error' => 'Не удалось обновить протокол. Пожалуйста, попробуйте еще раз.',
+    'protocol_delete_error' => 'Не удалось удалить протокол.',
+    'protocol_delete_success' => 'Протокол ":name" успешно удален.',
 ];

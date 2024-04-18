@@ -25,4 +25,3 @@
         <x-admin.forms.checkbox-input input-name="is_active" input-label="Активность"/>
     </x-admin.forms.form>
 @endsection
-<div class=""></div>

@@ -18,14 +18,19 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Throwable;
 
-class EventController extends Controller
+final class EventController extends Controller
 {
+    public function __construct(
+        private readonly FileService $fileService,
+    ) {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): HttpResponse
     {
-        $tableHeaders = ['ID', 'Название мероприятия', 'Дата проведения', 'Место проведения', 'Тема', 'Активность'];
+        $tableHeaders = ['ID', 'Название', 'Дата проведения', 'Место проведения', 'Тема', 'Активность'];
 
         $events = Event::query()
             ->select(['id', 'name', 'date_of', 'location_id', 'theme_id', 'is_active'])
@@ -60,14 +65,14 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EventPostRequest $request, FileService $fileService): RedirectResponse
+    public function store(EventPostRequest $request): RedirectResponse
     {
         try {
-            DB::transaction(static function () use ($fileService, $request) {
+            DB::transaction(function () use ($request) {
                 /** @var Event $event */
                 $event = Event::query()->create($request->safe()->except('image', 'nominations'));
 
-                $event->image = $fileService->saveFile($request->file('image'), StorageType::Events);
+                $event->image = $this->fileService->saveFile($request->file('image'), StorageType::Events);
                 $event->nominations()->sync($request->post('nominations', []));
 
                 $event->save();
@@ -86,10 +91,10 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event, FileService $fileService): HttpResponse
+    public function edit(Event $event): HttpResponse
     {
         $event->setAttribute('nomination_ids', $event->nominations->pluck('id'));
-        $event->setAttribute('image_url', $fileService->getFileUrl($event->image ?? ''));
+        $event->setAttribute('image_url', $this->fileService->getFileUrl($event->image ?? ''));
 
         $themes = Theme::query()
             ->select(['id', 'name'])
@@ -110,18 +115,18 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EventPostRequest $request, FileService $fileService, Event $event): RedirectResponse
+    public function update(EventPostRequest $request, Event $event): RedirectResponse
     {
         try {
-            DB::transaction(static function () use ($event, $fileService, $request) {
+            DB::transaction(function () use ($event, $request) {
                 $file = $request->file('image');
                 $oldFile = $event->image ?? '';
                 $updatedData = $request->safe()->except('image', 'nominations');
 
                 if ($request->has('image')) {
-                    $imageUrl = $fileService->saveFile($file, StorageType::Events);
+                    $imageUrl = $this->fileService->saveFile($file, StorageType::Events);
                     if (! empty($imageUrl)) {
-                        $fileService->deleteFile($oldFile);
+                        $this->fileService->deleteFile($oldFile);
                         $updatedData['image'] = $imageUrl;
                     }
                 } else {
@@ -148,7 +153,10 @@ class EventController extends Controller
     public function destroy(Event $event): RedirectResponse
     {
         try {
-            $event->deleteOrFail();
+            DB::transaction(function () use ($event) {
+                $event->deleteOrFail();
+                $this->fileService->deleteFile($event->image ?? '');
+            });
         } catch (Throwable $e) {
             Log::error($e->getMessage());
 

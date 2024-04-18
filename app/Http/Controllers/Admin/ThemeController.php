@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 
-class ThemeController extends Controller
+final class ThemeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): HttpResponse
     {
-        $tableHeaders = ['ID', 'Название темы', 'Дата обновления', 'Активность'];
+        $tableHeaders = ['ID', 'Название', 'Дата обновления', 'Активность'];
         $themes = Theme::query()->orderBy('updated_at', 'desc')->paginate(self::PER_PAGE);
 
         return Response::view('admin.themes.index', compact('themes', 'tableHeaders'));

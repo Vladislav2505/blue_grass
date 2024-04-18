@@ -17,11 +17,7 @@ class DatabaseSeeder extends Seeder
             ThemeSeeder::class,
             LocationSeeder::class,
             EventNominationSeeder::class,
+            ProtocolSeeder::class,
         ]);
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
