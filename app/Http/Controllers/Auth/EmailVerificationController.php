@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 
-class EmailVerificationController extends Controller
+final class EmailVerificationController extends Controller
 {
     public function notice(Request $request): HttpResponse|RedirectResponse
     {

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 
-class LocationController extends Controller
+final class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,7 +39,7 @@ class LocationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:80'],
+            'name' => ['required', 'string', 'max:80', 'unique:locations'],
             'is_active' => ['nullable', 'in:true,false'],
         ]);
 
@@ -53,6 +53,7 @@ class LocationController extends Controller
                 ->with(['success' => __('admin.location_creation_success', ['name' => $data['name']])]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
+
             return Response::redirectToRoute('admin.locations.index')
                 ->withErrors(['error' => __('admin.location_creation_error')]);
         }
@@ -72,7 +73,7 @@ class LocationController extends Controller
     public function update(Request $request, Location $location): RedirectResponse
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:80'],
+            'name' => ['required', 'string', 'max:80', 'unique:locations'],
             'is_active' => ['nullable', 'in:true,false'],
         ]);
 
@@ -86,6 +87,7 @@ class LocationController extends Controller
                 ->with(['success' => __('admin.location_update_success', ['name' => $data['name']])]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
+
             return Response::redirectToRoute('admin.locations.index')
                 ->withErrors(['error' => __('admin.location_update_error')]);
         }

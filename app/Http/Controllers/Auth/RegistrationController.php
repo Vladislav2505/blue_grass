@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
-class RegistrationController extends Controller
+final class RegistrationController extends Controller
 {
     public function render(): HttpResponse
     {

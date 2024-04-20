@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 
-class NominationController extends Controller
+final class NominationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,7 +39,7 @@ class NominationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:80'],
+            'name' => ['required', 'string', 'max:80', 'unique:nominations'],
             'is_active' => ['nullable', 'in:true,false'],
         ]);
 
@@ -53,6 +53,7 @@ class NominationController extends Controller
                 ->with(['success' => __('admin.nomination_creation_success', ['name' => $data['name']])]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
+
             return Response::redirectToRoute('admin.nominations.index')
                 ->withErrors(['error' => __('admin.nomination_creation_error')]);
         }
@@ -72,7 +73,7 @@ class NominationController extends Controller
     public function update(Request $request, Nomination $nomination): RedirectResponse
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:80'],
+            'name' => ['required', 'string', 'max:80', 'unique:nominations'],
             'is_active' => ['nullable', 'in:true,false'],
         ]);
 
@@ -86,6 +87,7 @@ class NominationController extends Controller
                 ->with(['success' => __('admin.nomination_creation_success', ['name' => $data['name']])]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
+
             return Response::redirectToRoute('admin.nominations.index')
                 ->withErrors(['error' => __('admin.nomination_creation_error')]);
         }

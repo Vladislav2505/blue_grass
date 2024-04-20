@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rules\Password as PasswordRule;
 use Str;
 
-class ResetPasswordController extends Controller
+final class ResetPasswordController extends Controller
 {
     /**
      * Рендеринг формы сброса пароля.

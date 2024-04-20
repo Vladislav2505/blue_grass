@@ -9,7 +9,7 @@ use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Response;
 
-class ForgotPasswordController extends Controller
+final class ForgotPasswordController extends Controller
 {
     public function render(): HttpResponse
     {
