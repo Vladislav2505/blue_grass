@@ -33,7 +33,7 @@ final class EventController extends Controller
         $tableHeaders = ['ID', 'Название', 'Дата проведения', 'Место проведения', 'Тема', 'Активность'];
 
         $events = Event::query()
-            ->select(['id', 'name', 'date_of', 'location_id', 'theme_id', 'is_active'])
+            ->select(['id', 'slug', 'name', 'date_of', 'location_id', 'theme_id', 'is_active'])
             ->with(['location:id,name', 'theme:id,name'])
             ->orderBy('updated_at', 'desc')
             ->paginate(self::PER_PAGE);

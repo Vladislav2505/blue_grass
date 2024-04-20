@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('nominations', static function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique()->index();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

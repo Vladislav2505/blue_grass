@@ -10,7 +10,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use Durlecode\EJSParser\Parser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/logout', function () {
@@ -19,28 +18,20 @@ Route::get('/logout', function () {
     return redirect()->route('index');
 });
 
-Route::get('/test', function () {
-    $event = \App\Models\Event::query()->find(1);
-    $html = Parser::parse($event->description)->getBlocks();
-    dd($event->description, $html);
-
-    return view('welcome', compact('event', 'html'));
-});
-
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/register', [RegistrationController::class, 'render'])->name('register');
+    Route::get('/register', [RegistrationController::class, 'render'])->name('register.render');
     Route::post('/register', [RegistrationController::class, 'register'])->name('register');
 
-    Route::get('/login', [LoginController::class, 'render'])->name('login');
+    Route::get('/login', [LoginController::class, 'render'])->name('login.render');
     Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-    Route::get('/forgot-password', [ForgotPasswordController::class, 'render'])->name('forgot-password');
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'render'])->name('forgot-password.render');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'send'])->name('forgot-password');
-    Route::get('/reset-password', [ResetPasswordController::class, 'render'])->name('password.reset');
+    Route::get('/reset-password', [ResetPasswordController::class, 'render'])->name('password.reset.render');
     Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.reset');
 });
 

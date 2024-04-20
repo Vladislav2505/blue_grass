@@ -30,7 +30,7 @@ final class ProtocolController extends Controller
         $tableHeaders = ['ID', 'Название', 'Дата постановления', 'Активность'];
 
         $protocols = Protocol::query()
-            ->select(['id', 'name', 'date', 'is_active'])
+            ->select(['id', 'slug', 'name', 'date', 'is_active'])
             ->orderBy('updated_at', 'desc')
             ->paginate(self::PER_PAGE);
 

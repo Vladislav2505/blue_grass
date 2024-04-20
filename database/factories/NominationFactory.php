@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Nomination;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Nomination>
@@ -17,8 +18,11 @@ class NominationFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->name();
+
         return [
-            'name' => $this->faker->name(),
+            'name' => $name,
+            'slug' => Str::slug($name),
             'is_active' => $this->faker->boolean(),
         ];
     }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Event>
@@ -17,8 +18,11 @@ class ProtocolFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->name();
+
         return [
-            'name' => $this->faker->name(),
+            'name' => $name,
+            'slug' => Str::slug($name),
             'date' => $this->faker->date(),
             'file' => $this->faker->filePath(),
             'is_downloadable' => $this->faker->boolean(),

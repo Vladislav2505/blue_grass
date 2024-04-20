@@ -2,7 +2,7 @@
 @section('title', 'Регистрация')
 
 @php
-    $formLabel = 'У вас уже есть учетная запись? <a href="' . route('login') . '" class="text-lightblue">Войти</a>';
+    $formLabel = 'У вас уже есть учетная запись? <a href="' . route('login.render') . '" class="text-lightblue">Войти</a>';
 @endphp
 
 @section('content')

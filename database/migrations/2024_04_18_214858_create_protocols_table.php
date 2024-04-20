@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('protocols', static function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique()->index();
             $table->date('date')->nullable();
             $table->string('file');
             $table->boolean('is_downloadable')->default(true);

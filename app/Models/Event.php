@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,12 +10,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $table = 'events';
 
     protected $fillable = [
         'name',
+        'slug',
         'date_of',
         'image',
         'award',

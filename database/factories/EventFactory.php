@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Location;
 use App\Models\Theme;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Event>
@@ -19,8 +20,11 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->name();
+
         return [
-            'name' => $this->faker->name(),
+            'name' => $name,
+            'slug' => Str::slug($name),
             'date_of' => $this->faker->dateTime(),
             'image' => $this->faker->imageUrl(),
             'award' => $this->faker->word(),
