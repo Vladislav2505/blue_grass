@@ -4,7 +4,9 @@ window.addEventListener('resize', hideMenuOnResize);
 
 function openSidebar() {
     const sidebar = document.getElementById('sidebar');
+    const background = document.getElementById('sidebar_background'); // Добавляем получение элемента фона
     sidebar.classList.remove('hidden');
+    background.classList.remove('hidden'); // Показываем фон
     setTimeout(function () {
         sidebar.classList.remove('-translate-x-full');
         sidebar.classList.add('flex', 'translate-x-0');
@@ -13,11 +15,12 @@ function openSidebar() {
 
 function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
-
+    const background = document.getElementById('sidebar_background'); // Добавляем получение элемента фона
     sidebar.classList.remove('translate-x-0');
     sidebar.classList.add('-translate-x-full');
     setTimeout(function () {
         sidebar.classList.add('hidden');
+        background.classList.add('hidden'); // Скрываем фон
     }, 500);
 }
 

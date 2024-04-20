@@ -1,11 +1,11 @@
 <div class="flex bg-white md:bg-lightpink justify-center md:items-center h-screen">
     <form
-        class="flex flex-col items-center bg-white my-2 py-5 px-6 w-screen md:px-12 rounded-[5px] md:w-[560px]"
+        class="flex flex-col items-center bg-white my-2 py-5 px-6 w-screen md:px-12 rounded-[5px] md:w-[560px] shadow"
         action="{{route($formAction)}}" method="{{$formMethod}}">
         @csrf
         <div class="mb-3">
             <a href="/" class="flex flex-row gap-3 items-center">
-                <img src="{{Vite::asset('resources/images/favicon.svg')}}" alt="logo"
+                <img src="{{Vite::asset('resources/images/logo.svg')}}" alt="logo"
                      class="w-[70px]">
             </a>
         </div>

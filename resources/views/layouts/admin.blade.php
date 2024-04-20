@@ -23,12 +23,12 @@
         @include('partials.admin.header')
 
         <main class="main-admin max-w-full">
-            <div class="relative max-w-full mx-9 my-10 px-6 py-8 border-2 shadow rounded-[5px]">
+            <div class="relative max-w-full mx-3 md:mx-9 my-10 px-3 md:px-6 py-8 border-2 shadow rounded-[5px]">
                 @yield('content')
             </div>
         </main>
     </div>
-    <div class="w-fit h-screen">
+    <div class="w-fit h-screen flex flex-row">
         @include('partials.admin.sidebar')
     </div>
 </div>
