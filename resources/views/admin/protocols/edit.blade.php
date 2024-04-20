@@ -10,11 +10,11 @@
                         :form-action-param="['protocol' => $protocol]" form-method="PUT">
         <x-admin.forms.text-input input-name="name" input-label="Название" :is-required="true"
                                   :input-value="$protocol->name"/>
-        <x-admin.forms.date-input input-label="Дата постановления" input-name="date"
-                                  :input-value="$protocol->date"/>
         <x-admin.forms.file-input input-name="file" input-label="Файл" :is-required="true"
                                   input-accept=".docx, .doc, .pdf"
                                   :input-value="$protocol->file"/>
+        <x-admin.forms.date-input input-label="Дата постановления" input-name="date"
+                                  :input-value="$protocol->date"/>
         <x-admin.forms.checkbox-input input-name="is_downloadable" input-label="Протокол можно скачать"
                                       :input-is-checked="$protocol->is_downloadable"/>
         <x-admin.forms.checkbox-input input-name="is_active" input-label="Активность"
