@@ -1,6 +1,7 @@
 document.getElementById('open_burger')?.addEventListener('click', openMenu);
 document.getElementById('close_burger')?.addEventListener('click', closeMenu);
-window.addEventListener('resize', hideMenuOnResize);
+
+// window.addEventListener('resize', hideMenuOnResize);
 
 function openMenu() {
     const burgerMenu = document.getElementById('burger_menu');
@@ -20,11 +21,11 @@ function closeMenu() {
     }, 500);
 }
 
-// Функция для скрытия меню при изменении размера окна
-function hideMenuOnResize() {
-    const burgerMenu = document.getElementById('burger_menu');
-
-    if (!burgerMenu.classList.contains('hidden')) {
-        closeMenu();
-    }
-}
+// // Функция для скрытия меню при изменении размера окна
+// function hideMenuOnResize() {
+//     const burgerMenu = document.getElementById('burger_menu');
+//
+//     if (!burgerMenu.classList.contains('hidden')) {
+//         closeMenu();
+//     }
+// }
