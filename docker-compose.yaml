@@ -19,6 +19,7 @@ services:
       - database
       - node
       - queue
+    restart: always
     networks:
       - blue_grass_network
 
@@ -65,6 +66,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       - db-data:/var/lib/mysql
+    restart: always
     networks:
       - blue_grass_network
 
