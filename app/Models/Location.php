@@ -23,6 +23,13 @@ class Location extends Model
         'created_at' => 'datetime:Y-m-d H:i:s',
     ];
 
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::bootSlug();
+    }
+
     // Relations
     public function events(): HasMany
     {

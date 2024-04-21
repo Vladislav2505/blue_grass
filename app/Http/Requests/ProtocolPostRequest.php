@@ -25,7 +25,7 @@ class ProtocolPostRequest extends FormRequest
         $this->merge(['is_active' => $this->has('is_active')]);
 
         $rules = [
-            'name' => ['required', 'string', 'max:80', 'unique:protocols'],
+            'name' => ['required', 'string', 'max:80'],
             'date' => ['nullable', 'date_format:Y-m-d'],
             'is_downloadable' => ['nullable', 'boolean'],
             'is_active' => ['nullable', 'boolean'],

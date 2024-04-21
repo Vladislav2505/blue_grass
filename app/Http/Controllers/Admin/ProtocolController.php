@@ -50,6 +50,10 @@ final class ProtocolController extends Controller
      */
     public function store(ProtocolPostRequest $request): RedirectResponse
     {
+        $request->validate([
+            'name' => ['unique:protocols'],
+        ]);
+
         try {
             DB::transaction(function () use ($request) {
                 $data = $request->safe()->except('file');

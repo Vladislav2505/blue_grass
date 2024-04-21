@@ -40,7 +40,7 @@ final class ThemeController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:80', 'unique:themes'],
-            'is_active' => ['nullable', 'in:true,false'],
+            'is_active' => ['nullable', 'in:true,false,on'],
         ]);
 
         try {
@@ -73,8 +73,8 @@ final class ThemeController extends Controller
     public function update(Request $request, Theme $theme): RedirectResponse
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:80', 'unique:themes'],
-            'is_active' => ['nullable', 'in:true,false'],
+            'name' => ['required', 'string', 'max:80'],
+            'is_active' => ['nullable', 'in:true,false,on'],
         ]);
 
         try {

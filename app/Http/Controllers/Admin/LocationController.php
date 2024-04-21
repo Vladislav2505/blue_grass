@@ -40,7 +40,7 @@ final class LocationController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:80', 'unique:locations'],
-            'is_active' => ['nullable', 'in:true,false'],
+            'is_active' => ['nullable', 'in:true,false,on'],
         ]);
 
         try {
@@ -73,8 +73,8 @@ final class LocationController extends Controller
     public function update(Request $request, Location $location): RedirectResponse
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:80', 'unique:locations'],
-            'is_active' => ['nullable', 'in:true,false'],
+            'name' => ['required', 'string', 'max:80'],
+            'is_active' => ['nullable', 'in:true,false,on'],
         ]);
 
         try {

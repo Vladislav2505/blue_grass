@@ -67,6 +67,10 @@ final class EventController extends Controller
      */
     public function store(EventPostRequest $request): RedirectResponse
     {
+        $request->validate([
+            'name' => ['unique:events'],
+        ]);
+
         try {
             DB::transaction(function () use ($request) {
                 /** @var Event $event */

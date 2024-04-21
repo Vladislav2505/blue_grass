@@ -20,4 +20,11 @@ class Protocol extends Model
         'is_downloadable',
         'is_active',
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::bootSlug();
+    }
 }

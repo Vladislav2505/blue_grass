@@ -5,7 +5,7 @@
             <button id="close_burger"><img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close">
             </button>
             <x-main.logo small/>
-            <a href="{{route(\App\Providers\RouteServiceProvider::PROFILE)}}">
+            <a href="{{route(auth()->user()?->isAdmin() ? \App\Providers\RouteServiceProvider::ADMIN : \App\Providers\RouteServiceProvider::PROFILE)}}">
                 <img src="{{Vite::asset('resources/images/profile.svg')}}" alt="profile">
             </a>
         </div>

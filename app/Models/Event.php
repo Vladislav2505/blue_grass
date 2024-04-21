@@ -34,6 +34,13 @@ class Event extends Model
         'description' => 'json',
     ];
 
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::bootSlug();
+    }
+
     // Relations
     public function theme(): BelongsTo
     {
