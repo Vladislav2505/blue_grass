@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\NominationController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProtocolController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Auth\EmailVerificationController;
@@ -57,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
             'locations' => LocationController::class,
             'nominations' => NominationController::class,
             'protocols' => ProtocolController::class,
+            'partners' => PartnerController::class,
         ]);
     });
 });

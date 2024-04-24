@@ -6,11 +6,9 @@ document.getElementById('close_sidebar')?.addEventListener('click', closeSidebar
 function openSidebar() {
     const sidebar = document.getElementById('sidebar');
     const background = document.getElementById('sidebar_background');
-    const body = document.querySelector('body');
 
     sidebar.classList.remove('hidden');
     background.classList.remove('hidden');
-    body.classList.add('overflow-hidden'); // Убираем скроллинг страницы
     setTimeout(function () {
         sidebar.classList.remove('-translate-x-full');
         sidebar.classList.add('flex', 'translate-x-0');
@@ -20,14 +18,12 @@ function openSidebar() {
 function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
     const background = document.getElementById('sidebar_background');
-    const body = document.querySelector('body');
 
     sidebar.classList.remove('translate-x-0');
     sidebar.classList.add('-translate-x-full');
     setTimeout(function () {
         sidebar.classList.add('hidden');
         background.classList.add('hidden');
-        body.classList.remove('overflow-hidden'); // Возвращаем скроллинг страницы
     }, 500);
 }
 

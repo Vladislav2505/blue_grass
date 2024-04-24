@@ -35,4 +35,11 @@ return [
     'protocol_update_error' => 'Не удалось обновить протокол. Пожалуйста, попробуйте еще раз.',
     'protocol_delete_error' => 'Не удалось удалить протокол.',
     'protocol_delete_success' => 'Протокол ":name" успешно удален.',
+
+    'partner_creation_success' => 'Партнер ":name" успешно создан.',
+    'partner_creation_error' => 'Не удалось создать партнера. Пожалуйста, попробуйте еще раз.',
+    'partner_update_success' => 'Партнер ":name" успешно обновлен.',
+    'partner_update_error' => 'Не удалось обновить партнера. Пожалуйста, попробуйте еще раз.',
+    'partner_delete_error' => 'Не удалось удалить партнера.',
+    'partner_delete_success' => 'Партнер ":name" успешно удален.',
 ];

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             LocationSeeder::class,
             EventNominationSeeder::class,
             ProtocolSeeder::class,
+            PartnerSeeder::class,
         ]);
     }
 }

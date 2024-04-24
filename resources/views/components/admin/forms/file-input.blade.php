@@ -15,7 +15,7 @@
     </div>
     <div id="fileList">
         @if($inputValue)
-            <p class="text-secondary">{{$inputValue['fileName']}}</p>
+            <p class="w-full text-secondary">{{$inputValue['fileName']}}</p>
         @endif
     </div>
     <p class="text-error text-[14px]">{{$errors->first($inputName)}}</p>

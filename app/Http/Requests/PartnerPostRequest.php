@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
-use Illuminate\Validation\ValidationException;
 
-final class ProtocolPostRequest extends FormRequest
+final class PartnerPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,22 +18,17 @@ final class ProtocolPostRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      */
-    public function rules(): array|ValidationException
+    public function rules(): array
     {
-        $this->merge(['is_downloadable' => $this->has('is_downloadable')]);
         $this->merge(['is_active' => $this->has('is_active')]);
 
         $rules = [
             'name' => ['required', 'string', 'max:80'],
-            'date' => ['nullable', 'date_format:Y-m-d'],
-            'is_downloadable' => ['nullable', 'boolean'],
             'is_active' => ['nullable', 'boolean'],
         ];
 
-        if ($this->post('loadedFile') === null) {
-            $rules['file'] = ['required', File::default()
-                ->extensions(['docx', 'doc', 'pdf'])
-                ->max(10 * 1024 * 1024)];
+        if (! $this->has('loadedImages')) {
+            $rules['image'] = ['required', 'image', File::image()->extensions(['png', 'jpg', 'jpeg'])->max(10 * 1024 * 1024)];
         }
 
         return $rules;

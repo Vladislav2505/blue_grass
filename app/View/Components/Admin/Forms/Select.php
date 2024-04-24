@@ -19,9 +19,16 @@ class Select extends Component
         public Collection|array|int|null $selectedOptions = null,
         public bool $isMultiple = false,
         public bool $isRequired = false,
-    )
-    {
-        if (is_int($this->selectedOptions)) {
+    ) {
+        if (old($this->selectName)) {
+            $old = old($this->selectName);
+
+            if (is_array($old)) {
+                $this->selectedOptions = collect($old)->values();
+            } else {
+                $this->selectedOptions = collect($old);
+            }
+        } elseif (is_int($this->selectedOptions)) {
             $this->selectedOptions = collect($this->selectedOptions);
         }
     }

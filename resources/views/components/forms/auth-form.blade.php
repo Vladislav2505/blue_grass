@@ -6,7 +6,7 @@
         <div class="mb-3">
             <a href="/" class="flex flex-row gap-3 items-center">
                 <img src="{{Vite::asset('resources/images/logo.svg')}}" alt="logo"
-                     class="w-[70px]">
+                     class="w-[72px]">
             </a>
         </div>
         <div class="text-center pb-6">

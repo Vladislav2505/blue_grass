@@ -15,8 +15,7 @@ class EditorJsInput extends Component
         public string $inputName,
         public string $inputLabel,
         public string $editorData = '',
-    )
-    {
+    ) {
     }
 
     /**

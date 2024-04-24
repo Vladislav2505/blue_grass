@@ -49,6 +49,19 @@ final class FileService
         }
     }
 
+    public function updateFile(File|UploadedFile $file, StorageType $storageType, ?string $oldFile = null, string $disk = 'public'): string
+    {
+        $imageUrl = $this->saveFile($file, $storageType, $disk);
+
+        if (! empty($imageUrl) && $oldFile) {
+            $this->deleteFile($oldFile);
+
+            return $imageUrl;
+        }
+
+        return '';
+    }
+
     public function getFileUrl(string $path, string $disk = 'public'): string
     {
         if (Storage::disk($disk)->fileExists($path)) {

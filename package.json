@@ -29,6 +29,7 @@
     "@editorjs/header": "^2.8.1",
     "@editorjs/list": "^1.9.0",
     "@editorjs/underline": "^1.1.0",
+    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
     "editorjs-header-with-alignment": "^1.0.1",
     "editorjs-inline-font-size-tool": "^1.0.1",
     "editorjs-paragraph-with-alignment": "^3.0.0"

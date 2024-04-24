@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\ValidationException;
 
-class EventPostRequest extends FormRequest
+final class EventPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

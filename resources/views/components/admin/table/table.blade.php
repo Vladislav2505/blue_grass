@@ -1,7 +1,7 @@
 @if(session('success'))
-    <span class="text-success">{{session('success')}}</span>
+        <span class="text-success break-words">{{session('success')}}</span>
 @elseif($errors->first('error'))
-    <span class="text-error">{{$errors->first('error')}}</span>
+    <span class="text-error break-words">{{$errors->first('error')}}</span>
 @endif
 <div class="border border-lightgray rounded-[10px] overflow-x-auto overflow-y-hidden">
     <table class="table-auto w-full whitespace-nowrap max-w-none text-secondary text-left text-[12px] md:text-[16px]">

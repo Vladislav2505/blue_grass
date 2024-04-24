@@ -19,8 +19,7 @@ class ImageInput extends Component
         public bool $isMultiple = false,
         public Collection|array|string $inputValue = [],
         public bool $isRequired = false,
-    )
-    {
+    ) {
         if (is_string($this->inputValue)) {
             $this->inputValue = [$inputValue];
         }

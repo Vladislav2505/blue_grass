@@ -22,7 +22,7 @@
                               :selected-options="$event->location_id"
         />
         <x-admin.forms.image-input input-name="image" input-label="Фото" input-accept=".png, .jpg, .jpeg"
-                                   :is-required="true" :input-value="$event->image_url"/>
+                                   :is-required="true" :input-value="$event->image"/>
         <x-admin.forms.select :is-multiple="true" select-label="Номинации" select-name="nominations"
                               :is-required="true"
                               :select-options="$nominations"

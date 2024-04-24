@@ -1,6 +1,6 @@
 <div id="sidebar_background" class="hidden fixed inset-0 bg-opacity-100 z-50"></div>
 <aside id="sidebar"
-       class="hidden z-50 fixed -translate-x-full transform duration-500 xl:flex xl:translate-x-0 xl:static xl:duration-0 h-screen">
+       class="custom-scrollbar hidden z-50 fixed -translate-x-full transform duration-500 xl:flex xl:translate-x-0 xl:static xl:duration-0 h-screen">
     <div id="12" class="flex flex-col bg-darkblue text-white px-5 py-3 gap-6 w-72">
         <x-main.logo small/>
 

@@ -98,7 +98,7 @@ final class EventController extends Controller
     public function edit(Event $event): HttpResponse
     {
         $event->setAttribute('nomination_ids', $event->nominations->pluck('id'));
-        $event->setAttribute('image_url', $this->fileService->getFileUrl($event->image ?? ''));
+        $event->setAttribute('image', $this->fileService->getFileUrl($event->image ?? ''));
 
         $themes = Theme::query()
             ->select(['id', 'name'])

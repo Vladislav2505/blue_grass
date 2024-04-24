@@ -16,8 +16,7 @@ class DateTimeInput extends Component
         public string $inputLabel,
         public $inputValue = '',
         public bool $isRequired = false,
-    )
-    {
+    ) {
         //
     }
 
