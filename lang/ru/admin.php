@@ -49,4 +49,11 @@ return [
     'collection_update_error' => 'Не удалось обновить коллекцию. Пожалуйста, попробуйте еще раз.',
     'collection_delete_error' => 'Не удалось удалить коллекцию.',
     'collection_delete_success' => 'Коллекция ":name" успешно удалена.',
+
+    'news_creation_success' => 'Новость ":name" успешно создана.',
+    'news_creation_error' => 'Не удалось создать новость. Пожалуйста, попробуйте еще раз.',
+    'news_update_success' => 'Новость ":name" успешно обновлена.',
+    'news_update_error' => 'Не удалось обновить новость. Пожалуйста, попробуйте еще раз.',
+    'news_delete_error' => 'Не удалось удалить новость.',
+    'news_delete_success' => 'Новость ":name" успешно удалена.',
 ];

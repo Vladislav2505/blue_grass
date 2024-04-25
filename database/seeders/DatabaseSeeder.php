@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ProtocolSeeder::class,
             PartnerSeeder::class,
             CollectionSeeder::class,
+            NewsSeeder::class,
         ]);
     }
 }

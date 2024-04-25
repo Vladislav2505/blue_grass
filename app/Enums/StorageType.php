@@ -8,4 +8,5 @@ enum StorageType: string
     case Protocols = 'protocols';
     case Partners = 'partners';
     case Collections = 'collections';
+    case News = 'news';
 }

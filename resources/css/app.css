@@ -19,7 +19,7 @@
         @apply font-roboto;
     }
 
-    a, button, input {
+    a, button, input, textarea{
         @apply focus:outline-none;
     }
 

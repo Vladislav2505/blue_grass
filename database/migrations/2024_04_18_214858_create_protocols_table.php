@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique()->index();
             $table->date('date')->nullable();
             $table->string('file');
-            $table->boolean('is_downloadable')->default(true);
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_downloadable')->default(false);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

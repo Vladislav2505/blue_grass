@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NominationController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProtocolController;
@@ -61,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
             'protocols' => ProtocolController::class,
             'partners' => PartnerController::class,
             'collections' => CollectionController::class,
+            'news' => NewsController::class,
         ]);
     });
 });

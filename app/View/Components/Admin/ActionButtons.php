@@ -14,6 +14,7 @@ class ActionButtons extends Component
      */
     public function __construct(
         public Model $model,
+        public string $urlParam = '',
         public bool $isUpdatable = true,
         public bool $isDeletable = true,
     ) {

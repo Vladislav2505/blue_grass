@@ -1,7 +1,13 @@
+@php
+    if (empty($urlParam)) {
+        $urlParam = rtrim($model->getTable(), 's');
+    }
+@endphp
+
 <div class="flex flex-row gap-6 items-center justify-center">
     @if($isUpdatable ?? false)
         <div>
-            <a href="{{route("admin.{$model->getTable()}.edit", [rtrim($model->getTable(), 's') => $model->slug])}}">
+            <a href="{{route("admin.{$model->getTable()}.edit", [$urlParam => $model->slug])}}">
                 <button>
                     <img src="{{Vite::asset('resources/images/admin/update.svg')}}" alt="update">
                 </button>
@@ -11,7 +17,7 @@
 
     @if($isDeletable ?? false)
         <form
-            action="{{route("admin.{$model->getTable()}.destroy", [rtrim($model->getTable(), 's') => $model->slug])}}"
+            action="{{route("admin.{$model->getTable()}.destroy", [$urlParam => $model->slug])}}"
             method="POST">
             @csrf
             @method('DELETE')

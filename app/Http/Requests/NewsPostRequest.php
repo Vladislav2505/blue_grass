@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\ValidationException;
 
-final class CollectionPostRequest extends FormRequest
+final class NewsPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,12 @@ final class CollectionPostRequest extends FormRequest
 
         $rules = [
             'name' => ['required', 'string', 'max:80'],
+            'description' => ['required', 'string', 'max:5000'],
             'is_active' => ['nullable', 'boolean'],
         ];
 
-        if (! $this->has('loadedImages') || $this->has('images')) {
-            $rules['images'] = ['required', 'array', 'max:10'];
-            $rules['images.*'] = ['image', 'extensions:png,jpg,jpeg', 'max:10240'];
+        if (! $this->has('loadedImages')) {
+            $rules['image'] = ['nullable', 'image', 'extensions:png,jpg,jpeg', 'max:10240'];
         }
 
         return $rules;

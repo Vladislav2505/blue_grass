@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('award')->nullable();
             $table->json('description')->nullable();
-            $table->boolean('request_access')->default(true);
-            $table->boolean('is_active')->default(true);
+            $table->boolean('request_access')->default(false);
+            $table->boolean('is_active')->default(false);
             $table->unsignedBigInteger('theme_id');
             $table->unsignedBigInteger('location_id');
             $table->timestamps();
