@@ -173,6 +173,11 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'images.*' => [
+            'image' => 'Изображение :position не является изображением.',
+            'extensions' => 'Изображение :position должно иметь одно из следующих расширений: png, jpg, jpeg.',
+            'max' => 'Изображение :position не должно быть больше :max килобайт.'
+        ]
     ],
 
     /*
@@ -197,6 +202,7 @@ return [
         'is_active' => '"Активность"',
         'date_of' => '"Дата проведения"',
         'image' => '"Фото"',
+        'images' => '"Изображения"',
         'description' => '"Описание"',
         'request_access' => '"Можно оставлять заявки"',
         'theme_id' => '"Тема"',

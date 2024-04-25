@@ -20,6 +20,7 @@
                         <x-admin.table.table-data>{{$row->id}}</x-admin.table.table-data>
                         <x-admin.table.table-data>{{$row->name}}</x-admin.table.table-data>
                         <x-admin.table.table-data>{{$row->date}}</x-admin.table.table-data>
+                        <x-admin.table.table-data>{{$row->updated_at}}</x-admin.table.table-data>
                         <x-admin.table.table-data>
                             <x-admin.table.active-label :is-active="$row->is_active"/>
                         </x-admin.table.table-data>

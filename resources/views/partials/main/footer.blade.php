@@ -10,12 +10,12 @@
         </div>
         <div class="max-w-xl">
             <div class="flex justify-center items-center space-x-10 mb-[16px] md:justify-end">
-                <a href="{{config('site.vk')}}"
+                <a href="{{config('site.vk')}}" target="_blank"
                    class="social rounded-[5px] px-[5px] py-[10px] hover:bg-lightblue transition-colors duration-300">
                     <img src="{{Vite::asset('resources/images/vk.svg')}}" alt="vk"
                          class="min-w-[35px] lg:min-w-[40px] transition-colors duration-300">
                 </a>
-                <a href="{{config('site.tg')}}"
+                <a href="{{config('site.tg')}}" target="_blank"
                    class="social rounded-[5px] px-[5px] py-[5px] hover:bg-lightblue transition-colors duration-300">
                     <img src="{{Vite::asset('resources/images/tg.svg')}}" alt="tg"
                          class="min-w-[35px] lg:min-w-[40px] transition-colors duration-300">

@@ -11,7 +11,7 @@ return [
     ],
     'protocols' => 'Протоколы',
     'partners' => 'Партнеры',
-    'gallery' => 'Галерея',
+    'collections' => 'Галерея',
     'news' => 'Новости',
     'users' => 'Пользователи',
     'questions' => 'Вопросы',

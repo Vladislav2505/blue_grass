@@ -42,4 +42,11 @@ return [
     'partner_update_error' => 'Не удалось обновить партнера. Пожалуйста, попробуйте еще раз.',
     'partner_delete_error' => 'Не удалось удалить партнера.',
     'partner_delete_success' => 'Партнер ":name" успешно удален.',
+
+    'collection_creation_success' => 'Коллекция ":name" успешно создана.',
+    'collection_creation_error' => 'Не удалось создать коллекцию. Пожалуйста, попробуйте еще раз.',
+    'collection_update_success' => 'Коллекция ":name" успешно обновлена.',
+    'collection_update_error' => 'Не удалось обновить коллекцию. Пожалуйста, попробуйте еще раз.',
+    'collection_delete_error' => 'Не удалось удалить коллекцию.',
+    'collection_delete_success' => 'Коллекция ":name" успешно удалена.',
 ];

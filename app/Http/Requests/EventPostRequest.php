@@ -49,7 +49,7 @@ final class EventPostRequest extends FormRequest
         ];
 
         if (! $this->has('loadedImages')) {
-            $rules['image'] = ['required', 'image', File::image()->extensions(['png', 'jpg', 'jpeg'])->max(10 * 1024 * 1024)];
+            $rules['image'] = ['required', 'image', 'extensions:png,jpg,jpeg', 'max:10240'];
         }
 
         return $rules;

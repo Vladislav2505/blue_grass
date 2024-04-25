@@ -10,8 +10,6 @@ services:
       target: php
     environment:
       - CONTAINER_ROLE=app
-      - PHP_MAX_POST_SIZE=20M
-      - UPLOAD_LIMIT=20M
     working_dir: /var/www
     volumes:
       - ./:/var/www

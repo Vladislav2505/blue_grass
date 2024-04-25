@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Enums\StorageType;
-use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -30,9 +30,9 @@ final class FileService
         }
 
         if (Str::contains($file->getMimeType(), 'image')) {
-            $directory = "storage/image/$storage->value/".Carbon::now()->format('Y/m/d');
+            $directory = "images/$storage->value/".Carbon::now()->format('Y/m/d');
         } else {
-            $directory = "storage/files/$storage->value/".Carbon::now()->format('Y/m/d');
+            $directory = "files/$storage->value/".Carbon::now()->format('Y/m/d');
         }
 
         $fileName = Carbon::now()->timestamp.'_'.$file->getClientOriginalName();
@@ -42,11 +42,7 @@ final class FileService
 
     public function deleteFile(string $path, string $disk = 'public'): bool
     {
-        try {
-            return Storage::disk($disk)->delete($path);
-        } catch (Exception) {
-            return false;
-        }
+        return Storage::disk($disk)->delete($path);
     }
 
     public function updateFile(File|UploadedFile $file, StorageType $storageType, ?string $oldFile = null, string $disk = 'public'): string
@@ -60,6 +56,13 @@ final class FileService
         }
 
         return '';
+    }
+
+    public function deleteFiles(array $files, string $disk = 'public'): void
+    {
+        foreach ($files as $file) {
+            $this->deleteFile($file, $disk);
+        }
     }
 
     public function getFileUrl(string $path, string $disk = 'public'): string
@@ -80,5 +83,20 @@ final class FileService
         $fileName = File::basename($path);
 
         return Str::after($fileName, '_');
+    }
+
+    public function syncFiles(Collection|array $currentFiles, Collection|array $loadedFiles, string $disk = 'public'): void
+    {
+        if (is_array($currentFiles)) {
+            $currentFiles = collect($currentFiles);
+        }
+
+        $syncedFiles = $currentFiles->diff($loadedFiles);
+
+        if ($syncedFiles->isNotEmpty()) {
+            $syncedFiles->each(function ($file) {
+                $this->deleteFile($file);
+            });
+        }
     }
 }

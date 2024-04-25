@@ -25,5 +25,5 @@
             <span class="text-blue">Загрузите файл</span> до 10 МБ
         </label>
     </div>
-    <p class="text-error text-[14px]">{{$errors->first($inputName)}}</p>
+    <x-admin.forms.input-error :error-name="$inputName"/>
 </div>

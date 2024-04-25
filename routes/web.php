@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\NominationController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -59,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
             'nominations' => NominationController::class,
             'protocols' => ProtocolController::class,
             'partners' => PartnerController::class,
+            'collections' => CollectionController::class,
         ]);
     });
 });

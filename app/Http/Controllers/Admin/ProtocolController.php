@@ -27,10 +27,10 @@ final class ProtocolController extends Controller
      */
     public function index(): HttpResponse
     {
-        $tableHeaders = ['ID', 'Название', 'Дата постановления', 'Активность'];
+        $tableHeaders = ['ID', 'Название', 'Дата постановления', 'Дата обновления', 'Активность'];
 
         $protocols = Protocol::query()
-            ->select(['id', 'slug', 'name', 'date', 'is_active'])
+            ->select(['id', 'slug', 'name', 'date', 'updated_at', 'is_active'])
             ->orderBy('updated_at', 'desc')
             ->paginate(self::PER_PAGE);
 
@@ -96,19 +96,16 @@ final class ProtocolController extends Controller
             DB::transaction(function () use ($request, $protocol) {
                 $file = $request->file('file');
                 $oldFile = $protocol->file ?? '';
-                $data = $request->safe()->except('file');
+                $updatedData = $request->safe()->except('file');
 
                 if ($file) {
-                    $imageUrl = $this->fileService->saveFile($file, StorageType::Protocols);
-                    if (! empty($imageUrl)) {
-                        $this->fileService->deleteFile($oldFile);
-                        $data['file'] = $imageUrl;
-                    }
+                    $updatedData['file'] = $this->fileService
+                        ->updateFile($file, StorageType::Protocols, $oldFile);
                 } else {
-                    $data['file'] = $oldFile;
+                    $updatedData['file'] = $oldFile;
                 }
 
-                $protocol->update($data);
+                $protocol->update($updatedData);
             });
         } catch (Exception $e) {
             Log::error($e->getMessage());

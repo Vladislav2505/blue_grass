@@ -30,10 +30,10 @@ final class EventController extends Controller
      */
     public function index(): HttpResponse
     {
-        $tableHeaders = ['ID', 'Название', 'Дата проведения', 'Место проведения', 'Тема', 'Активность'];
+        $tableHeaders = ['ID', 'Название', 'Дата проведения', 'Место проведения', 'Тема', 'Дата обновления', 'Активность'];
 
         $events = Event::query()
-            ->select(['id', 'slug', 'name', 'date_of', 'location_id', 'theme_id', 'is_active'])
+            ->select(['id', 'slug', 'name', 'date_of', 'location_id', 'theme_id', 'updated_at', 'is_active'])
             ->with(['location:id,name', 'theme:id,name'])
             ->orderBy('updated_at', 'desc')
             ->paginate(self::PER_PAGE);
@@ -128,11 +128,8 @@ final class EventController extends Controller
                 $updatedData = $request->safe()->except('image', 'nominations');
 
                 if ($request->has('image')) {
-                    $imageUrl = $this->fileService->saveFile($file, StorageType::Events);
-                    if (! empty($imageUrl)) {
-                        $this->fileService->deleteFile($oldFile);
-                        $updatedData['image'] = $imageUrl;
-                    }
+                    $updatedData['image'] = $this->fileService
+                        ->updateFile($file, StorageType::Events, $oldFile);
                 } else {
                     $updatedData['image'] = $oldFile;
                 }
