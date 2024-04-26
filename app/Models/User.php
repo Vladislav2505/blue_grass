@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Jobs\SendEmail;
 use App\Notifications\ResetPasswordNotification;
+use App\Notifications\UserDeletedNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
+use Symfony\Component\Mailer\Exception\UnexpectedResponseException;
+use Throwable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -23,8 +28,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'first_name',
         'last_name',
+        'patronymic',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     /**
@@ -65,6 +72,19 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * @throws Throwable
+     */
+    public function deleteWithNotification(): void
+    {
+        try {
+            SendEmail::dispatchSync($this, new UserDeletedNotification());
+        } catch (UnexpectedResponseException $e) {
+            Log::error($e->getMessage());
+        }
+        $this->deleteOrFail();
+    }
+
+    /**
      * Отправить пользователю уведомление о сбросе пароля.
      *
      * @param  string  $token
@@ -72,7 +92,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token): void
     {
         $url = route('password.reset', compact('token'));
-        $this->notify(new ResetPasswordNotification($url));
+        SendEmail::dispatch($this, new ResetPasswordNotification($url));
     }
 
     public function getFullNameAttribute(): string

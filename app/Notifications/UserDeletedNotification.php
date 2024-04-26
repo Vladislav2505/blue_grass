@@ -7,15 +7,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ResetPasswordNotification extends Notification
+class UserDeletedNotification extends Notification
 {
     /**
      * Create a new notification instance.
      */
-    public function __construct(
-        protected string $url
-    ) {
-        //
+    public function __construct()
+    {
     }
 
     /**
@@ -33,13 +31,13 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $email = config('site.email') ?? '';
+
         return (new MailMessage)
-            ->subject('Уведомление о сбросе пароля')
+            ->subject('Ваша учетная запись была удалена администратором.')
             ->greeting('Здравствуйте!')
-            ->line('Вы получили это письмо, поскольку мы получили запрос на сброс пароля для вашей учетной записи.')
-            ->action('Сбросить пароль', url($this->url))
-            ->line('Срок действия этой ссылки для сброса пароля истекает через 60 минут.')
-            ->line('Если вы не запрашивали сброс пароля, никаких дальнейших действий не требуется.');
+            ->line('Вы получили это письмо, поскольку учетная запись, связанная с этой почтой была удалена.')
+            ->line("Если у вас есть какие-то вопросы, вы можете написать нам: $email");
     }
 
     /**

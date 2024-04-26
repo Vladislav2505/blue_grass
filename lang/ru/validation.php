@@ -197,6 +197,7 @@ return [
     'attributes' => [
         'last_name' => '"Фамилия"',
         'first_name' => '"Имя"',
+        'patronymic' => '"Отчество"',
         'email' => '"E-mail"',
         'password' => '"Пароль"',
         'personal-data' => 'согласия на обработку персональных данных',

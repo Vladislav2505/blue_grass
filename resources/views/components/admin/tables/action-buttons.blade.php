@@ -19,7 +19,7 @@
         <div>
             <a href="{{route("admin.{$model->getTable()}.show", [$urlParam => $model->slug ?? $model])}}">
                 <button>
-                    <img class="w-" src="{{Vite::asset('resources/images/admin/show.svg')}}" alt="show">
+                    <img src="{{Vite::asset('resources/images/admin/show.svg')}}" alt="show">
                 </button>
             </a>
         </div>

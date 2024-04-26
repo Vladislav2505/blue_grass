@@ -1,6 +1,6 @@
 <div class="w-fit">
     <a href="{{route(\App\Providers\RouteServiceProvider::HOME)}}" class="flex flex-row items-center gap-4">
-        <img class="object-contain {{$attributes->get('small') ? 'w-[60px]' : 'w-[100px]'}}"
+        <img class="object-contain {{$attributes->get('small') ? 'w-[60px]' : 'w-[90px]'}}"
              src="{{Vite::asset('resources/images/logo.svg')}}"
              alt="logo">
         <div>

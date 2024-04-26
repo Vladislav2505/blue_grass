@@ -1,21 +1,22 @@
 <?php
 
-namespace App\View\Components\Admin\Forms;
+namespace App\View\Components\Admin\Show;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 
-class Submit extends Component
+class Show extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $submitLabel,
-        public string $submitId = '',
-        public string $submitName = '',
-    ) {
+        public string $formBackUrl,
+        public Model $model,
+    )
+    {
         //
     }
 
@@ -24,6 +25,6 @@ class Submit extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.forms.submit');
+        return view('components.admin.show.show');
     }
 }

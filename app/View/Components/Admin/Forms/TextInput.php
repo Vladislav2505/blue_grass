@@ -15,6 +15,8 @@ class TextInput extends Component
         public string $inputName,
         public string $inputLabel,
         public ?string $inputValue = '',
+        public string $inputPlaceholder = '',
+        public string $inputType = 'text',
         public bool $isRequired = false,
     ) {
     }
