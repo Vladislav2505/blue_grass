@@ -14,23 +14,23 @@
         </div>
 
         @if($protocols->isNotEmpty())
-            <x-admin.table :table-headers="$tableHeaders">
+            <x-admin.tables.table :table-headers="$tableHeaders">
                 @foreach($protocols->getCollection() as $row)
                     <tr>
-                        <x-admin.table.table-data>{{$row->id}}</x-admin.table.table-data>
-                        <x-admin.table.table-data>{{$row->name}}</x-admin.table.table-data>
-                        <x-admin.table.table-data>{{$row->date}}</x-admin.table.table-data>
-                        <x-admin.table.table-data>{{$row->updated_at}}</x-admin.table.table-data>
-                        <x-admin.table.table-data>
-                            <x-admin.table.active-label :is-active="$row->is_active"/>
-                        </x-admin.table.table-data>
-                        <x-admin.table.table-data>
-                            <x-admin.table.action-buttons :is-updatable="true" :is-deletable="true" :model="$row"/>
-                        </x-admin.table.table-data>
+                        <x-admin.tables.table-data>{{$row->id}}</x-admin.tables.table-data>
+                        <x-admin.tables.table-data>{{$row->name}}</x-admin.tables.table-data>
+                        <x-admin.tables.table-data>{{$row->date}}</x-admin.tables.table-data>
+                        <x-admin.tables.table-data>{{$row->updated_at}}</x-admin.tables.table-data>
+                        <x-admin.tables.table-data>
+                            <x-admin.tables.label :is-active="$row->is_active"/>
+                        </x-admin.tables.table-data>
+                        <x-admin.tables.table-data>
+                            <x-admin.tables.action-buttons :is-updatable="true" :is-deletable="true" :model="$row"/>
+                        </x-admin.tables.table-data>
                     </tr>
                 @endforeach
-            </x-admin.table>
-            <x-admin.pagination :items="$protocols"/>
+            </x-admin.tables.table>
+            <x-admin.tables.pagination :items="$protocols"/>
         @endif
     </div>
 @endsection

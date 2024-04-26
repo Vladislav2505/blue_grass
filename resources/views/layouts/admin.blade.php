@@ -17,12 +17,12 @@
     @vite(['resources/js/app.js', 'resources/js/admin.js'])
 </head>
 
-<body class="bg-white">
+<body class="bg-white overflow-y-hidden">
 <div class="flex flex-row-reverse justify-end overflow-y-hidden">
     <div class="w-full h-screen overflow-x-auto overflow-y-hidden">
         @include('partials.admin.header')
 
-        <main class="main-admin max-w-full">
+        <main class="main-admin max-w-full overflow-x-hidden">
             <div class="relative max-w-full mx-3 md:mx-9 my-10 px-3 md:px-6 py-8 border-2 shadow rounded-[5px]">
                 @yield('content')
             </div>

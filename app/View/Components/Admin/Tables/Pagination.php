@@ -1,19 +1,21 @@
 <?php
 
-namespace App\View\Components\Admin;
+namespace App\View\Components\Admin\Tables;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
-class ActiveLabel extends Component
+class Pagination extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public bool $isActive = true
+        public LengthAwarePaginator $items,
     ) {
+        //
     }
 
     /**
@@ -21,6 +23,6 @@ class ActiveLabel extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.table.active-label');
+        return view('components.admin.tables.pagination');
     }
 }

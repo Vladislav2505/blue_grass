@@ -1,5 +1,5 @@
 @if(session('success'))
-        <span class="text-success break-words">{{session('success')}}</span>
+    <span class="text-success break-words">{{session('success')}}</span>
 @elseif($errors->first('error'))
     <span class="text-error break-words">{{$errors->first('error')}}</span>
 @endif

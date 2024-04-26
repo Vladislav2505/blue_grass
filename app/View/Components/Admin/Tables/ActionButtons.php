@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Admin;
+namespace App\View\Components\Admin\Tables;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -15,8 +15,9 @@ class ActionButtons extends Component
     public function __construct(
         public Model $model,
         public string $urlParam = '',
-        public bool $isUpdatable = true,
+        public bool $isUpdatable = false,
         public bool $isDeletable = true,
+        public bool $isViewable = false,
     ) {
     }
 
@@ -25,6 +26,6 @@ class ActionButtons extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.table.action-buttons');
+        return view('components.admin.tables.action-buttons');
     }
 }

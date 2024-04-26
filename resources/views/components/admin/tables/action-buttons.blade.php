@@ -7,7 +7,7 @@
 <div class="flex flex-row gap-6 items-center justify-center">
     @if($isUpdatable ?? false)
         <div>
-            <a href="{{route("admin.{$model->getTable()}.edit", [$urlParam => $model->slug])}}">
+            <a href="{{route("admin.{$model->getTable()}.edit", [$urlParam => $model->slug ?? $model])}}">
                 <button>
                     <img src="{{Vite::asset('resources/images/admin/update.svg')}}" alt="update">
                 </button>
@@ -15,9 +15,19 @@
         </div>
     @endif
 
+    @if($isViewable ?? false)
+        <div>
+            <a href="{{route("admin.{$model->getTable()}.show", [$urlParam => $model->slug ?? $model])}}">
+                <button>
+                    <img class="w-" src="{{Vite::asset('resources/images/admin/show.svg')}}" alt="show">
+                </button>
+            </a>
+        </div>
+    @endif
+
     @if($isDeletable ?? false)
         <form
-            action="{{route("admin.{$model->getTable()}.destroy", [$urlParam => $model->slug])}}"
+            action="{{route("admin.{$model->getTable()}.destroy", [$urlParam => $model->slug ?? $model])}}"
             method="POST">
             @csrf
             @method('DELETE')

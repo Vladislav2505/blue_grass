@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\NominationController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProtocolController;
 use App\Http\Controllers\Admin\ThemeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -55,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
         Route::redirect('/', 'admin/events')->name('dashboard');
 
         Route::resources([
+            'users' => UserController::class,
             'events' => EventController::class,
             'themes' => ThemeController::class,
             'locations' => LocationController::class,

@@ -59,6 +59,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->is_admin === 1;
     }
 
+    public function isVerified(): bool
+    {
+        return $this->email_verified_at !== null;
+    }
+
     /**
      * Отправить пользователю уведомление о сбросе пароля.
      *
