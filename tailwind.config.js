@@ -28,6 +28,7 @@ export default {
                 darkblue: '#1A2852',
                 blue: '#1e40af',
                 lightblue: '#02ccfe',
+                'blue-hover': '#168fd8',
                 lightpink: '#efebeb',
                 white: '#FFFFFF',
                 success: '#20bb33',

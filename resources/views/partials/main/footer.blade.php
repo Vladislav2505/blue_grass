@@ -1,4 +1,4 @@
-<footer class="bg-white w-full shadow">
+<footer class="bg-white w-full shadow border-lightgray">
     <div class="py-5 px-10 flex flex-col items-center max-w-[1420px] mx-auto md:flex-row md:justify-between md:px-6">
         <div>
             <a href="{{route(\App\Providers\RouteServiceProvider::HOME)}}"
@@ -10,15 +10,13 @@
         </div>
         <div class="max-w-xl">
             <div class="flex justify-center items-center space-x-10 mb-[16px] md:justify-end">
-                <a href="{{config('site.vk')}}" target="_blank"
-                   class="social rounded-[5px] px-[5px] py-[10px] hover:bg-lightblue transition-colors duration-300">
+                <a href="{{config('site.vk')}}" target="_blank">
                     <img src="{{Vite::asset('resources/images/vk.svg')}}" alt="vk"
-                         class="min-w-[35px] lg:min-w-[40px] transition-colors duration-300">
+                         class="min-w-[35px] lg:min-w-[40px]">
                 </a>
-                <a href="{{config('site.tg')}}" target="_blank"
-                   class="social rounded-[5px] px-[5px] py-[5px] hover:bg-lightblue transition-colors duration-300">
+                <a href="{{config('site.tg')}}" target="_blank">
                     <img src="{{Vite::asset('resources/images/tg.svg')}}" alt="tg"
-                         class="min-w-[35px] lg:min-w-[40px] transition-colors duration-300">
+                         class="min-w-[35px] lg:min-w-[40px]">
                 </a>
             </div>
             <div>

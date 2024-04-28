@@ -26,7 +26,9 @@ final class UserController extends Controller
         $tableHeaders = ['ID', 'ФИО', 'Email', 'Дата регистрации', 'Верифицирован', 'Администратор'];
 
         $users = User::query()
-            ->orderBy('created_at', 'desc')
+            ->where('email', '!=', config('site.admin_email'))
+            ->orderByDesc('is_admin')
+            ->orderByDesc('created_at')
             ->paginate(self::PER_PAGE);
 
         return Response::view('admin.users.index', compact('users', 'tableHeaders'));

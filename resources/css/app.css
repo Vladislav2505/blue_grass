@@ -19,7 +19,7 @@
         @apply font-roboto;
     }
 
-    a, button, input, textarea{
+    a, button, input, textarea {
         @apply focus:outline-none;
     }
 
@@ -30,11 +30,23 @@
 
 @layer components {
     .container {
-        @apply max-w-[1380px] bg-white rounded-[5px] my-[60px] mx-[10px] py-[40px] px-[45px]
+        @apply max-w-[1380px]
+        bg-white
+        rounded-[5px]
+        my-7
+        lg:my-[50px]
+        mx-auto
+        py-[30px]
+        px-5
+        sm:px-[35px]
+        overflow-hidden
+        text-wrap
+        break-words
+        shadow
     }
 
     .btn-hover {
-        @apply hover:bg-[#168fd8] transition-colors;
+        @apply hover:bg-blue-hover transition-colors;
     }
 
     .wrapper {

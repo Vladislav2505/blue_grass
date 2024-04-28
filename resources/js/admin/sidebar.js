@@ -11,7 +11,8 @@ function openSidebar() {
     background.classList.remove('hidden');
     setTimeout(function () {
         sidebar.classList.remove('-translate-x-full');
-        sidebar.classList.add('flex', 'translate-x-0');
+        sidebar.classList.add('flex', 'translate-x-0', 'z-50');
+        background.classList.add('z-50')
     }, 50);
 }
 
@@ -19,7 +20,8 @@ function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
     const background = document.getElementById('sidebar_background');
 
-    sidebar.classList.remove('translate-x-0');
+    sidebar.classList.remove('translate-x-0', 'z-50');
+    background.classList.remove('z-50');
     sidebar.classList.add('-translate-x-full');
     setTimeout(function () {
         sidebar.classList.add('hidden');

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Jobs\SendEmail;
+use App\Jobs\SendNotification;
 use App\Notifications\ResetPasswordNotification;
 use App\Notifications\UserDeletedNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Log;
@@ -77,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function deleteWithNotification(): void
     {
         try {
-            SendEmail::dispatchSync($this, new UserDeletedNotification());
+            SendNotification::dispatchSync(user: $this, notification: new UserDeletedNotification());
         } catch (UnexpectedResponseException $e) {
             Log::error($e->getMessage());
         }
@@ -92,11 +93,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token): void
     {
         $url = route('password.reset', compact('token'));
-        SendEmail::dispatch($this, new ResetPasswordNotification($url));
+        SendNotification::dispatch(user: $this, notification: new ResetPasswordNotification($url));
     }
 
     public function getFullNameAttribute(): string
     {
         return trim($this->last_name.' '.$this->first_name.' '.$this->patronymic);
+    }
+
+    public function questions(): HasMany
+    {
+        return $this->hasMany(Question::class);
     }
 }

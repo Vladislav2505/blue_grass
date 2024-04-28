@@ -7,4 +7,5 @@ return [
     'phone' => env('APP_PHONE'),
     'vk' => 'https://vk.com/art_blue_grass',
     'tg' => 'https://t.me/bluegrass2017',
+    'admin_email' => env('APP_ADMIN_EMAIL', 'admin@bluegrass.com'),
 ];

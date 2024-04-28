@@ -7,16 +7,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title>@yield('title') - {{config('app.name')}}</title>
-
+    <title>@yield('title') @if (!empty(trim($__env->yieldContent('title'))) ) - @endif {{config('app.name')}}</title>
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/main.js'])
 </head>
-<body class="bg-lightpink">
+<body class="bg-lightpink h-screen">
 <div class="wrapper">
     @include('partials.main.header')
-    <main class="main flex">
-        @yield('content')
+    <main class="main">
+        <div class="mx-3">
+            <div class="container flex flex-col justify-between gap-10">
+                @yield('content')
+            </div>
+        </div>
     </main>
     @include('partials.main.footer')
 </div>
