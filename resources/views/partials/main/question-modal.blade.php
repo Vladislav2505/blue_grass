@@ -1,10 +1,10 @@
 <div id="questionModal"
-     class="mx-auto fixed inset-0 bg-black bg-opacity-20 items-center justify-center z-50 hidden transition-opacity duration-300">
+     class="mx-auto fixed inset-0 bg-black bg-opacity-20 items-center justify-center z-[9999] hidden transition-opacity duration-300">
     <div class="mx-4 bg-white rounded-[5px] shadow-lg w-96 opacity-0 transform scale-95 transition-all duration-300">
         <div class="flex flex-row justify-between items-center px-5 py-4 border-b border-lightgray">
             <h3 class="font-medium text-xl">Задать вопрос</h3>
             <button id="questionModalClose">
-                <img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close">
+                <img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close" class="w-[18px]">
             </button>
         </div>
 
@@ -24,7 +24,7 @@
                     Я согласен на обработку <a href="/" class="text-lightblue">персональных данных</a>
                 </x-forms.checkbox>
             @endguest
-            <x-forms.submit submit-label="Отправить"/>
+            <x-forms.submit submit-label="Отправить" class="w-1/2"/>
         </form>
     </div>
 </div>

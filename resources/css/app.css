@@ -34,7 +34,7 @@
         bg-white
         rounded-[5px]
         my-7
-        lg:my-[50px]
+        lg:my-9
         mx-auto
         py-[30px]
         px-5
@@ -100,5 +100,21 @@
         ::-webkit-scrollbar-thumb:hover {
             background-color: #efebeb;
         }
+    }
+
+    .card-hover {
+        @apply
+        transition-all
+        hover:shadow-xl
+        hover:-translate-y-1
+        hover:scale-100
+    }
+
+    .card-border {
+        @apply
+        border
+        border-lightgray
+        rounded-[5px]
+        shadow-md
     }
 }

@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = 'main.events';
+    public const HOME = 'main.index.events';
 
     public const PROFILE = 'profile.dashboard';
 

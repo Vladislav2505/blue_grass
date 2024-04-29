@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 
-class QuestionFormController extends Controller
+final class QuestionFormController extends Controller
 {
     public function send(Request $request): JsonResponse
     {

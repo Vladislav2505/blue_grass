@@ -16,7 +16,7 @@
     @include('partials.main.header')
     <main class="main">
         <div class="mx-3">
-            <div class="container flex flex-col justify-between gap-10">
+            <div class="container flex flex-col justify-between gap-14">
                 @yield('content')
             </div>
         </div>

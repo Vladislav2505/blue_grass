@@ -2,7 +2,8 @@
      class="hidden fixed translate-x-full transform duration-500 inset-0 bg-lightpink px-[25px] py-[16px] flex-col justify-between custom-scrollbar z-9999">
     <div class="relative mb-4">
         <div class="flex items-center justify-between mb-[45px]">
-            <button id="close_burger"><img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close">
+            <button id="close_burger">
+                <img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close">
             </button>
             <x-main.logo small/>
             <a href="{{route(auth()->user()?->isAdmin() ? \App\Providers\RouteServiceProvider::ADMIN : \App\Providers\RouteServiceProvider::PROFILE)}}">
@@ -40,5 +41,10 @@
                 </a>
             </li>
         </ul>
+    </div>
+    <div class="flex justify-end">
+        <button class="question-modal-open">
+            <img src="{{Vite::asset('resources/images/question.svg')}}" alt="question" class="object-contain">
+        </button>
     </div>
 </div>

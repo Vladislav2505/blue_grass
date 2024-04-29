@@ -14,7 +14,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Main\MainController;
+use App\Http\Controllers\Main\EventDetailController;
+use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Main\QuestionFormController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,10 @@ Route::get('/logout', function () {
 });
 
 Route::name('main.')->group(function () {
-    Route::get('/', [MainController::class, 'events'])->name('events');
-    Route::get('/protocols', [MainController::class, 'events'])->name('protocols');
+    Route::get('/', [IndexController::class, 'events'])->name('index.events');
+    Route::get('/protocols', [IndexController::class, 'protocols'])->name('index.protocols');
 
+    Route::get('/events/{event}', [EventDetailController::class, 'show'])->name('event.show');
     Route::post('/question', [QuestionFormController::class, 'send'])->name('question');
 });
 

@@ -1,22 +1,24 @@
 @extends('layouts.main')
 
 @section('content')
-    <x-main.about/>
+    @include('partials.main.about')
 
-    <nav class="w-full mx-auto bg-lightgray rounded-[5px] sm:w-5/6 flex flex-row justify-between text-white text-[12px] xs:text-[16px] gap-[1px]">
-        <div class="w-1/2 {{Request::is('/') ? 'bg-blue-hover' : 'bg-lightblue btn-hover'}} text-center rounded-l-[5px]">
-            <a href="{{route('main.events')}}" class="py-3 flex flex-row items-center justify-center gap-1">
-                <img src="{{Vite::asset('resources/images/menu/events.svg')}}"
-                     alt="events">
-                <p>Мероприятия</p>
-            </a>
-        </div>
-        <div class="w-1/2 {{Request::is('protocols') ? 'bg-blue-hover' : 'bg-lightblue btn-hover'}} text-center rounded-r-[5px]">
-            <a href="/protocols" class="py-3 flex flex-row items-center justify-center gap-1">
-                <img src="{{Vite::asset('resources/images/menu/protocols.svg')}}"
-                     alt="protocols">
-                <p>Протоколы</p>
-            </a>
-        </div>
-    </nav>
+    <section class="flex flex-col gap-8">
+        @include('partials.main.tabs')
+
+        @if($events->isNotEmpty())
+            <div id="listContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                @include('main.lists.event-list')
+            </div>
+            @if ($events->hasMorePages())
+                <div id="loadMoreContainer" class="text-center">
+                    <x-main.button id="loadMoreButton" button-label="Показать еще"
+                                   data-url="{{route('main.index.events')}}"
+                                   data-page="2"/>
+                </div>
+            @endif
+        @else
+            <h4 class="font-medium text-2xl text-secondary text-center">На данный момент список пуст</h4>
+        @endif
+    </section>
 @endsection
