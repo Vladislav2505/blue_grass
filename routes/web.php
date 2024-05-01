@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\CollectionController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NominationController;
@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Main\EventDetailController;
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Main\QuestionFormController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/logout', function () {
@@ -24,6 +25,8 @@ Route::get('/logout', function () {
 
     return redirect()->route('main.events');
 });
+
+Route::get('/download-file', [MainController::class, 'download'])->name('download.file');
 
 Route::name('main.')->group(function () {
     Route::get('/', [IndexController::class, 'events'])->name('index.events');

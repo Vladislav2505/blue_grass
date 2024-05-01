@@ -17,8 +17,7 @@ class Textarea extends Component
         public string $textareaValue = '',
         public string $textareaPlaceholder = '',
         public bool $isRequired = false,
-    )
-    {
+    ) {
         //
     }
 

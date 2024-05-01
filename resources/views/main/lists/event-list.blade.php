@@ -8,7 +8,7 @@
         </div>
         <div class="h-full flex flex-col justify-between gap-3 p-4 border-t border-t-lightgray">
             <a href="{{route('main.event.show', ['event' => $event->slug])}}">
-                <h3 class="font-medium">{{$event->name}}</h3>
+                <h3 class="font-medium text-xl">{{$event->name}}</h3>
             </a>
 
             <div class="text-secondary text-[14px]">

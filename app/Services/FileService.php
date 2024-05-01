@@ -3,12 +3,16 @@
 namespace App\Services;
 
 use App\Enums\StorageType;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
 
 final class FileService
@@ -42,20 +46,22 @@ final class FileService
 
     public function deleteFile(string $path, string $disk = 'public'): bool
     {
-        return Storage::disk($disk)->delete($path);
+        if (! Str::contains($path, 'tmp')) {
+            return Storage::disk($disk)->delete($path);
+        }
+
+        return false;
     }
 
     public function updateFile(File|UploadedFile $file, StorageType $storageType, ?string $oldFile = null, string $disk = 'public'): string
     {
         $imageUrl = $this->saveFile($file, $storageType, $disk);
 
-        if (! empty($imageUrl) && $oldFile) {
+        if ($oldFile) {
             $this->deleteFile($oldFile);
-
-            return $imageUrl;
         }
 
-        return '';
+        return $imageUrl;
     }
 
     public function deleteFiles(array $files, string $disk = 'public'): void
@@ -94,9 +100,26 @@ final class FileService
         $syncedFiles = $currentFiles->diff($loadedFiles);
 
         if ($syncedFiles->isNotEmpty()) {
-            $syncedFiles->each(function ($file) {
-                $this->deleteFile($file);
+            $syncedFiles->each(function ($file) use ($disk) {
+                $this->deleteFile($file, $disk);
             });
         }
+    }
+
+    public function downloadFile(string $path, ?string $name = null): BinaryFileResponse|RedirectResponse
+    {
+        $path = urldecode($path);
+
+        if (Storage::disk('public')->fileExists($path)) {
+            $file_path = Storage::disk('public')->path($path);
+
+            if ($name === null) {
+                $name = $this->getFileName($path);
+            }
+
+            return Response::download($file_path, $name);
+        }
+
+        return Redirect::back();
     }
 }

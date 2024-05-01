@@ -6,6 +6,7 @@ use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use JsonException;
+use Random\RandomException;
 
 /**
  * @extends Factory<Event>
@@ -16,16 +17,23 @@ class CollectionFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
-     * @throws JsonException
+     *
+     * @throws RandomException
      */
     public function definition(): array
     {
         $name = $this->faker->name();
+        $images = [];
+
+        for ($i = 0; $i < random_int(0, 10); $i++) {
+            $img = random_int(1, 4);
+            $images[] = "tmp/images/$img.png";
+        }
 
         return [
             'name' => $name,
             'slug' => Str::slug($name),
-            'images' => json_encode($this->faker->imageUrl(), JSON_THROW_ON_ERROR),
+            'images' => $images,
             'is_active' => $this->faker->boolean(),
         ];
     }

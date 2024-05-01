@@ -17,7 +17,9 @@ class SendNotification implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected ?User $user;
+
     protected Notification $notification;
+
     protected ?string $email;
 
     /**

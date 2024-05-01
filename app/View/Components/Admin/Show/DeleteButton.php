@@ -14,8 +14,7 @@ class DeleteButton extends Component
      */
     public function __construct(
         public Model $model
-    )
-    {
+    ) {
         //
     }
 

@@ -15,8 +15,7 @@ class Show extends Component
     public function __construct(
         public string $formBackUrl,
         public Model $model,
-    )
-    {
+    ) {
         //
     }
 

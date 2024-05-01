@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\ValidationException;
 
 final class ProtocolPostRequest extends FormRequest
@@ -21,13 +20,11 @@ final class ProtocolPostRequest extends FormRequest
      */
     public function rules(): array|ValidationException
     {
-        $this->merge(['is_downloadable' => $this->has('is_downloadable')]);
         $this->merge(['is_active' => $this->has('is_active')]);
 
         $rules = [
             'name' => ['required', 'string', 'max:80'],
-            'date' => ['nullable', 'date_format:Y-m-d'],
-            'is_downloadable' => ['nullable', 'boolean'],
+            'date' => ['required', 'date_format:Y-m-d'],
             'is_active' => ['nullable', 'boolean'],
         ];
 

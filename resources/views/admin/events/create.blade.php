@@ -14,11 +14,13 @@
         <x-admin.forms.select :is-multiple="false" select-label="Место проведения" select-name="location_id"
                               :is-required="true"
                               :select-options="$locations"/>
-        <x-admin.forms.image-input input-name="image" input-label="Фото" input-accept=".png, .jpg, .jpeg"
+        <x-admin.forms.image-input input-name="image" input-label="Изображение" input-accept=".png, .jpg, .jpeg"
                                    :is-required="true"/>
         <x-admin.forms.select :is-multiple="true" select-label="Номинации" select-name="nominations"
                               :is-required="true"
                               :select-options="$nominations"/>
+        <x-admin.forms.file-input input-name="file" input-label="Положение"
+                                  input-accept=".docx, .doc, .pdf"/>
         <x-admin.forms.text-input input-name="award" input-label="Главный приз"/>
         <x-admin.forms.editor-js-input input-name="description" input-label="Описание"/>
         <x-admin.forms.checkbox-input input-name="request_access" input-label="Можно оставлять заявки"/>

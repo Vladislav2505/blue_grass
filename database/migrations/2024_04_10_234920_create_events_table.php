@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique()->index();
             $table->dateTime('date_of');
             $table->string('image')->nullable();
+            $table->string('file')->nullable();
             $table->string('award')->nullable();
             $table->json('description')->nullable();
             $table->boolean('request_access')->default(false);

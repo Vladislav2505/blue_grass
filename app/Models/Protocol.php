@@ -17,7 +17,6 @@ class Protocol extends Model
         'slug',
         'date',
         'file',
-        'is_downloadable',
         'is_active',
     ];
 

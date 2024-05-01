@@ -21,13 +21,16 @@
                               :select-options="$locations"
                               :selected-options="$event->location_id"
         />
-        <x-admin.forms.image-input input-name="image" input-label="Фото" input-accept=".png, .jpg, .jpeg"
+        <x-admin.forms.image-input input-name="image" input-label="Изображение" input-accept=".png, .jpg, .jpeg"
                                    :is-required="true" :input-value="$event->image"/>
         <x-admin.forms.select :is-multiple="true" select-label="Номинации" select-name="nominations"
                               :is-required="true"
                               :select-options="$nominations"
                               :selected-options="$event->nomination_ids"
         />
+        <x-admin.forms.file-input input-name="file" input-label="Положение"
+                                  input-accept=".docx, .doc, .pdf"
+                                  :input-value="$event->file ?? ''"/>
         <x-admin.forms.text-input input-name="award" input-label="Главный приз" :input-value="$event->award"/>
         <x-admin.forms.editor-js-input input-name="description" input-label="Описание"
                                        :editor-data="$event->description"/>

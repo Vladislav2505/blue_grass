@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use Carbon\Carbon;
 use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\ValidationException;
 
 final class EventPostRequest extends FormRequest
@@ -51,6 +50,9 @@ final class EventPostRequest extends FormRequest
         if (! $this->has('loadedImages')) {
             $rules['image'] = ['required', 'image', 'extensions:png,jpg,jpeg', 'max:10240'];
         }
+        if ($this->post('loadedFile') === null && $this->has('file')) {
+            $rules['file'] = ['nullable', 'file', 'extensions:docx,doc,pdf', 'max:10240'];
+        }
 
         return $rules;
     }
@@ -64,6 +66,13 @@ final class EventPostRequest extends FormRequest
     {
         return [
             'nominations.required' => 'Поле "Номинации" обязательно для заполнения.',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'file' => '"Положение"',
         ];
     }
 }

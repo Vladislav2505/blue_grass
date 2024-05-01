@@ -3,7 +3,7 @@ let imageInput = document.getElementById('imageInput'); // Поле загруз
 
 if (imageInput) {
     let submit = document.querySelector('input[type="submit"]'); // Кнопка отправки формы
-    let fileList = document.getElementById('fileList'); // Список файлов
+    let imageList = document.getElementById('imageList'); // Список файлов
     let uploadImages = new DataTransfer(); // Объект для передачи файлов
     const deleteImageButtons = document.querySelectorAll('.delete-image-button'); // Кнопки удаления изображений
 
@@ -23,14 +23,14 @@ if (imageInput) {
     function handleImageInputChange() {
         // Если выбран только один файл, очищаем список файлов
         if (!this.multiple && this.files.length >= 1) {
-            fileList.innerHTML = '';
+            imageList.innerHTML = '';
         }
 
         // Добавляем выбранные файлы в список файлов
         for (let i = 0; i < this.files.length; i++) {
             uploadImages.items.add(this.files[i]);
-            const fileListItem = createFileListItem(this.files[i]);
-            fileList.appendChild(fileListItem);
+            const imageListItem = createImageListItem(this.files[i]);
+            imageList.appendChild(imageListItem);
         }
 
         // Если разрешена загрузка нескольких файлов, обновляем значение поля загрузки изображения
@@ -40,7 +40,7 @@ if (imageInput) {
     }
 
     // Функция создания элемента списка файла
-    function createFileListItem(file) {
+    function createImageListItem(file) {
         const listItem = document.createElement('div');
         listItem.classList.add('relative', 'w-24', 'h-24', 'md:w-48', 'md:h-48', 'mr-2', 'mb-2');
 

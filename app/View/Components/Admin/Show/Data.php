@@ -14,8 +14,7 @@ class Data extends Component
     public function __construct(
         public string $dataLabel,
         public string $dataValue,
-    )
-    {
+    ) {
     }
 
     /**

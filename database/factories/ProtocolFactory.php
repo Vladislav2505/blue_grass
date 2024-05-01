@@ -20,12 +20,13 @@ class ProtocolFactory extends Factory
     {
         $name = $this->faker->name();
 
+        $path = 'tmp/files/1.docx';
+
         return [
             'name' => $name,
             'slug' => Str::slug($name),
             'date' => $this->faker->date(),
-            'file' => $this->faker->filePath(),
-            'is_downloadable' => $this->faker->boolean(),
+            'file' => $path,
             'is_active' => $this->faker->boolean(),
         ];
     }

@@ -7,7 +7,7 @@
         class="flex flex-col items-center border border-lightgray rounded-[5px] border-dashed p-4 w-full">
         <input id="imageInput" {{$isMultiple ? 'multiple' : ''}} type="file"
                name="{{$inputName . ($isMultiple ? '[]' : '')}}" class="hidden" accept="{{$inputAccept}}"/>
-        <div id="fileList" class="flex flex-wrap gap-2">
+        <div id="imageList" class="flex flex-wrap gap-2">
             @foreach($inputValue as $src)
                 @if($src)
                     <div class="relative w-24 h-24 md:w-48 md:h-48 mr-2 mb-2">

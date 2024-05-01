@@ -19,6 +19,7 @@ class Event extends Model
         'slug',
         'date_of',
         'image',
+        'file',
         'award',
         'description',
         'request_access',

@@ -55,14 +55,12 @@ final class ProtocolController extends Controller
         ]);
 
         try {
-            DB::transaction(function () use ($request) {
-                $data = $request->safe()->except('file');
+            $data = $request->safe()->except('file');
 
-                $data['file'] = $this->fileService
-                    ->saveFile($request->file('file'), StorageType::Protocols);
+            $data['file'] = $this->fileService
+                ->saveFile($request->file('file'), StorageType::Protocols);
 
-                Protocol::query()->create($data);
-            });
+            Protocol::query()->create($data);
         } catch (Exception $e) {
             Log::error($e->getMessage());
 
@@ -93,20 +91,20 @@ final class ProtocolController extends Controller
     public function update(ProtocolPostRequest $request, Protocol $protocol): RedirectResponse
     {
         try {
-            DB::transaction(function () use ($request, $protocol) {
-                $file = $request->file('file');
-                $oldFile = $protocol->file ?? '';
-                $updatedData = $request->safe()->except('file');
+            $file = $request->file('file');
+            $oldFile = $protocol->file ?? '';
 
-                if ($file) {
-                    $updatedData['file'] = $this->fileService
-                        ->updateFile($file, StorageType::Protocols, $oldFile);
-                } else {
-                    $updatedData['file'] = $oldFile;
-                }
+            $updatedData = $request->safe()->except('file');
 
-                $protocol->update($updatedData);
-            });
+            // File check and update
+            if ($file) {
+                $updatedData['file'] = $this->fileService
+                    ->updateFile($file, StorageType::Protocols, $oldFile);
+            } else {
+                $updatedData['file'] = $oldFile;
+            }
+
+            $protocol->update($updatedData);
         } catch (Exception $e) {
             Log::error($e->getMessage());
 

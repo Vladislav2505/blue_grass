@@ -74,11 +74,16 @@ final class EventController extends Controller
         try {
             DB::transaction(function () use ($request) {
                 /** @var Event $event */
-                $event = Event::query()->create($request->safe()->except('image', 'nominations'));
+                $event = Event::query()->create($request->safe()->except('image', 'nominations', 'file'));
 
                 $event->image = $this->fileService->saveFile($request->file('image'), StorageType::Events);
-                $event->nominations()->sync($request->post('nominations', []));
 
+                if ($request->has('file')) {
+                    $event->file = $this->fileService
+                        ->saveFile($request->file('file'), StorageType::Events);
+                }
+
+                $event->nominations()->sync($request->post('nominations', []));
                 $event->save();
             });
         } catch (Exception $e) {
@@ -99,6 +104,13 @@ final class EventController extends Controller
     {
         $event->setAttribute('nomination_ids', $event->nominations->pluck('id'));
         $event->setAttribute('image', $this->fileService->getFileUrl($event->image ?? ''));
+
+        if ($event->file) {
+            $event->setAttribute('file', [
+                'filePath' => $event->file,
+                'fileName' => $this->fileService->getFileName($event->file),
+            ]);
+        }
 
         $themes = Theme::query()
             ->select(['id', 'name'])
@@ -123,15 +135,27 @@ final class EventController extends Controller
     {
         try {
             DB::transaction(function () use ($event, $request) {
-                $file = $request->file('image');
-                $oldFile = $event->image ?? '';
-                $updatedData = $request->safe()->except('image', 'nominations');
+                $image = $request->file('image');
+                $oldImage = $event->image ?? '';
+
+                $file = $request->file('file');
+                $oldFile = $event->file ?? '';
+
+                $updatedData = $request->safe()->except('image', 'nominations', 'file');
 
                 if ($request->has('image')) {
                     $updatedData['image'] = $this->fileService
-                        ->updateFile($file, StorageType::Events, $oldFile);
+                        ->updateFile($image, StorageType::Events, $oldImage);
                 } else {
-                    $updatedData['image'] = $oldFile;
+                    $updatedData['image'] = $oldImage;
+                }
+
+                // File check and update
+                if ($file) {
+                    $updatedData['file'] = $this->fileService
+                        ->updateFile($file, StorageType::Events, $oldFile);
+                } elseif ($oldFile && $request->post('loadedFile') === null) {
+                    $this->fileService->deleteFile($oldFile);
                 }
 
                 $event->update($updatedData);
@@ -156,7 +180,7 @@ final class EventController extends Controller
         try {
             DB::transaction(function () use ($event) {
                 $event->deleteOrFail();
-                $this->fileService->deleteFile($event->image ?? '');
+                $this->fileService->deleteFiles([$event->image, $event->file ?? '']);
             });
         } catch (Throwable $e) {
             Log::error($e->getMessage());

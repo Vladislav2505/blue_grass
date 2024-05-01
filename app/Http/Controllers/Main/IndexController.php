@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Protocol;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -41,6 +42,26 @@ final class IndexController extends Controller
             ]);
         }
 
-        return Response::view('main.events', compact('events'));
+        return Response::view('main.index.events', compact('events'));
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function protocols(Request $request): JsonResponse|HttpResponse
+    {
+        $protocols = Protocol::query()
+            ->where('is_active', true)
+            ->orderByDesc('date')
+            ->paginate($this->protocolsPerPage);
+
+        if ($request->ajax()) {
+            return Response::json([
+                'content' => view('main.lists.protocol-list', compact('protocols'))->render(),
+                'next' => $protocols->hasMorePages(),
+            ]);
+        }
+
+        return Response::view('main.index.protocols', compact('protocols'));
     }
 }
