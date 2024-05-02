@@ -15,9 +15,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Main\EventDetailController;
+use App\Http\Controllers\Main\GalleryController;
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Main\PartnersController;
 use App\Http\Controllers\Main\QuestionFormController;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\GlobalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/logout', function () {
@@ -26,13 +28,15 @@ Route::get('/logout', function () {
     return redirect()->route('main.events');
 });
 
-Route::get('/download-file', [MainController::class, 'download'])->name('download.file');
+Route::get('/download-file', [GlobalController::class, 'download'])->name('download.file');
 
 Route::name('main.')->group(function () {
     Route::get('/', [IndexController::class, 'events'])->name('index.events');
     Route::get('/protocols', [IndexController::class, 'protocols'])->name('index.protocols');
-
     Route::get('/events/{event}', [EventDetailController::class, 'show'])->name('event.show');
+
+    Route::get('/partners', [PartnersController::class, 'show'])->name('partners.show');
+    Route::get('/gallery', [GalleryController::class, 'show'])->name('gallery.show');
     Route::post('/question', [QuestionFormController::class, 'send'])->name('question');
 });
 

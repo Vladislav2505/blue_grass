@@ -25,7 +25,7 @@ class CollectionFactory extends Factory
         $name = $this->faker->name();
         $images = [];
 
-        for ($i = 0; $i < random_int(0, 10); $i++) {
+        for ($i = 0; $i < random_int(1, 10); $i++) {
             $img = random_int(1, 4);
             $images[] = "tmp/images/$img.png";
         }

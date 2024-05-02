@@ -26,4 +26,5 @@
     </div>
     {{$slot}}
     <x-admin.forms.input-error :error-name="$inputName"/>
+    <x-admin.forms.input-error error-name="images-count"/>
 </div>

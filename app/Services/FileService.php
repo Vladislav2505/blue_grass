@@ -73,7 +73,7 @@ final class FileService
 
     public function getFileUrl(string $path, string $disk = 'public'): string
     {
-        if (Storage::disk($disk)->fileExists($path)) {
+        if ($this->checkFile($path)) {
             return Storage::disk($disk)->url($path);
         }
 
@@ -110,7 +110,7 @@ final class FileService
     {
         $path = urldecode($path);
 
-        if (Storage::disk('public')->fileExists($path)) {
+        if ($this->checkFile($path)) {
             $file_path = Storage::disk('public')->path($path);
 
             if ($name === null) {
@@ -121,5 +121,10 @@ final class FileService
         }
 
         return Redirect::back();
+    }
+
+    public function checkFile(string $path, string $disk = 'public'): bool
+    {
+        return Storage::disk($disk)->fileExists($path);
     }
 }

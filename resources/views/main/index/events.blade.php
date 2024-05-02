@@ -8,7 +8,7 @@
 
         @if($events->isNotEmpty())
             <div id="listContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-                @include('main.lists.event-list')
+                @include('partials.main.lists.event-list')
             </div>
             @if ($events->hasMorePages())
                 <div id="loadMoreContainer" class="text-center">

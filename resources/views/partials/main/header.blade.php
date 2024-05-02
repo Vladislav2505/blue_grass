@@ -1,13 +1,17 @@
 @include('partials.main.question-modal')
 <header class="bg-white sticky top-0 w-full shadow border-lightgray z-50">
-    <div class="flex justify-between items-center max-w-[1420px] mx-auto px-5 md:px-6 py-3">
+    <div class="flex justify-between items-center max-w-[1500px] mx-auto px-5 md:px-6 py-2">
         <x-main.logo/>
         <nav>
             @include('partials.main.burger-menu')
 
-            <ul class="hidden space-x-[60px] font-light xl:space-x-[70px] lg:text-xl lg:flex">
+            <ul class="hidden space-x-[60px] font-light xl:space-x-[70px] lg:text-2xl lg:flex">
                 @foreach(config('menu.main') as $url => $point)
-                    <li><a href="{{$url}}" class="hover:text-lightblue transition-colors">{{$point}}</a></li>
+                    <li>
+                        <a href="{{$url}}"
+                           class="{{Str::contains($currentUrl, $url) ? 'text-lightblue' : 'text-main hover:text-lightblue transition-colors'}}">{{$point}}
+                        </a>
+                    </li>
                 @endforeach
             </ul>
             <div class="flex flex-row items-center justify-between lg:hidden gap-5">

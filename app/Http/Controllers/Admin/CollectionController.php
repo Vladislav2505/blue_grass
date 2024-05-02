@@ -122,7 +122,7 @@ final class CollectionController extends Controller
         }
 
         return Response::redirectToRoute('admin.collections.index')
-            ->with(['success' => __('admin.collection_update_success'), ['name' => $request->post('name')]]);
+            ->with(['success' => __('admin.collection_update_success', ['name' => $request->post('name')])]);
     }
 
     /**

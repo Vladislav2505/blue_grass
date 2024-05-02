@@ -173,8 +173,8 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'images' => [
-            'max' => 'Коллекция может содержать максимам :max изображений',
+        'images-count' => [
+            'max' => 'Можно загрузить максимум :max изображений',
         ],
         'images.*' => [
             'image' => 'Изображение :position не является изображением.',

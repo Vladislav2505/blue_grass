@@ -1,5 +1,5 @@
 <footer class="bg-white w-full shadow border-lightgray">
-    <div class="py-5 px-10 flex flex-col items-center max-w-[1420px] mx-auto md:flex-row md:justify-between md:px-6">
+    <div class="py-5 px-10 flex flex-col items-center max-w-[1500px] mx-auto md:flex-row md:justify-between md:px-6">
         <div>
             <a href="{{route(\App\Providers\RouteServiceProvider::HOME)}}"
                class="text-2xl font-bold lg:text-3xl">{{config('site.name')}}</a>

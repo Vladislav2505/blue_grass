@@ -30,7 +30,7 @@
 
 @layer components {
     .container {
-        @apply max-w-[1380px]
+        @apply max-w-[1460px]
         bg-white
         rounded-[5px]
         my-7

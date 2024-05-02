@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title', 'Протоколы')
 
 @section('content')
     @include('partials.main.about')
@@ -8,7 +9,7 @@
 
         @if($protocols->isNotEmpty())
             <div id="listContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                @include('main.lists.protocol-list')
+                @include('partials.main.lists.protocol-list')
             </div>
 
             @if ($protocols->hasMorePages())

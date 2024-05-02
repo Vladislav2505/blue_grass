@@ -12,34 +12,17 @@
         </div>
 
         <ul class="text-secondary text-[24px] space-y-[20px] overflow-y-auto max-h-[64vh]">
-            <li class="px-[10px] py-[5px] hover:bg-[#DCC7C7] transition-colors rounded-[10px]">
-                <a href="/" class="flex items-center w-full">
-                    <img src="{{Vite::asset('resources/images/menu/main.svg')}}" alt="main"
-                         class="mr-[12px] w-[20px] h-[20px]">
-                    Главная
-                </a>
-            </li>
-            <li class="border-lightpink bg-lightblue text-white rounded-[5px] px-[10px] py-[10px]">
-                <a href="/partners" class="flex items-center w-full">
-                    <img src="{{Vite::asset('resources/images/menu/partners.svg')}}" alt="partners"
-                         class="mr-[12px] w-[20px] h-[20px]">
-                    Партнеры
-                </a>
-            </li>
-            <li class="rounded-[5px] px-[10px] py-[10px] hover:bg-[#DCC7C7] transition-colors">
-                <a href="/gallery" class="flex items-center w-full">
-                    <img src="{{Vite::asset('resources/images/menu/gallery.svg')}}" alt="gallery"
-                         class="mr-[12px] w-[20px] h-[20px]">
-                    Галерея
-                </a>
-            </li>
-            <li class="rounded-[5px] px-[10px] py-[10px] hover:bg-[#DCC7C7] transition-colors">
-                <a href="/news" class="flex items-center w-full">
-                    <img src="{{Vite::asset('resources/images/menu/news.svg')}}" alt="news"
-                         class="mr-[12px] w-[20px] h-[20px]">
-                    Новости
-                </a>
-            </li>
+            @foreach(config('menu.main') as $url => $point)
+                @php($isSelected = Str::contains($currentUrl, $url))
+                <li
+                    class="{{$isSelected ? 'border-lightpink bg-lightblue text-white' : 'hover:bg-[#DCC7C7] transition-colors'}}
+                    rounded-[5px] px-[10px] py-[10px]">
+                    <a href="{{$url}}" class="flex flex-row items-center gap-4">
+                        <img src="{{Vite::asset("resources/images/menu/$url" . ($isSelected ? '-selected' : '') . '.svg')}}" alt="{{$url}}">
+                        <p>{{$point}}</p>
+                    </a>
+                </li>
+            @endforeach
         </ul>
     </div>
     <div class="flex justify-end">

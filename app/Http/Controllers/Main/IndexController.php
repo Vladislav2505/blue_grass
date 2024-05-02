@@ -37,7 +37,7 @@ final class IndexController extends Controller
 
         if ($request->ajax()) {
             return Response::json([
-                'content' => view('main.lists.event-list', compact('events'))->render(),
+                'content' => view('partials.main.lists.event-list', compact('events'))->render(),
                 'next' => $events->hasMorePages(),
             ]);
         }
@@ -57,7 +57,7 @@ final class IndexController extends Controller
 
         if ($request->ajax()) {
             return Response::json([
-                'content' => view('main.lists.protocol-list', compact('protocols'))->render(),
+                'content' => view('partials.main.lists.protocol-list', compact('protocols'))->render(),
                 'next' => $protocols->hasMorePages(),
             ]);
         }

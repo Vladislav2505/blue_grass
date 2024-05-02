@@ -28,9 +28,15 @@ final class CollectionPostRequest extends FormRequest
         ];
 
         if (! $this->has('loadedImages') || $this->has('images')) {
-            $rules['images'] = ['required', 'array', 'max:10'];
+            $rules['images'] = ['required', 'array'];
             $rules['images.*'] = ['image', 'extensions:png,jpg,jpeg', 'max:10240'];
         }
+
+        $this->merge([
+            'images-count' => count($this->file('images') ?? []) + count($this->post('loadedImages') ?? []),
+        ]);
+
+        $rules['images-count'] = ['numeric', 'max:10'];
 
         return $rules;
     }

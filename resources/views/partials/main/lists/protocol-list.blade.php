@@ -9,7 +9,7 @@
 
             <div class="mx-auto">
                 <a href="{{route('download.file', ['path' => $protocol->file])}}">
-                    <x-main.button button-label="Скачать" class="w-fit px-8 !bg-blue-hover !py-2"/>
+                    <x-main.button button-label="Скачать" class="w-fit px-8 !bg-white !py-2 border border-lightblue !text-lightblue"/>
                 </a>
             </div>
         </div>
