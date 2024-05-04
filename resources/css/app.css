@@ -117,4 +117,15 @@
         rounded-[5px]
         shadow-md
     }
+
+    .news-image {
+        @apply
+        w-full
+        h-[250px]
+        lg:w-[350px]
+        sm:h-[200px]
+        max-w-none
+        object-cover
+        rounded-[5px]
+    }
 }

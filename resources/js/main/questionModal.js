@@ -63,9 +63,9 @@ if (questionButtons) {
                 if (error.response.status === 422) {
                     const errors = error.response.data.errors;
                     const errorMessages = Object.values(errors)
-                        .flatMap(errorArray => errorArray.map(error => `${error}\n`));
+                        .flatMap(errorArray => errorArray.map(error => `${error}`));
 
-                    showErrors(errorMessages.join(''));
+                    showErrors(errorMessages)
                 } else {
                     const errorMsg = error.response.data.error;
                     showErrors(errorMsg);
@@ -81,7 +81,13 @@ if (questionButtons) {
             messageBlock.classList.remove('text-success');
         }
 
-        messageBlock.textContent = message;
+        if (Array.isArray(message)) {
+            for (const msg of message) {
+                messageBlock.appendChild(document.createElement('p')).textContent = msg;
+            }
+        } else {
+            messageBlock.textContent = message;
+        }
     }
 
     function showSuccess(message) {

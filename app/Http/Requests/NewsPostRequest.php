@@ -24,7 +24,7 @@ final class NewsPostRequest extends FormRequest
 
         $rules = [
             'name' => ['required', 'string', 'max:80'],
-            'description' => ['required', 'string', 'max:5000'],
+            'description' => ['required', 'string', 'max:1000'],
             'is_active' => ['nullable', 'boolean'],
         ];
 

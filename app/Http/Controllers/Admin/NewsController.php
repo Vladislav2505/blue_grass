@@ -97,6 +97,7 @@ final class NewsController extends Controller
                     ->updateFile($request->file('image'), StorageType::News, $currentFile);
             } elseif (! $request->has('loadedImages')) {
                 $this->fileService->deleteFile($currentFile);
+                $updatedData['image'] = null;
             } else {
                 $updatedData['image'] = $currentFile;
             }

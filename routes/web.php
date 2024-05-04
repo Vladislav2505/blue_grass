@@ -14,12 +14,13 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\Main\EventDetailController;
 use App\Http\Controllers\Main\GalleryController;
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Main\NewsListController;
 use App\Http\Controllers\Main\PartnersController;
 use App\Http\Controllers\Main\QuestionFormController;
-use App\Http\Controllers\GlobalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/logout', function () {
@@ -37,6 +38,7 @@ Route::name('main.')->group(function () {
 
     Route::get('/partners', [PartnersController::class, 'show'])->name('partners.show');
     Route::get('/gallery', [GalleryController::class, 'show'])->name('gallery.show');
+    Route::get('/news', [NewsListController::class, 'show'])->name('news.show');
     Route::post('/question', [QuestionFormController::class, 'send'])->name('question');
 });
 

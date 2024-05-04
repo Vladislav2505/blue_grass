@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Services\FileService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Response;
 use Throwable;
 
@@ -21,12 +21,19 @@ final class PartnersController extends Controller
     /**
      * @throws Throwable
      */
-    public function show(Request $request)
+    public function show(Request $request, FileService $fileService)
     {
         $partners = Partner::query()
             ->where('is_active', true)
             ->orderByDesc('updated_at')
-            ->paginate($this->partnersPerPage);
+            ->paginate($this->partnersPerPage)
+            ->through(function ($partner) use ($fileService) {
+                $partner->image = $fileService->checkFile($partner->image)
+                    ? $partner->image
+                    : null;
+
+                return $partner;
+            });
 
         if ($request->ajax()) {
             return Response::json([
