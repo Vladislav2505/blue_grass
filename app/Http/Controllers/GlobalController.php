@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Providers\RouteServiceProvider;
 use App\Services\FileService;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 final class GlobalController extends Controller
@@ -16,13 +16,10 @@ final class GlobalController extends Controller
         return $fileService->downloadFile($request->query('path'));
     }
 
-    public function logout(Request $request): RedirectResponse
+    public function logout(Request $request, UserService $userService): RedirectResponse
     {
-        Auth::logout();
+        $userService->logout($request);
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        
         return Response::redirectToRoute(RouteServiceProvider::HOME);
     }
 }

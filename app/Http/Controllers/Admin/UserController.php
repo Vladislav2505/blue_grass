@@ -67,7 +67,7 @@ final class UserController extends Controller
         }
 
         return Response::redirectToRoute('admin.users.index')
-            ->with(['success' => __('admin.users-create-success', ['name' => $user->full_name])]);
+            ->with(['success' => __('admin.user_creation_success', ['name' => $user->full_name])]);
     }
 
     /**

@@ -63,6 +63,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
         Route::put('edit', [ProfileController::class, 'update'])->name('update');
+
+        Route::get('security', [ProfileController::class, 'security'])->name('security');
+        Route::post('security', [ProfileController::class, 'resetPassword'])->name('security.reset');
     });
 
     Route::name('admin.')->prefix('admin')->middleware(['admin'])->group(function () {

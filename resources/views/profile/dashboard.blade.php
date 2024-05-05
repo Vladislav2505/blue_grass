@@ -35,14 +35,14 @@
                 </a>
             </div>
             <div class="border border-lightgray rounded-[5px]">
-                <a href="/" class="flex flex-row justify-start gap-6 px-6 py-4">
+                <a href="{{route('profile.security')}}" class="flex flex-row justify-start gap-6 px-6 py-4">
                     <div class="bg-lightblue rounded-[5px] p-3 w-fit h-fit">
-                        <img src="{{Vite::asset('resources/images/profile/profile-data.svg')}}" alt="data"
+                        <img src="{{Vite::asset('resources/images/profile/security.svg')}}" alt="data"
                              class="object-contain">
                     </div>
                     <div class="flex flex-col gap-2">
-                        <h3 class="font-medium text-xl">Личные данные</h3>
-                        <p class="text-secondary">Редактирование личных данных</p>
+                        <h3 class="font-medium text-xl">Безопасность</h3>
+                        <p class="text-secondary">Настройка безопасности учетной записи</p>
                     </div>
                 </a>
             </div>

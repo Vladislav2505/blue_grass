@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Validation\Rules\Password as PasswordRule;
 use Throwable;
 
 final class ProfileController extends Controller
@@ -52,7 +55,6 @@ final class ProfileController extends Controller
             'teacher_full_name' => ['nullable', 'string', 'max:180'],
         ]);
 
-
         try {
             DB::transaction(static function () use ($updatedUserData, $user, $profileData) {
                 $user->update($updatedUserData);
@@ -70,5 +72,40 @@ final class ProfileController extends Controller
 
         return Response::redirectToRoute('profile.dashboard')
             ->with(['success' => __('profile.profile_update_success')]);
+    }
+
+    public function security(): HttpResponse
+    {
+        return Response::view('profile.security');
+    }
+
+    public function resetPassword(Request $request, UserService $userService): RedirectResponse
+    {
+        $user = $this->getUser();
+
+        $request->validate([
+            'current_password' => ['required', 'string', function ($attribute, $value, $fail) use ($user) {
+                if (! Hash::check($value, $user->password)) {
+                    $fail(__('Поле :attribute не совпадает.'));
+                }
+            }],
+            'password' => ['required', 'string', 'confirmed', PasswordRule::min(8)->max(255)->letters()->numbers()->symbols()],
+        ]);
+
+        try {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+            $userService->logout($request);
+        } catch (Throwable $e) {
+            Log::error($e->getMessage());
+
+            return Response::redirectToRoute('profile.security')
+                ->withErrors(['error' => __('profile.password_update_error')]);
+        }
+
+        return Response::redirectToRoute('login.render')
+            ->with(['status' => __('profile.password_update_success')]);
     }
 }

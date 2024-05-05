@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rules\Password as PasswordRule;
-use Str;
 
 final class ResetPasswordController extends Controller
 {
@@ -39,7 +37,7 @@ final class ResetPasswordController extends Controller
      *
      * @param  Request  $request  Запрос пользователя.
      */
-    public function reset(Request $request): RedirectResponse
+    public function reset(Request $request, UserService $userService): RedirectResponse
     {
         $request->validate([
             'email' => ['required', 'email:rfc,dns', 'max:80'],
@@ -47,13 +45,7 @@ final class ResetPasswordController extends Controller
             'token' => ['required', 'string'],
         ]);
 
-        $status = Password::reset($request->only(['email', 'password', 'password_confirmation', 'token']),
-            static function (User $user, string $password) {
-                $user->forceFill(['password' => Hash::make($password)])
-                    ->setRememberToken(Str::random(60));
-
-                $user->save();
-            });
+        $status = $userService->resetPassword($request->only(['email', 'password', 'password_confirmation', 'token']));
 
         return $status === Password::PASSWORD_RESET
             ? Response::redirectToRoute('login')->with(['status' => __($status)])

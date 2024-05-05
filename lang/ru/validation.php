@@ -222,5 +222,6 @@ return [
         'is_downloadable' => '"Можно скачать"',
         'full_name' => '"ФИО"',
         'question_text' => '"Вопрос"',
+        'current_password' => '"Текущий пароль"',
     ],
 ];
