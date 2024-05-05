@@ -43,9 +43,9 @@ class SendNotification implements ShouldQueue
      */
     public function handle(): void
     {
-        if ($this->user) {
+        if ($this->user && $this->user->subscribed_to_notifications) {
             $this->user->notify($this->notification);
-        } else {
+        } elseif ($this->email) {
             NotificationFacade::route('mail', $this->email)
                 ->notify($this->notification);
         }

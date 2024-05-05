@@ -8,10 +8,12 @@ use App\Notifications\UserDeletedNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 use Symfony\Component\Mailer\Exception\UnexpectedResponseException;
 use Throwable;
 
@@ -33,6 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'email_verified_at',
+        'subscribed_to_notifications'
     ];
 
     /**
@@ -93,7 +96,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token): void
     {
         $url = route('password.reset', compact('token'));
-        SendNotification::dispatch(user: $this, notification: new ResetPasswordNotification($url));
+        $this->notify(new ResetPasswordNotification($url));
     }
 
     public function getFullNameAttribute(): string
@@ -104,5 +107,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(UserProfile::class);
     }
 }

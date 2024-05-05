@@ -20,7 +20,7 @@
     @include('partials.main.header')
     <main class="main">
         <div class="mx-3">
-            <div class="container flex flex-col justify-between gap-8 sm:gap-14">
+            <div class="container flex flex-col justify-between gap-8 sm:gap-10">
                 @yield('content')
             </div>
         </div>

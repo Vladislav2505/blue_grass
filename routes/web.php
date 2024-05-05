@@ -60,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::name('profile.')->prefix('profile')->middleware(['verified', 'user'])->group(function () {
         Route::get('/', [ProfileController::class, 'dashboard'])->name('dashboard');
+
+        Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::put('edit', [ProfileController::class, 'update'])->name('update');
     });
 
     Route::name('admin.')->prefix('admin')->middleware(['admin'])->group(function () {
