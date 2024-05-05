@@ -21,15 +21,11 @@ use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Main\NewsListController;
 use App\Http\Controllers\Main\PartnersController;
 use App\Http\Controllers\Main\QuestionFormController;
+use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/logout', function () {
-    Auth::logout();
-
-    return redirect()->route('main.events');
-});
-
 Route::get('/download-file', [GlobalController::class, 'download'])->name('download.file');
+Route::post('/logout', [GlobalController::class, 'logout'])->name('logout');
 
 Route::name('main.')->group(function () {
     Route::get('/', [IndexController::class, 'events'])->name('index.events');
@@ -63,9 +59,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::name('profile.')->prefix('profile')->middleware(['verified', 'user'])->group(function () {
-        Route::get('/', function () {
-            return view('test2');
-        })->name('dashboard');
+        Route::get('/', [ProfileController::class, 'dashboard'])->name('dashboard');
     });
 
     Route::name('admin.')->prefix('admin')->middleware(['admin'])->group(function () {

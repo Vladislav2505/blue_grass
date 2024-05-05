@@ -4,11 +4,11 @@
 
 @layer base {
     html {
-        @apply h-full
+        @apply h-full font-roboto text-main
     }
 
     body {
-        @apply font-roboto text-main h-screen w-full antialiased;
+        @apply h-screen w-full antialiased;
     }
 
     button {
@@ -51,10 +51,6 @@
 
     .wrapper {
         @apply flex flex-col min-h-full
-    }
-
-    .social:hover img {
-        @apply invert;
     }
 
     .auth_input_text {

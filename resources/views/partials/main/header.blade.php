@@ -22,14 +22,17 @@
         </nav>
 
         <div class="hidden lg:flex gap-6">
-            <a href="{{route(auth()->user()?->isAdmin() ? \App\Providers\RouteServiceProvider::ADMIN : \App\Providers\RouteServiceProvider::PROFILE)}}"
-               class="flex">
-                <img src="{{Vite::asset('resources/images/profile.svg')}}"
-                     alt="profile">
-            </a>
+            @if(! Request::is('profile'))
+                <a href="{{route(auth()->user()?->isAdmin() ? \App\Providers\RouteServiceProvider::ADMIN : \App\Providers\RouteServiceProvider::PROFILE)}}"
+                   class="flex">
+                    <img src="{{Vite::asset('resources/images/profile.svg')}}"
+                         alt="profile">
+                </a>
+            @endif
             <button class="question-modal-open">
                 <img src="{{Vite::asset('resources/images/question.svg')}}" alt="question">
             </button>
         </div>
+
     </div>
 </header>
