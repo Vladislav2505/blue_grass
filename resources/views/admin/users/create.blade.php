@@ -13,6 +13,9 @@
         <x-admin.forms.text-input input-name="patronymic" input-label="Отчество"/>
         <x-admin.forms.text-input input-type="email" input-name="email" input-label="Email" :is-required="true"/>
         <x-admin.forms.text-input input-type="password" input-name="password" input-label="Пароль" :is-required="true"/>
+        <x-admin.forms.text-input input-name="phone" input-label="Телефон" input-placeholder="+7" class="md:w-60"/>
+        <x-admin.forms.number-input input-name="age" input-label="Возраст" input-type="number" min-number="1" max-number="100"/>
+        <x-admin.forms.text-input input-name="address" input-label="Адрес"/>
         <x-admin.forms.checkbox-input input-name="is_admin" input-label="Администратор"/>
     </x-admin.forms.form>
 @endsection

@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_profiles', static function (Blueprint $table) {
+        Schema::create('profiles', static function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('last_name');
+            $table->string('first_name');
+            $table->string('patronymic')->nullable();
             $table->string('phone')->nullable();
             $table->string('age')->nullable();
             $table->string('address')->nullable();
-            $table->string('establishment_name')->nullable();
-            $table->string('teacher_full_name')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_profiles');
+        Schema::dropIfExists('profiles');
     }
 };

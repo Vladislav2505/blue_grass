@@ -13,7 +13,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 use Symfony\Component\Mailer\Exception\UnexpectedResponseException;
 use Throwable;
 
@@ -65,6 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    protected $with = ['profile'];
     public function isAdmin(): bool
     {
         return $this->is_admin === 1;
@@ -99,11 +99,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordNotification($url));
     }
 
-    public function getFullNameAttribute(): string
-    {
-        return trim($this->last_name.' '.$this->first_name.' '.$this->patronymic);
-    }
-
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);
@@ -111,6 +106,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function profile(): HasOne
     {
-        return $this->hasOne(UserProfile::class);
+        return $this->hasOne(Profile::class);
     }
 }

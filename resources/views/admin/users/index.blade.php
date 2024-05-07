@@ -18,7 +18,7 @@
                 @foreach($users->getCollection() as $row)
                     <tr>
                         <x-admin.tables.table-data>{{$row->id}}</x-admin.tables.table-data>
-                        <x-admin.tables.table-data>{{$row->full_name}}</x-admin.tables.table-data>
+                        <x-admin.tables.table-data>{{$row->profile->full_name}}</x-admin.tables.table-data>
                         <x-admin.tables.table-data>{{$row->email}}</x-admin.tables.table-data>
                         <x-admin.tables.table-data>{{$row->created_at}}</x-admin.tables.table-data>
                         <x-admin.tables.table-data>

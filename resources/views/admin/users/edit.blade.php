@@ -8,9 +8,12 @@
 
     <x-admin.forms.form form-action="admin.users.update" :form-action-param="['user' => $user]"
                         form-back-url="admin.users.index" form-method="PUT">
-        <x-admin.forms.text-input input-name="last_name" input-label="Фамилия" :input-value="$user->last_name" :is-required="true"/>
-        <x-admin.forms.text-input input-name="first_name" input-label="Имя" :input-value="$user->first_name" :is-required="true"/>
-        <x-admin.forms.text-input input-name="patronymic" input-label="Отчество" :input-value="$user->patronymic"/>
+        <x-admin.forms.text-input input-name="last_name" input-label="Фамилия" :input-value="$user->profile->last_name" :is-required="true"/>
+        <x-admin.forms.text-input input-name="first_name" input-label="Имя" :input-value="$user->profile->first_name" :is-required="true"/>
+        <x-admin.forms.text-input input-name="patronymic" input-label="Отчество" :input-value="$user->profile->patronymic"/>
         <x-admin.forms.text-input input-name="email" input-label="Email" :input-value="$user->email" :is-required="true"/>
+        <x-admin.forms.text-input input-name="phone" input-label="Телефон" :input-value="$user->profile?->phone" input-placeholder="+7" class="md:w-60"/>
+        <x-admin.forms.number-input input-name="age" input-label="Возраст" :input-value="$user->profile?->age" input-type="number" min-number="1" max-number="100"/>
+        <x-admin.forms.text-input input-name="address" input-label="Адрес" :input-value="$user->profile?->address"/>
     </x-admin.forms.form>
 @endsection

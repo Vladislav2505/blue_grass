@@ -39,29 +39,22 @@ final class ProfileController extends Controller
     {
         $user = $this->getUser();
 
-        $request->merge(['subscribed_to_notifications' => $request->boolean('subscribed_to_notifications') ?? false]);
-        $updatedUserData = $request->validate([
+        $updatedProfileData = $request->validate([
             'last_name' => ['required', 'string', 'max:180'],
             'first_name' => ['required', 'string', 'max:180'],
             'patronymic' => ['nullable', 'string', 'max:180'],
-            'subscribed_to_notifications' => ['nullable', 'boolean'],
-        ]);
-
-        $profileData = $request->validate([
             'phone' => ['nullable', 'string', 'regex:/^\+\d{11}$/'],
             'age' => ['nullable', 'integer', 'between:1,100'],
             'address' => ['nullable', 'string', 'max:180'],
-            'establishment_name' => ['nullable', 'string', 'max:180'],
-            'teacher_full_name' => ['nullable', 'string', 'max:180'],
         ]);
 
-        try {
-            DB::transaction(static function () use ($updatedUserData, $user, $profileData) {
-                $user->update($updatedUserData);
+        $request->merge(['subscribed_to_notifications' => $request->boolean('subscribed_to_notifications') ?? false]);
+        $updatedUserData = $request->validate(['subscribed_to_notifications' => ['nullable', 'boolean']]);
 
-                if (! empty($profileData)) {
-                    $user->profile()->updateOrCreate(['user_id' => $user->id], $profileData);
-                }
+        try {
+            DB::transaction(static function () use ($updatedUserData, $updatedProfileData, $user) {
+                $user->update($updatedUserData);
+                $user->profile()->update($updatedProfileData);
             });
         } catch (Throwable $e) {
             Log::error($e->getMessage());

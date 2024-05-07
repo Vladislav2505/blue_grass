@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
@@ -47,17 +49,39 @@ final class UserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $data = $request->validate([
+        $request->validate([
             'last_name' => ['required', 'string', 'max:180'],
             'first_name' => ['required', 'string', 'max:180'],
             'patronymic' => ['nullable', 'string', 'max:180'],
             'email' => ['required', 'email:rfc,dns', 'max:80', Rule::unique('users')],
             'password' => ['required', 'string', Password::min(8)->max(255)->letters()->numbers()->symbols()],
+            'phone' => ['nullable', 'string', 'regex:/^\+\d{11}$/'],
+            'age' => ['nullable', 'integer', 'between:1,100'],
+            'address' => ['nullable', 'string', 'max:180'],
             'is_admin' => ['nullable', 'in:true,on'],
         ]);
 
+        $userData = [
+            'email' => $request->post('email'),
+            'password' => $request->post('password'),
+        ];
+
+        $profileData = [
+            'last_name' => $request->post('last_name'),
+            'first_name' => $request->post('first_name'),
+            'patronymic' => $request->post('patronymic'),
+            'phone' => $request->post('phone'),
+            'age' => $request->post('age'),
+            'address' => $request->post('address'),
+        ];
+
         try {
-            $user = User::create($data);
+            $user = new User($userData);
+            $user->is_admin = $request->has('is_admin');
+            DB::transaction(static function () use ($profileData, $user) {
+                $user->save();
+                Profile::query()->create(array_merge(['user_id' => $user->id], $profileData));
+            });
             Event::dispatch(new Registered($user));
         } catch (Throwable $e) {
             Log::error($e->getMessage());
@@ -67,7 +91,7 @@ final class UserController extends Controller
         }
 
         return Response::redirectToRoute('admin.users.index')
-            ->with(['success' => __('admin.user_creation_success', ['name' => $user->full_name])]);
+            ->with(['success' => __('admin.user_creation_success', ['name' => $user->profile->full_name])]);
     }
 
     /**
@@ -95,15 +119,34 @@ final class UserController extends Controller
      */
     public function update(Request $request, User $user): RedirectResponse
     {
-        $updatedData = $request->validate([
+        $request->validate([
             'last_name' => ['required', 'string', 'max:180'],
             'first_name' => ['required', 'string', 'max:180'],
             'patronymic' => ['nullable', 'string', 'max:180'],
             'email' => ['required', 'email:rfc,dns', 'max:80', Rule::unique('users')->ignore($user->id)],
+            'phone' => ['nullable', 'string', 'regex:/^\+\d{11}$/'],
+            'age' => ['nullable', 'integer', 'between:1,100'],
+            'address' => ['nullable', 'string', 'max:180'],
         ]);
 
+        $userData = [
+            'email' => $request->post('email'),
+        ];
+
+        $profileData = [
+            'last_name' => $request->post('last_name'),
+            'first_name' => $request->post('first_name'),
+            'patronymic' => $request->post('patronymic'),
+            'phone' => $request->post('phone'),
+            'age' => $request->post('age'),
+            'address' => $request->post('address'),
+        ];
+
         try {
-            $user->update($updatedData);
+            DB::transaction(static function () use ($user, $profileData, $userData) {
+                $user->update($userData);
+                $user->profile()->update($profileData);
+            });
         } catch (Throwable $e) {
             Log::error($e->getMessage());
 
@@ -112,7 +155,7 @@ final class UserController extends Controller
         }
 
         return Response::redirectToRoute('admin.users.index')
-            ->with(['success' => __('admin.user_update_success', ['name' => $user->full_name])]);
+            ->with(['success' => __('admin.user_update_success', ['name' => $user->profile->full_name])]);
     }
 
     /**
@@ -130,6 +173,6 @@ final class UserController extends Controller
         }
 
         return Response::redirectToRoute('admin.users.index')
-            ->with(['success' => __('admin.user_delete_success', ['name' => $user->full_name])]);
+            ->with(['success' => __('admin.user_delete_success', ['name' => $user->profile->full_name])]);
     }
 }

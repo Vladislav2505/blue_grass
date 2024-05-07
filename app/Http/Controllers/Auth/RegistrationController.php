@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Profile;
 use Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -33,6 +34,12 @@ final class RegistrationController extends Controller
         ]);
 
         $user = User::create($validatedData);
+        Profile::query()->create([
+            'user_id' => $user->id,
+            'last_name' => $validatedData['last_name'],
+            'first_name' => $validatedData['first_name'],
+        ]);
+
         Auth::login($user);
 
         Event::dispatch(new Registered($user));

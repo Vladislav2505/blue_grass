@@ -5,7 +5,7 @@
         </button>
     </div>
     <div class="flex justify-end items-center gap-3 text-right">
-        <p>{{auth()->user()->full_name}}</p>
+        <p>{{auth()->user()->profile->full_name}}</p>
         <a href="{{route(\App\Providers\RouteServiceProvider::HOME)}}"><img src="{{Vite::asset('resources/images/profile.svg')}}" class="w-[42px]" alt="profile"></a>
     </div>
 </header>
