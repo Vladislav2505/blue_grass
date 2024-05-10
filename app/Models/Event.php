@@ -32,7 +32,7 @@ class Event extends Model
         'date_of' => 'datetime:Y-m-d H:i',
         'request_access' => 'boolean',
         'is_active' => 'boolean',
-        'description' => 'json',
+        'description' => 'array',
     ];
 
     protected static function boot(): void
@@ -40,6 +40,13 @@ class Event extends Model
         parent::boot();
 
         static::bootSlug();
+    }
+
+    public function getNominationNamesStringAttribute(): string
+    {
+        return $this->nominations
+            ->pluck('name')
+            ->implode(', ');
     }
 
     // Relations

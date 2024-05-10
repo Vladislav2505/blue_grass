@@ -7,6 +7,9 @@
 
 @section('content')
     <x-forms.auth-form form-action="register" form-title="Регистрация" :form-label="$formLabel">
+        @if($errors->first('error'))
+            <p class="text-error font-bold text-center">{{$errors->first('error')}}</p>
+        @endif
         <x-forms.input input-name="last_name" input-label="Фамилия" input-placeholder="Введите Фамилию"
                        :input-value="old('last_name')"/>
         <x-forms.input input-name="first_name" input-label="Имя" input-placeholder="Введите Имя"

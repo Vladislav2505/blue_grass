@@ -8,7 +8,7 @@
             <ul class="hidden space-x-[60px] font-light xl:space-x-[70px] lg:text-2xl lg:flex">
                 @foreach(config('menu.main') as $url => $point)
                     <li>
-                        <a href="{{$url}}"
+                        <a href="/{{$url}}"
                            class="{{Str::contains($currentUrl, $url) ? 'text-lightblue' : 'text-main hover:text-lightblue transition-colors'}}">{{$point}}
                         </a>
                     </li>

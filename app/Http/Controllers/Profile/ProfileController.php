@@ -44,7 +44,7 @@ final class ProfileController extends Controller
             'first_name' => ['required', 'string', 'max:180'],
             'patronymic' => ['nullable', 'string', 'max:180'],
             'phone' => ['nullable', 'string', 'regex:/^\+\d{11}$/'],
-            'age' => ['nullable', 'integer', 'between:1,100'],
+            'date_of_birth' => ['nullable', 'date_format:Y-m-d', 'before_or_equal:today'],
             'address' => ['nullable', 'string', 'max:180'],
         ]);
 

@@ -200,7 +200,7 @@ return [
         'patronymic' => '"Отчество"',
         'email' => '"E-mail"',
         'phone' => '"Телефон"',
-        'age' => '"Возраст"',
+        'date_of_birth' => '"Дата рождения"',
         'address' => '"Адрес"',
         'establishment_name' => '"Учреждение"',
         'teacher_full_name' => '"ФИО руководителя"',

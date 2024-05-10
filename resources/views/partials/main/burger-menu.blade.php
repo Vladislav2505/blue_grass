@@ -21,7 +21,7 @@
                 <li
                     class="{{$isSelected ? 'border-lightpink bg-lightblue text-white' : 'hover:bg-[#DCC7C7] transition-colors'}}
                     rounded-[5px] px-[10px] py-[10px]">
-                    <a href="{{$url}}" class="flex flex-row items-center gap-4">
+                    <a href="/{{$url}}" class="flex flex-row items-center gap-4">
                         <img
                             src="{{Vite::asset("resources/images/menu/$url" . ($isSelected ? '-selected' : '') . '.svg')}}"
                             alt="{{$url}}">

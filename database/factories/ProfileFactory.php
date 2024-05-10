@@ -23,7 +23,7 @@ class ProfileFactory extends Factory
             'first_name' => fake()->firstName(),
             'patronymic' => fake()->optional()->firstName(),
             'phone' => fake()->phoneNumber(),
-            'age' => fake()->numberBetween(1, 100),
+            'date_of_birth' => fake()->date,
             'address' => fake()->address(),
         ];
     }

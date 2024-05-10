@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\Profile;
+use App\Models\User;
 use Auth;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
@@ -33,12 +36,25 @@ final class RegistrationController extends Controller
             'personal-data' => ['accepted'],
         ]);
 
-        $user = User::create($validatedData);
-        Profile::query()->create([
-            'user_id' => $user->id,
-            'last_name' => $validatedData['last_name'],
-            'first_name' => $validatedData['first_name'],
-        ]);
+        try {
+            $user = new User([
+                'email' => $validatedData['email'],
+                'password' => $validatedData['password'],
+            ]);
+
+            DB::transaction(static function () use ($user, $validatedData) {
+                $user->save();
+                Profile::query()->create([
+                    'user_id' => $user->id,
+                    'last_name' => $validatedData['last_name'],
+                    'first_name' => $validatedData['first_name'],
+                ]);
+            });
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return Redirect::back()->withErrors(['error' => __('auth.registration_failed')]);
+        }
 
         Auth::login($user);
 

@@ -23,7 +23,7 @@ final class QuestionFormController extends Controller
                 'question_text' => ['required', 'string', 'max:1000'],
             ]);
 
-            $data['full_name'] = $user->full_name;
+            $data['full_name'] = $user->profile->full_name;
             $data['email'] = $user->email;
             $data['user_id'] = $user->id;
         } else {

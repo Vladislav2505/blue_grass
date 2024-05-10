@@ -35,12 +35,6 @@ if (editorjs) {
                 class: Paragraph,
                 inlineToolbar: true,
             },
-            header: {
-                class: Header,
-                config: {
-                    placeholder: 'Введите заголовок',
-                },
-            },
             list: {
                 class: List,
                 inlineToolbar: [

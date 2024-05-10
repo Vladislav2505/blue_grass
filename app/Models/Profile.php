@@ -18,7 +18,7 @@ class Profile extends Model
         'first_name',
         'patronymic',
         'phone',
-        'age',
+        'date_of_birth',
         'address',
     ];
 

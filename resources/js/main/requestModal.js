@@ -1,17 +1,17 @@
-const questionButtons = document.querySelectorAll('.question-modal-open');
+const requestButtons = document.querySelectorAll('.request-modal-open');
 
-if (questionButtons.length !== 0) {
-    questionButtons.forEach(function (button) {
+if (requestButtons.length !== 0) {
+    requestButtons.forEach(function (button) {
         button.addEventListener('click', openModal);
     })
 
-    document.getElementById('questionModalClose').addEventListener('click', closeModal);
-    document.getElementById('questionForm').addEventListener('submit', submitForm);
+    document.getElementById('requestModalClose').addEventListener('click', closeModal);
+    document.getElementById('requestForm').addEventListener('submit', submitForm);
 
-    const messageBlock = document.getElementById('questionFormMessage');
+    const messageBlock = document.getElementById('requestFormMessage');
 
     function openModal() {
-        const modal = document.getElementById('questionModal');
+        const modal = document.getElementById('requestModal');
 
         if (modal) {
             messageBlock.classList.add('hidden');
@@ -25,7 +25,7 @@ if (questionButtons.length !== 0) {
     }
 
     function closeModal() {
-        const modal = document.getElementById('questionModal');
+        const modal = document.getElementById('requestModal');
 
         if (modal) {
             modal.querySelector('.bg-white').classList.add('opacity-0', 'scale-95');
