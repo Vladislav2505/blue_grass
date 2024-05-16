@@ -31,6 +31,7 @@ Route::name('main.')->group(function () {
     Route::get('/', [IndexController::class, 'events'])->name('index.events');
     Route::get('/protocols', [IndexController::class, 'protocols'])->name('index.protocols');
     Route::get('/events/{event}', [EventDetailController::class, 'show'])->name('event.show');
+    Route::post('/request', [EventDetailController::class, 'request'])->name('event.request');
 
     Route::get('/partners', [PartnersController::class, 'show'])->name('partners.show');
     Route::get('/gallery', [GalleryController::class, 'show'])->name('gallery.show');

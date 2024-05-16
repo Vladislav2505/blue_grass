@@ -223,5 +223,10 @@ return [
         'full_name' => '"ФИО"',
         'question_text' => '"Вопрос"',
         'current_password' => '"Текущий пароль"',
+        'supervisor_full_name' => '"ФИО руководителя"',
+        'organization_name' => '"Название организации"',
+        'team_name' => '"Название коллектива"',
+        'date_creation_team' => '"Дата создания коллектива"',
+        'participants_number' => '"Кол-во прибывающих"',
     ],
 ];

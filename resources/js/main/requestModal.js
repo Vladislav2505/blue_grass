@@ -45,7 +45,7 @@ if (requestButtons.length !== 0) {
         messageBlock.innerHTML = '';
         messageBlock.classList.remove('hidden');
 
-        const personalData = document.getElementById('question-personal-data');
+        const personalData = document.getElementById('request-personal-data');
 
         if (personalData && !personalData.checked) {
             showErrors('Вы должны дать согласие на обработку персональных данных');

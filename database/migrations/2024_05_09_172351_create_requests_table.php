@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\RequestStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +14,9 @@ return new class extends Migration
     {
         Schema::create('requests', static function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('event_id');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('status');
+            $table->string('status')->default(RequestStatus::Pending);
             $table->string('full_name');
             $table->string('email');
             $table->string('phone');
