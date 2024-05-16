@@ -13,8 +13,8 @@ class Textarea extends Component
      */
     public function __construct(
         public string $textareaName,
-        public string $textareaLabel,
         public string $textareaPlaceholder,
+        public string $textareaLabel = '',
         public string $textareaValue = '',
         public bool $isRequired = false,
     ) {

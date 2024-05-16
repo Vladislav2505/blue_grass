@@ -20,6 +20,7 @@ final class QuestionFormController extends Controller
         $user = Auth::user();
         if ($user) {
             $data = $request->validate([
+                'question_title' => ['required', 'string', 'max:255'],
                 'question_text' => ['required', 'string', 'max:1000'],
             ]);
 
@@ -30,6 +31,7 @@ final class QuestionFormController extends Controller
             $data = $request->validate([
                 'full_name' => ['required', 'string', 'max:180'],
                 'email' => ['required', 'email:rfc,dns', 'max:80'],
+                'question_title' => ['required', 'string', 'max:255'],
                 'question_text' => ['required', 'string', 'max:1000'],
             ]);
         }

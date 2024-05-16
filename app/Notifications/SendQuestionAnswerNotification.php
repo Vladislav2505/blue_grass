@@ -6,7 +6,7 @@ use App\Models\Question;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendQuestionNotification extends Notification
+class SendQuestionAnswerNotification extends Notification
 {
     /**
      * Create a new notification instance.
@@ -32,12 +32,11 @@ class SendQuestionNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Пользователь оставил свой вопрос')
-            ->greeting('Новое сообщение')
-            ->line('Email: '.$this->question->email)
-            ->line('ФИО: '.$this->question->full_name)
-            ->line('Тема: ' . $this->question->question_title)
-            ->line('Вопрос: '.$this->question->question_text);
+            ->subject("Ответ на вопрос \"{$this->question->question_title}\"")
+            ->greeting('Здравствуйте!')
+            ->line('Администратор сайта ознакомился с вашим вопросом и постарался дать на него ответ')
+            ->line('Ваш вопрос: '.$this->question->question_text)
+            ->line('Ответ на ваш вопрос: '.$this->question->answer_text);
     }
 
     /**

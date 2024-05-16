@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NominationController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProtocolController;
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\EmailVerificationController;
@@ -82,6 +83,7 @@ Route::middleware(['auth'])->group(function () {
             'partners' => PartnerController::class,
             'collections' => CollectionController::class,
             'news' => NewsController::class,
+            'questions' => QuestionController::class,
         ]);
     });
 });

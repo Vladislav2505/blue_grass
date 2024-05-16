@@ -12,8 +12,11 @@ class Question extends Model
     protected $fillable = [
         'full_name',
         'email',
+        'question_title',
         'question_text',
         'user_id',
+        'is_closed',
+        'answer_text',
     ];
 
     public function user(): BelongsTo

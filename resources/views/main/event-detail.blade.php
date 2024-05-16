@@ -11,7 +11,7 @@
                 <h2 class="font-medium text-xl md:text-3xl">{{$event->name}}</h2>
                 <p class="text-secondary">{{$event->date_of}}</p>
             </div>
-            @if($event->request_access && !$user->send_request)
+            @if($event->request_access && !$user?->send_request)
                 <div class="flex justify-end md:justify-start">
                     <x-main.button button-label="Оставить заявку" class="h-fit px-2 md:px-8 request-modal-open"/>
                 </div>

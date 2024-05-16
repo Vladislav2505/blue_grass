@@ -3,7 +3,7 @@
     <div
         class="bg-white rounded-[5px] shadow-lg opacity-0 transform scale-95 transition-all duration-300 mx-4 w-[600px]">
         <div class="flex flex-row justify-between items-center px-5 py-4 border-b border-lightgray">
-            <h3 class="font-medium text-xl">Оставить заявку</h3>
+            <h3 class="font-medium text-xl">Заявочный лист</h3>
             <button id="requestModalClose">
                 <img src="{{Vite::asset('resources/images/menu/close.svg')}}" alt="close" class="w-[18px]">
             </button>
@@ -13,7 +13,8 @@
             <form id="requestForm" method="POST" action="{{route('main.event.request')}}"
                   class="custom-scrollbar flex flex-col justify-between gap-4 py-5 px-5 sm:px-6 overflow-hidden h-fit max-h-[85vh]">
                 @csrf
-                <div id="requestFormMessage" class="hidden text-error text-[14px] min-h-10 overflow-auto md:min-h-0 md:overflow-hidden"></div>
+                <div id="requestFormMessage"
+                     class="hidden text-error text-[14px] min-h-10 overflow-auto xl:min-h-0 xl:overflow-hidden"></div>
                 <input type="hidden" name="event_id" value="{{$event->id}}">
                 <div class="flex flex-col justify-between gap-4 overflow-auto px-1 pb-1">
                     <x-forms.input input-name="full_name" input-label="ФИО" input-placeholder="Введите ФИО"
@@ -56,7 +57,8 @@
             <form id="requestForm" method="POST" action="{{route('main.event.request')}}"
                   class="custom-scrollbar flex flex-col justify-between gap-4 py-5 px-5 sm:px-6 overflow-hidden h-fit max-h-[85vh]">
                 @csrf
-                <div id="requestFormMessage" class="hidden text-error text-[14px] overflow-auto"></div>
+                <div id="requestFormMessage"
+                     class="hidden text-error text-[14px] overflow-auto min-h-10 xl:min-h-0 xl:overflow-hidden"></div>
                 <input type="hidden" name="event_id" value="{{$event->id}}">
                 <div class="flex flex-col justify-between gap-4 overflow-auto px-1 pb-1">
                     @if(!$user->profile->phone)

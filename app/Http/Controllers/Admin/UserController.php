@@ -99,6 +99,10 @@ final class UserController extends Controller
      */
     public function show(User $user): HttpResponse
     {
+        if ($user->email === config('site.admin_email')) {
+            abort(403);
+        }
+
         return Response::view('admin.users.show', compact('user'));
     }
 

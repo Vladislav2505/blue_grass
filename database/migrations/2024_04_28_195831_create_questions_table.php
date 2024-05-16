@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('email');
+            $table->string('question_title');
             $table->text('question_text');
+            $table->text('answer_text')->nullable();
+            $table->boolean('is_closed')->default(false);
             $table->unsignedBigInteger('user_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->nullOnDelete();
