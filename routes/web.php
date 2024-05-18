@@ -23,6 +23,7 @@ use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Main\NewsListController;
 use App\Http\Controllers\Main\PartnersController;
 use App\Http\Controllers\Main\QuestionFormController;
+use App\Http\Controllers\Profile\NotificationsController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,11 +65,17 @@ Route::middleware(['auth'])->group(function () {
     Route::name('profile.')->prefix('profile')->middleware(['verified', 'user'])->group(function () {
         Route::get('/', [ProfileController::class, 'dashboard'])->name('dashboard');
 
-        Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
-        Route::put('edit', [ProfileController::class, 'update'])->name('update');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::put('/edit', [ProfileController::class, 'update'])->name('update');
 
-        Route::get('security', [ProfileController::class, 'security'])->name('security');
-        Route::post('security', [ProfileController::class, 'resetPassword'])->name('security.reset');
+        Route::get('/security', [ProfileController::class, 'security'])->name('security');
+        Route::post('/security', [ProfileController::class, 'resetPassword'])->name('security.reset');
+
+        Route::name('notifications.')->prefix('notifications')->group(function () {
+            Route::get('/requests', [NotificationsController::class, 'requests'])->name('requests');
+            Route::get('/answers', [NotificationsController::class, 'questions'])->name('questions');
+        });
+
     });
 
     Route::name('admin.')->prefix('admin')->middleware(['admin'])->group(function () {

@@ -9,7 +9,7 @@
 
             <div>
                 <a href="{{route(auth()->user()?->isAdmin() ? \App\Providers\RouteServiceProvider::ADMIN : \App\Providers\RouteServiceProvider::PROFILE)}}"
-                   class="{{Request::is('profile') ? 'hidden' : ''}}">
+                   class="{{Str::contains($currentUrl, 'profile') ? 'hidden' : ''}}">
                     <img src="{{Vite::asset('resources/images/profile.svg')}}" alt="profile">
                 </a>
             </div>
@@ -31,11 +31,9 @@
             @endforeach
         </ul>
     </div>
-    @if(! Request::is('profile'))
-        <div class="flex justify-end">
-            <button class="question-modal-open">
-                <img src="{{Vite::asset('resources/images/question.svg')}}" alt="question" class="object-contain">
-            </button>
-        </div>
-    @endif
+    <div class="flex justify-end">
+        <button class="question-modal-open">
+            <img src="{{Vite::asset('resources/images/question.svg')}}" alt="question" class="object-contain">
+        </button>
+    </div>
 </div>

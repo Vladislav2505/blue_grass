@@ -22,7 +22,7 @@
         </nav>
 
         <div class="hidden lg:flex gap-6">
-            @if(! Request::is('profile'))
+            @if(! Str::contains($currentUrl, 'profile'))
                 <a href="{{route(auth()->user()?->isAdmin() ? \App\Providers\RouteServiceProvider::ADMIN : \App\Providers\RouteServiceProvider::PROFILE)}}"
                    class="flex">
                     <img src="{{Vite::asset('resources/images/profile.svg')}}"
