@@ -23,7 +23,7 @@ class NominationFactory extends Factory
         return [
             'name' => $name,
             'slug' => Str::slug($name),
-            'is_active' => $this->faker->boolean(),
+            'is_active' => true,
         ];
     }
 }

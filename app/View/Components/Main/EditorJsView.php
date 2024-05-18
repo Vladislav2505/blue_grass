@@ -13,8 +13,7 @@ class EditorJsView extends Component
      */
     public function __construct(
         public array $blocks
-    )
-    {
+    ) {
     }
 
     /**

@@ -2,17 +2,18 @@
 
 namespace App\Notifications;
 
-use App\Models\Question;
+use App\Enums\RequestStatus;
+use App\Models\Request;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendQuestionNotification extends Notification
+class SendRequestSolutionNotification extends Notification
 {
     /**
      * Create a new notification instance.
      */
     public function __construct(
-        public Question $question,
+        public Request $request,
     ) {
     }
 
@@ -31,14 +32,17 @@ class SendQuestionNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        if ($this->request->status === RequestStatus::Accepted) {
+            return (new MailMessage)
+                ->subject('Ваша заявка была принята')
+                ->greeting('Здравствуйте!')
+                ->line("Ваша заявка на участие в мероприятии \"{$this->request->event->name}\" была принята.");
+        }
+
         return (new MailMessage)
-            ->subject('Пользователь оставил свой вопрос')
-            ->greeting('Новое сообщение')
-            ->line('Email: '.$this->question->email)
-            ->line('ФИО: '.$this->question->full_name)
-            ->line('Тема: '.$this->question->question_title)
-            ->line('Вопрос: '.$this->question->question_text)
-            ->action('Перейти в административную панель', route('admin.questions.show', ['question' => $this->question]));
+            ->subject('Ваша заявка была отклонена')
+            ->greeting('Здравствуйте!')
+            ->line("Ваша заявка на участие в мероприятии \"{$this->request->event->name}\" была отклонена.");
     }
 
     /**

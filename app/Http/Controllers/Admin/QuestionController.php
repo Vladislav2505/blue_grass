@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendNotification;
 use App\Models\Question;
+use App\Models\User;
 use App\Notifications\SendQuestionAnswerNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Throwable;
 
-class QuestionController extends Controller
+final class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -77,10 +78,19 @@ class QuestionController extends Controller
 
         $question->updateOrFail($validated);
 
-        SendNotification::dispatch(
-            email: $question->email,
-            notification: new SendQuestionAnswerNotification($question)
-        )->afterResponse();
+        if ($question->user_id) {
+            /** @var User $user */
+            $user = User::query()->find($question->user_id);
+            SendNotification::dispatch(
+                user: $user,
+                notification: new SendQuestionAnswerNotification($question)
+            )->afterResponse();
+        } else {
+            SendNotification::dispatch(
+                email: $question->email,
+                notification: new SendQuestionAnswerNotification($question)
+            )->afterResponse();
+        }
 
         return Response::redirectToRoute('admin.questions.index')
             ->with(['success' => __('admin.question_send_success')]);

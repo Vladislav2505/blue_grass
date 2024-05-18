@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('event_id');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('status')->default(RequestStatus::Pending);
+            $table->unsignedSmallInteger('status')->default(RequestStatus::Pending);
             $table->string('full_name');
             $table->string('email');
             $table->string('phone');
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('event_id')->references('id')->on('events')->cascadeOnDelete();
         });
     }
 

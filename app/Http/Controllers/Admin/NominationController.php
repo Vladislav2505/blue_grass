@@ -77,6 +77,11 @@ final class NominationController extends Controller
             'is_active' => ['nullable', 'in:true,false,on'],
         ]);
 
+        if (! $request->has('is_active') && $nomination->events()->exists()) {
+            return Response::redirectToRoute('admin.nominations.index')
+                ->withErrors(['error' => __('admin.nomination_update_is_active_error')]);
+        }
+
         try {
             $nomination->update([
                 'name' => $data['name'],

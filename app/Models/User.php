@@ -34,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'email_verified_at',
-        'subscribed_to_notifications'
+        'subscribed_to_notifications',
     ];
 
     /**
@@ -65,6 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $with = ['profile'];
+
     public function isAdmin(): bool
     {
         return $this->is_admin === 1;

@@ -19,8 +19,7 @@ class NumberInput extends Component
         public string $minNumber = '',
         public string $maxNumber = '',
         public bool $isRequired = false,
-    )
-    {
+    ) {
         //
     }
 

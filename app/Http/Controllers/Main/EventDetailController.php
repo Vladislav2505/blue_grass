@@ -68,16 +68,16 @@ final class EventDetailController extends Controller
             'organization_name' => ['required', 'string', 'max:255'],
             'team_name' => ['nullable', 'string', 'max:255'],
             'date_creation_team' => ['nullable', 'date_format:Y-m-d', 'before_or_equal:today'],
-            'participants_number' => ['nullable', 'integer', 'min:1'],
+            'participants_number' => ['nullable', 'integer', 'min:0'],
         ]);
 
         try {
             /** @var Request $userRequest */
-            $userRequest = Request::query()->updateOrCreate(['id' => $data['user_id']], $data);
+            $userRequest = Request::query()->updateOrCreate(['id' => $data['user_id'] ?? null], $data);
 
             SendNotification::dispatch(
                 email: config('site.email'),
-                notification: new SendRequestNotification($userRequest, $event)
+                notification: new SendRequestNotification($userRequest)
             )->afterResponse();
         } catch (Exception $e) {
             Log::error($e->getMessage());

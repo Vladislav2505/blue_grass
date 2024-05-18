@@ -37,8 +37,8 @@ class EventFactory extends Factory
             'description' => $this->faker->paragraph(),
             'request_access' => $this->faker->boolean(),
             'is_active' => $this->faker->boolean(),
-            'theme_id' => Theme::query()->inRandomOrder()->first(),
-            'location_id' => Location::query()->inRandomOrder()->first(),
+            'theme_id' => Theme::query()->inRandomOrder()->where('is_active', true)->first(),
+            'location_id' => Location::query()->inRandomOrder()->where('is_active', true)->first(),
         ];
     }
 }

@@ -28,7 +28,7 @@
                 <textarea id="answer_text" name="answer_text" placeholder="Введите текст"
                           class="w-full 2xl:w-[650px] max-h-[650px] h-[300px] border border-lightgray rounded-[5px] p-4 overflow-auto resize-none">{{old('answer_text') ?: $question->answer_text}}</textarea>
                 <x-admin.forms.input-error :error-name="'answer_text'"/>
-                <x-admin.forms.submit submit-label="Ответить" class="block"/>
+                <x-admin.forms.submit submit-label="Ответить" class="block mt-2"/>
             </form>
         @endif
         <x-admin.show.data data-label="Дата создания" :data-value="$question->created_at"/>

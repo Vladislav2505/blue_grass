@@ -16,8 +16,7 @@ class DataUrl extends Component
         public string $dataValue,
         public string $url,
         public array $params,
-    )
-    {
+    ) {
 
     }
 

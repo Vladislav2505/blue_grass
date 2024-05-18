@@ -5,5 +5,5 @@ return [
     'profile_update_error' => 'Во время обновления профиля произошла ошибка.',
 
     'password_update_error' => 'Во время обновления пароля произошла ошибка.',
-    'password_update_success' => 'Пароль успешно обновлен.'
+    'password_update_success' => 'Пароль успешно обновлен.',
 ];

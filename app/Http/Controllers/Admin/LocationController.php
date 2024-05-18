@@ -77,6 +77,11 @@ final class LocationController extends Controller
             'is_active' => ['nullable', 'in:true,false,on'],
         ]);
 
+        if (! $request->has('is_active') && $location->events()->exists()) {
+            return Response::redirectToRoute('admin.locations.index')
+                ->withErrors(['error' => __('admin.location_update_is_active_error')]);
+        }
+
         try {
             $location->update([
                 'name' => $data['name'],

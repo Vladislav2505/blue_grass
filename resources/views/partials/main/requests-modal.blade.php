@@ -21,7 +21,7 @@
                                    :is-required="true"/>
                     <x-forms.input input-name="email" input-label="Email" input-placeholder="Введите Email"
                                    :is-required="true"/>
-                    <x-forms.input input-name="phone" input-label="Номер телефона" input-placeholder="Введите номер"
+                    <x-forms.input input-name="phone" input-label="Номер телефона" input-placeholder="+7"
                                    :is-required="true"/>
                     <x-forms.date-input input-name="date_of_birth" input-label="Дата рождения"
                                         input-placeholder="Введите дату рождения"
@@ -62,7 +62,7 @@
                 <input type="hidden" name="event_id" value="{{$event->id}}">
                 <div class="flex flex-col justify-between gap-4 overflow-auto px-1 pb-1">
                     @if(!$user->profile->phone)
-                        <x-forms.input input-name="phone" input-label="Номер телефона" input-placeholder="Введите номер"
+                        <x-forms.input input-name="phone" input-label="Номер телефона" input-placeholder="+7"
                                        :is-required="true"/>
                     @endif
                     @if(!$user->profile->date_of_birth)

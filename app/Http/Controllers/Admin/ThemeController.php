@@ -77,6 +77,11 @@ final class ThemeController extends Controller
             'is_active' => ['nullable', 'in:true,false,on'],
         ]);
 
+        if (! $request->has('is_active') && $theme->events()->exists()) {
+            return Response::redirectToRoute('admin.themes.index')
+                ->withErrors(['error' => __('admin.theme_update_is_active_error')]);
+        }
+
         try {
             $theme->update([
                 'name' => $data['name'],
