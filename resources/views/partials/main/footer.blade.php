@@ -20,7 +20,7 @@
                 </a>
             </div>
             <div>
-                <a href="/"
+                <a href="{{route('main.policy')}}"
                    class="text-[14px] text-secondary font-light hover:text-[#a29999] text-right lg:text-[18px]">Политика
                     конфиденциальности</a>
             </div>

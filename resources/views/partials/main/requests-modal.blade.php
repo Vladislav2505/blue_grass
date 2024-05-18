@@ -47,7 +47,7 @@
                                           min-number="0" max-number="500"/>
                 </div>
                 <x-forms.checkbox checkbox-name="request-personal-data">
-                    Я согласен на обработку <a href="/" class="text-lightblue">персональных данных</a>
+                    Я согласен на обработку <a href="{{route('main.policy')}}" class="text-lightblue">персональных данных</a>
                 </x-forms.checkbox>
                 <x-forms.submit submit-label="Отправить" class="w-1/2"/>
             </form>

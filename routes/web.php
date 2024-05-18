@@ -40,6 +40,10 @@ Route::name('main.')->group(function () {
     Route::get('/gallery', [GalleryController::class, 'show'])->name('gallery.show');
     Route::get('/news', [NewsListController::class, 'show'])->name('news.show');
     Route::post('/question', [QuestionFormController::class, 'send'])->name('question');
+
+    Route::get('/policy', static function () {
+        return view('main.privacy-policy');
+    })->name('policy');
 });
 
 Route::middleware(['guest'])->group(function () {
