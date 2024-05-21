@@ -17,18 +17,18 @@
     @vite(['resources/js/app.js', 'resources/js/admin.js'])
 </head>
 
-<body class="bg-white overflow-y-hidden">
-<div class="flex flex-row-reverse justify-end overflow-y-hidden">
-    <div class="w-full h-screen overflow-x-auto overflow-y-hidden">
+<body class="bg-white h-full w-full">
+<div class="flex flex-row-reverse justify-end">
+    <div class="flex flex-col min-h-full w-full h-screen overflow-x-auto">
         @include('partials.admin.header')
 
-        <main class="main-admin max-w-full overflow-x-hidden">
-            <div class="relative max-w-full mx-3 md:mx-9 my-10 px-3 md:px-6 py-8 border-2 shadow rounded-[5px]">
+        <main class="main-admin overflow-y-auto max-w-full overflow-x-hidden h-full">
+            <div class="relative max-w-full mx-4 my-5 px-3 md:px-6 py-6 border-2 shadow rounded-[5px]">
                 @yield('content')
             </div>
         </main>
     </div>
-    <div class="w-fit h-screen flex flex-row">
+    <div class="w-fit h-full flex flex-row">
         @include('partials.admin.sidebar')
     </div>
 </div>

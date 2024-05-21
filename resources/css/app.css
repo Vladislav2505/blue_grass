@@ -76,8 +76,7 @@
     }
 
     .main-admin {
-        overflow-y: auto;
-        height: calc(100vh - 80px);
+        flex: 1 1 auto;
     }
 
 
