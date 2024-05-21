@@ -1,4 +1,4 @@
-<header class="sticky top-0 flex flex-row justify-between items-center border-b-2 h-fit py-2 xl:py-4 pr-8 xl:justify-end">
+<header class="flex z-50 flex-row justify-between items-center border-b-2 h-fit py-4 pr-8 xl:justify-end">
     <div class="px-4 xl:hidden">
         <button id="open_sidebar">
             <img src="{{Vite::asset('resources/images/logo.svg')}}" alt="logo" class="w-[55px]">
