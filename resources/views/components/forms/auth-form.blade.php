@@ -1,6 +1,6 @@
-<div class="flex bg-white md:bg-lightpink justify-center md:items-center h-screen">
+<div class="flex flex-col items-center justify-center bg-white md:bg-lightpink h-full overflow-hidden">
     <form
-        class="flex flex-col items-center bg-white my-2 py-5 px-6 w-screen md:px-12 rounded-[5px] md:w-[560px] shadow"
+        class="flex flex-col items-center bg-white py-5 px-6 w-full h-full md:h-fit md:px-12 rounded-[5px] md:w-[560px] shadow overflow-auto"
         action="{{route($formAction)}}" method="{{$formMethod}}">
         @csrf
         <div class="mb-3">

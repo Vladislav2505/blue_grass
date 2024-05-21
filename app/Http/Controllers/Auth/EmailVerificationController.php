@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Services\UserService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
@@ -26,6 +27,11 @@ final class EmailVerificationController extends Controller
 
     public function resend(Request $request): RedirectResponse
     {
+        if ($request->has('logout')) {
+            (new UserService())->logout($request);
+            return Redirect::route('login.render');
+        }
+
         if (! $request->has('send')) {
             return Redirect::route(RouteServiceProvider::HOME);
         }

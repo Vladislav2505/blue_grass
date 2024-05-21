@@ -12,8 +12,8 @@
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/auth.js'])
 </head>
-<body class="bg-lightpink">
-<main>
+<body class="bg-lightpink w-full h-full">
+<main class="h-full">
     @yield('content')
 </main>
 </body>
