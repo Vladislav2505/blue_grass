@@ -17,7 +17,7 @@ if (requestButtons.length !== 0) {
             messageBlock.classList.add('hidden');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            document.querySelector('body').classList.add('overflow-y-hidden')
+            document.querySelector('body').classList.add('hide-scroll')
             setTimeout(function () {
                 modal.querySelector('.bg-white').classList.remove('opacity-0', 'scale-95');
             }, 50);
@@ -31,7 +31,7 @@ if (requestButtons.length !== 0) {
             modal.querySelector('.bg-white').classList.add('opacity-0', 'scale-95');
 
             setTimeout(function () {
-                document.querySelector('body').classList.remove('overflow-y-hidden')
+                document.querySelector('body').classList.remove('hide-scroll')
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 messageBlock.innerHTML = '';

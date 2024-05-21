@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply h-screen w-full antialiased;
+        @apply h-full w-full antialiased;
     }
 
     button {
@@ -46,6 +46,14 @@
         shadow
     }
 
+    .hide-scroll {
+        overflow: hidden;
+    }
+
+    .show-scroll {
+        overflow: auto;
+    }
+
     .btn-hover {
         @apply hover:bg-blue-hover transition-colors;
     }
@@ -76,8 +84,7 @@
     }
 
     .main-admin {
-        overflow-y: auto;
-        height: calc(100vh - 80px);
+        flex: 1 1 auto;
     }
 
 
