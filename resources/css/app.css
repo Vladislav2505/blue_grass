@@ -46,6 +46,14 @@
         shadow
     }
 
+    .hide-scroll {
+        overflow: hidden;
+    }
+
+    .show-scroll {
+        overflow: auto;
+    }
+
     .btn-hover {
         @apply hover:bg-blue-hover transition-colors;
     }
