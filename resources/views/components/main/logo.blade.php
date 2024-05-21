@@ -9,7 +9,7 @@
              alt="logo">
         <div>
             <h1 class="font-bold text-xl xs:text-2xl sm:text-3xl">{{config('site.name')}}</h1>
-            <p class="hidden xs:block text-secondary">{{config('site.second_name')}}</p>
+            <p class="text-[14px] xs:text-[16px] block text-secondary">{{config('site.second_name')}}</p>
         </div>
     </a>
 </div>

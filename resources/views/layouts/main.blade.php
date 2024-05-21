@@ -15,7 +15,7 @@
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/main.js'])
 </head>
-<body class="bg-lightpink h-screen">
+<body class="bg-lightpink h-full w-full">
 <div class="wrapper">
     @include('partials.main.header')
     <main class="main">

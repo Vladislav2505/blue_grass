@@ -33,10 +33,10 @@
         @apply max-w-[1460px]
         bg-white
         rounded-[5px]
-        my-7
-        lg:my-9
+        my-4
+        lg:my-6
         mx-auto
-        py-[30px]
+        py-[20px]
         px-3
         md:px-5
         sm:px-[35px]
@@ -78,6 +78,25 @@
     .main-admin {
         overflow-y: auto;
         height: calc(100vh - 80px);
+    }
+
+
+    .invisible-scrollbar {
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        ::-webkit-scrollbar-track {
+            opacity: 100;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            opacity: 100;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            opacity: 100;
+        }
     }
 
     .custom-scrollbar {
