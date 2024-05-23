@@ -1,4 +1,4 @@
-<div id="sidebar_background" class="hidden fixed inset-0 bg-opacity-100"></div>
+<div id="sidebar_background" class="hidden fixed inset-0 bg-opacity-100 z-[90]"></div>
 <aside id="sidebar"
        class="invisible-scrollbar hidden fixed -translate-x-full transform duration-500 xl:flex xl:translate-x-0 xl:static xl:duration-0 h-screen z-[100]">
     <div id="12" class="flex flex-col justify-between bg-darkblue text-white px-5 py-3 gap-6 w-72">
