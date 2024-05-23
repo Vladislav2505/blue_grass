@@ -7,7 +7,7 @@
         @include('partials.main.tabs')
 
         @if($events->isNotEmpty())
-            <div id="listContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+            <div id="listContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
                 @include('partials.main.lists.event-list')
             </div>
             @if ($events->hasMorePages())

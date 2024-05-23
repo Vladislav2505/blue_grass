@@ -1,4 +1,5 @@
-<div class="flex flex-col items-center justify-center bg-white md:bg-lightpink h-full overflow-hidden">
+<div
+    class="invisible-scrollbar flex flex-col items-center justify-center bg-white md:bg-lightpink h-full overflow-hidden">
     <form
         class="flex flex-col items-center bg-white py-5 px-6 w-full h-full md:h-fit md:px-12 rounded-[5px] md:w-[560px] shadow overflow-auto"
         action="{{route($formAction)}}" method="{{$formMethod}}">

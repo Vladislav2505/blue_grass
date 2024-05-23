@@ -7,6 +7,7 @@ function openSidebar() {
     const sidebar = document.getElementById('sidebar');
     const background = document.getElementById('sidebar_background');
 
+    document.querySelector('body').classList.add('hide-scroll');
     sidebar.classList.remove('hidden');
     background.classList.remove('hidden');
     setTimeout(function () {
@@ -26,6 +27,7 @@ function closeSidebar() {
     setTimeout(function () {
         sidebar.classList.add('hidden');
         background.classList.add('hidden');
+        document.querySelector('body').classList.remove('hide-scroll')
     }, 500);
 }
 
