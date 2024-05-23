@@ -19,18 +19,15 @@
 
 <body class="bg-white h-full w-full">
 <div class="flex flex-row-reverse justify-end">
-    <div class="flex flex-col min-h-full w-full h-screen overflow-x-auto">
+    <div class="flex flex-col min-h-full w-full">
         @include('partials.admin.header')
-
-        <main class="main-admin overflow-y-auto max-w-full overflow-x-hidden h-full">
-            <div class="relative max-w-full mx-4 my-5 px-3 md:px-6 py-6 border-2 shadow rounded-[5px]">
-                @yield('content')
-            </div>
+        <main class="relative overflow-y-auto max-w-full h-fit mx-4 my-5 px-3 md:px-6 py-6 border-2">
+            @yield('content')
         </main>
     </div>
-    <div class="w-fit h-full flex flex-row">
-        @include('partials.admin.sidebar')
-    </div>
+{{--        <div class="fixed w-fit h-full flex flex-row">--}}
+{{--            @include('partials.admin.sidebar')--}}
+{{--        </div>--}}
 </div>
 </body>
 </html>

@@ -83,11 +83,6 @@
         flex: 1 1 auto;
     }
 
-    .main-admin {
-        flex: 1 1 auto;
-    }
-
-
     .invisible-scrollbar {
         ::-webkit-scrollbar {
             width: 1px;
