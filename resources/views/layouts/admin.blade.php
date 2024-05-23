@@ -24,7 +24,7 @@
     </div>
     <div class="flex flex-col min-h-full w-full">
         @include('partials.admin.header')
-        <main class="ml-0 xl:ml-[310px] relative overflow-y-auto max-w-full h-fit mx-4 my-5 px-3 md:px-6 py-6 border-2 rounded-[5px]">
+        <main class="ml-4 xl:ml-[310px] relative overflow-y-auto max-w-full h-fit mx-4 my-5 px-3 md:px-6 py-6 border-2 rounded-[5px]">
             @yield('content')
         </main>
     </div>

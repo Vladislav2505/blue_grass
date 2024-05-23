@@ -1,4 +1,4 @@
-<header class="sticky top-0 w-full z-50 border-b-2 h-fit py-4 pr-8 bg-white">
+<header class="sticky top-0 w-full z-50 border-b-2 h-fit py-2 xl:py-4 pr-8 bg-white">
     <div class="flex flex-row justify-between items-center xl:justify-end">
         <div class="px-4 xl:hidden">
             <button id="open_sidebar">
