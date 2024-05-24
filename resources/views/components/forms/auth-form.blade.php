@@ -4,10 +4,10 @@
         class="flex flex-col items-center bg-white py-5 px-6 w-full h-full md:h-fit md:px-12 rounded-[5px] md:w-[560px] shadow overflow-auto"
         action="{{route($formAction)}}" method="{{$formMethod}}">
         @csrf
-        <div class="mb-3">
+        <div>
             <a href="/" class="flex flex-row gap-3 items-center">
                 <img src="{{Vite::asset('resources/images/logo.svg')}}" alt="logo"
-                     class="w-[72px]">
+                     class="w-[90px] h-[90px] object-contain">
             </a>
         </div>
         <div class="text-center pb-6">
