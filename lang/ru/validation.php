@@ -230,5 +230,6 @@ return [
         'team_name' => '"Название коллектива"',
         'date_creation_team' => '"Дата создания коллектива"',
         'participants_number' => '"Кол-во прибывающих"',
+        'g-recaptcha-response' => '"Капча"',
     ],
 ];

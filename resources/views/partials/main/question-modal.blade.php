@@ -18,6 +18,7 @@
             </div>
         </div>
         <div class="flex flex-col gap-3">
+            <x-main.recaptcha class=""/>
             @guest
                 <x-forms.checkbox checkbox-name="question-personal-data">
                     Я согласен на обработку <a href="{{route('main.policy')}}" class="text-lightblue">персональных

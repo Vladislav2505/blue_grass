@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendNotification;
 use App\Models\Question;
 use App\Notifications\SendQuestionNotification;
+use App\Rules\RecaptchaRule;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ final class QuestionFormController extends Controller
             $data = $request->validate([
                 'question_title' => ['required', 'string', 'max:255'],
                 'question_text' => ['required', 'string', 'max:1000'],
+                'g-recaptcha-response' => ['required', new RecaptchaRule()],
             ]);
 
             $data['full_name'] = $user->profile->full_name;
@@ -33,6 +35,7 @@ final class QuestionFormController extends Controller
                 'email' => ['required', 'email:rfc,dns', 'max:80'],
                 'question_title' => ['required', 'string', 'max:255'],
                 'question_text' => ['required', 'string', 'max:1000'],
+                'g-recaptcha-response' => ['required', new RecaptchaRule()],
             ]);
         }
 

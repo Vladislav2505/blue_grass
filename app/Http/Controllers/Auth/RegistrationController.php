@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\User;
+use App\Rules\RecaptchaRule;
 use Auth;
 use Exception;
 use Illuminate\Auth\Events\Registered;
@@ -34,6 +35,7 @@ final class RegistrationController extends Controller
             'email' => ['required', 'email:rfc,dns', 'max:80', Rule::unique('users')],
             'password' => ['required', 'string', 'confirmed', Password::min(8)->max(255)->letters()->numbers()->symbols()],
             'personal-data' => ['accepted'],
+            'g-recaptcha-response' => ['required', new RecaptchaRule()],
         ]);
 
         try {
