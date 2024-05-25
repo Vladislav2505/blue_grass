@@ -1,9 +1,9 @@
-<x-main.modal-wrapper modalId="requestModal" title="Заявочный листа">
+<x-main.modal-wrapper modalId="requestModal" title="Заявочный лист">
     @guest
         <form id="requestForm" method="POST" action="{{route('main.event.request')}}"
               class="invisible-scrollbar flex flex-col justify-between gap-4 py-5 px-5 sm:px-6 overflow-hidden h-full max-h-full">
             @csrf
-            <div class="flex flex-col gap-2 overflow-hidden">
+            <div class="flex flex-col gap-2 overflow-hidden h-[600px]">
                 <div id="requestFormMessage"
                      class="hidden text-error text-[12px] overflow-auto"></div>
                 <input type="hidden" name="event_id" value="{{$event->id}}">

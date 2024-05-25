@@ -1,5 +1,4 @@
 <div {{$attributes->merge(['class' => ''])}}>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+    <div id="{{$recaptchaId}}" class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
     <x-admin.forms.input-error error-name="g-recaptcha-response"/>
 </div>

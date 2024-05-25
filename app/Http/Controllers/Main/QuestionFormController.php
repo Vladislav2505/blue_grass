@@ -23,7 +23,6 @@ final class QuestionFormController extends Controller
             $data = $request->validate([
                 'question_title' => ['required', 'string', 'max:255'],
                 'question_text' => ['required', 'string', 'max:1000'],
-                'g-recaptcha-response' => ['required', new RecaptchaRule()],
             ]);
 
             $data['full_name'] = $user->profile->full_name;

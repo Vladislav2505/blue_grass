@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <title>@yield('title') - {{config('app.name')}}</title>
+    @if(Request::is('register'))
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @endif
 
     <!-- Styles -->
     @vite(['resources/js/app.js', 'resources/js/auth.js'])

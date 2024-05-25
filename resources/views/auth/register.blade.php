@@ -20,7 +20,7 @@
                        input-type="password" :input-value="old('password')"/>
         <x-forms.input input-name="password_confirmation" input-label="Подтверждения пароля"
                        input-placeholder="Подтвердите пароль" input-type="password"/>
-        <x-main.recaptcha class="mx-auto"/>
+        <x-main.recaptcha class="mx-auto" recaptcha-id="registerRecaptcha"/>
         <x-forms.checkbox checkbox-name="personal-data">
             Я согласен на обработку <a href="{{route('main.policy')}}" class="text-lightblue">персональных данных</a>
         </x-forms.checkbox>

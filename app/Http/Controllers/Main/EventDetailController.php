@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Request;
 use App\Models\User;
 use App\Notifications\SendRequestNotification;
+use App\Rules\RecaptchaRule;
 use Auth;
 use Durlecode\EJSParser\Parser;
 use Exception;
@@ -35,6 +36,7 @@ final class EventDetailController extends Controller
 
     public function request(HttpRequest $request): JsonResponse
     {
+        $rules = [];
         /** @var Event $event */
         $event = Event::query()->findOrFail($request->post('event_id'));
 
@@ -54,6 +56,10 @@ final class EventDetailController extends Controller
                 'address' => $request->has('address') ? $request->post('address') : $user->profile->address,
                 'user_id' => $user->id,
             ]);
+        } else {
+            $rules = [
+                'g-recaptcha-response' => ['required', new RecaptchaRule()],
+            ];
         }
 
         $data = $request->validate([
@@ -69,6 +75,7 @@ final class EventDetailController extends Controller
             'team_name' => ['nullable', 'string', 'max:255'],
             'date_creation_team' => ['nullable', 'date_format:Y-m-d', 'before_or_equal:today'],
             'participants_number' => ['nullable', 'integer', 'min:0'],
+            ...$rules,
         ]);
 
         try {
