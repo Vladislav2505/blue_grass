@@ -47,7 +47,6 @@ final class NotificationsController extends Controller
     public function questions(Request $request): JsonResponse|HttpResponse
     {
         $questions = Auth::user()?->questions()
-            ->where('is_closed', false)
             ->orderByDesc('is_closed')
             ->orderByDesc('updated_at')
             ->paginate($this->notificationsPerPage);
