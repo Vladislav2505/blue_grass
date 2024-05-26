@@ -6,6 +6,13 @@
     @endif
 
     <article class="flex flex-col gap-6 md:gap-3 p-0 lg:p-2">
+        <div class="flex flex-row justify-between items-center mb-0 md:mb-4">
+            <a href="{{route('main.index.events')}}"
+               class="flex flex-row items-center text-lightblue text-xl w-fit gap-1">
+                <img src="{{Vite::asset('resources/images/profile/back.svg')}}" alt="back">
+                Назад
+            </a>
+        </div>
         <div class="flex flex-col md:flex-row justify-between gap-3">
             <div class="flex flex-col gap-2 w-full xs:w-4/5 md:w-3/5">
                 <h2 class="font-medium text-xl md:text-3xl">{{$event->name}}</h2>

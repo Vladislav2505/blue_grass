@@ -16,8 +16,8 @@
         @if($user->profile->phone)
             <x-admin.show.data data-label="Телефон" :data-value="$user->profile->phone"/>
         @endif
-        @if($user->profile->age)
-            <x-admin.show.data data-label="Возраст" :data-value="$user->profile->age"/>
+        @if($user->profile->date_of_birth)
+            <x-admin.show.data data-label="Дата рождения" :data-value="$user->profile->date_of_birth"/>
         @endif
         @if($user->profile->address)
             <x-admin.show.data data-label="Адрес" :data-value="$user->profile->address"/>

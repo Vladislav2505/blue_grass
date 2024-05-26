@@ -21,7 +21,7 @@ final class QuestionController extends Controller
      */
     public function index(): HttpResponse
     {
-        $tableHeaders = ['ID', 'ФИО', 'Email', 'Дата создания', 'Отвечен'];
+        $tableHeaders = ['ID', 'ФИО', 'Email', 'Дата создания', 'Закрыт'];
 
         $questions = Question::query()
             ->orderByDesc('created_at')
