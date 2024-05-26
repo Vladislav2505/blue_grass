@@ -34,6 +34,11 @@ final class NewsListController extends Controller
             ]);
         }
 
-        return Response::view('main.news', compact('newsList'));
+        $meta = [
+            'description' => __('meta.news.description'),
+            'keywords' => __('meta.news.keywords'),
+        ];
+
+        return Response::view('main.news', compact('newsList', 'meta'));
     }
 }

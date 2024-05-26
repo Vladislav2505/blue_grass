@@ -31,7 +31,12 @@ final class EventDetailController extends Controller
             $user->setAttribute('send_request', $sendRequest);
         }
 
-        return Response::view('main.event-detail', compact('event', 'user'));
+        $meta = [
+            'description' => __('meta.event.description', ['name' => $event->name]),
+            'keywords' => __('meta.event.keywords', ['name' => $event->name]),
+        ];
+
+        return Response::view('main.event-detail', compact('event', 'user', 'meta'));
     }
 
     public function request(HttpRequest $request): JsonResponse

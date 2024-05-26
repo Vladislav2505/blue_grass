@@ -38,7 +38,8 @@ class SendRequestNotification extends Notification
             ->line('Email: '.$this->request->email)
             ->line('ФИО: '.$this->request->full_name)
             ->line('Телефон: '.$this->request->phone)
-            ->line('Адрес: '.$this->request->address);
+            ->line('Адрес: '.$this->request->address)
+            ->action('Перейти в административную панель', route('admin.requests.show', ['request' => $this->request]));
     }
 
     /**

@@ -38,6 +38,10 @@ final class LoginController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::user()->is_admin) {
+            return Response::redirectToRoute('admin.dashboard');
+        }
+
         return Redirect::intended();
     }
 }

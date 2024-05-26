@@ -42,6 +42,11 @@ final class PartnersController extends Controller
             ]);
         }
 
-        return Response::view('main.partners', compact('partners'));
+        $meta = [
+            'description' => __('meta.partners.description'),
+            'keywords' => __('meta.partners.keywords'),
+        ];
+
+        return Response::view('main.partners', compact('partners', 'meta'));
     }
 }

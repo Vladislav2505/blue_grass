@@ -42,7 +42,12 @@ final class IndexController extends Controller
             ]);
         }
 
-        return Response::view('main.index.events', compact('events'));
+        $meta = [
+            'description' => __('meta.index_events.description'),
+            'keywords' => __('meta.index_events.keywords'),
+        ];
+
+        return Response::view('main.index.events', compact('events', 'meta'));
     }
 
     /**
@@ -62,6 +67,11 @@ final class IndexController extends Controller
             ]);
         }
 
-        return Response::view('main.index.protocols', compact('protocols'));
+        $meta = [
+            'description' => __('meta.index_protocols.description'),
+            'keywords' => __('meta.index_protocols.keywords'),
+        ];
+
+        return Response::view('main.index.protocols', compact('protocols', 'meta'));
     }
 }

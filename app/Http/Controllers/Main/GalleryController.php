@@ -43,6 +43,11 @@ final class GalleryController extends Controller
             ]);
         }
 
-        return Response::view('main.gallery', compact('collections'));
+        $meta = [
+            'description' => __('meta.gallery.description'),
+            'keywords' => __('meta.gallery.keywords'),
+        ];
+
+        return Response::view('main.gallery', compact('collections', 'meta'));
     }
 }
