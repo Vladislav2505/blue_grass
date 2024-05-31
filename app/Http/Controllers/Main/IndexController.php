@@ -31,8 +31,8 @@ final class IndexController extends Controller
         $events = Event::query()
             ->where('is_active', true)
             ->with(['location:id,name'])
-            ->orderByDesc('request_access')
             ->orderByDesc('date_of')
+            ->orderByDesc('request_access')
             ->paginate($this->eventsPerPage);
 
         if ($request->ajax()) {

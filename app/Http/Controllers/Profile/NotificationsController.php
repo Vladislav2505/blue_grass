@@ -26,7 +26,7 @@ final class NotificationsController extends Controller
     public function requests(Request $request): JsonResponse|HttpResponse
     {
         $requests = Auth::user()?->requests()
-            ->where('status', '!=', RequestStatus::Pending)
+//            ->where('status', '!=', RequestStatus::Pending)
             ->orderByDesc('updated_at')
             ->with('event:id,name')
             ->paginate($this->notificationsPerPage);

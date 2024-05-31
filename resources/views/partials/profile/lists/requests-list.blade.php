@@ -4,8 +4,10 @@
             <h3 class="font-medium text-xl mb-1">
                 @if($request->status === \App\Enums\RequestStatus::Accepted)
                     {{"Заявка на участие в мероприятии “{$request->event->name}” была одобрена"}}
-                @else
+                @elseif($request->status === \App\Enums\RequestStatus::Rejected)
                     {{"Заявка на участие в мероприятии “{$request->event->name}” была отклонена"}}
+                @else
+                    {{"Заявка на участие в мероприятии “{$request->event->name}” на рассмотрении"}}
                 @endif
             </h3>
             <p class="text-secondary text-[14px] text-right sm:text-left">{{$request->updated_at}}</p>
@@ -14,11 +16,13 @@
             @if($request->status === \App\Enums\RequestStatus::Accepted)
                 Мы рады сообщить вам, что ваша заявка на участие в мероприятии “<span
                     class="font-medium">{{{$request->event->name}}}</span>” была одобрена.
-            @else
+            @elseif($request->status === \App\Enums\RequestStatus::Rejected)
                 Мы вынуждены сообщить вам, что ваша заявка на участие в мероприятии “<span
                     class="font-medium">{{{$request->event->name}}}</span>” была отклонена. Если у вас есть какие-то
                 вопросы, то вы можете задать его через форму или написать на нашу почту: <span
                     class="font-medium">{{config('site.email')}}</span>
+            @else
+                Ваша заявка поступила нам, мы в процессе ее рассмотрения
             @endif
         </p>
     </article>

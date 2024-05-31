@@ -18,7 +18,7 @@
             <x-admin.forms.text-input input-name="last_name" input-label="Фамилия" :input-value="$user->profile->last_name" :is-required="true"/>
             <x-admin.forms.text-input input-name="first_name" input-label="Имя" :input-value="$user->profile->first_name" :is-required="true"/>
             <x-admin.forms.text-input input-name="patronymic" input-label="Отчество" :input-value="$user->profile?->patronymic"/>
-            <x-admin.forms.text-input input-name="phone" input-label="Телефон" :input-value="$user->profile?->phone" input-placeholder="+7" class="md:w-60"/>
+            <x-admin.forms.text-input input-name="phone" input-label="Телефон" :input-value="$user->profile?->phone" input-placeholder="+7 (___) ___-__-__" class="md:w-60" input-type="tel"/>
             <x-admin.forms.date-input input-name="date_of_birth" input-label="Дата рождения" :input-value="$user->profile?->date_of_birth" input-type="number" min-number="{{now()->subYears(100)->toDateString()}}" max-number="{{now()->toDateString()}}"/>
             <x-admin.forms.text-input input-name="address" input-label="Адрес" :input-value="$user->profile?->address"/>
             <x-admin.forms.checkbox-input input-name="subscribed_to_notifications" input-label="Получать письма на почту" :input-is-checked="$user->subscribed_to_notifications"/>

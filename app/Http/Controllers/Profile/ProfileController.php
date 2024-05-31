@@ -43,7 +43,7 @@ final class ProfileController extends Controller
             'last_name' => ['required', 'string', 'max:180'],
             'first_name' => ['required', 'string', 'max:180'],
             'patronymic' => ['nullable', 'string', 'max:180'],
-            'phone' => ['nullable', 'string', 'regex:/^\+\d{11}$/'],
+            'phone' => ['nullable', 'string', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/'],
             'date_of_birth' => ['nullable', 'date_format:Y-m-d', 'before_or_equal:today'],
             'address' => ['nullable', 'string', 'max:180'],
         ]);

@@ -7,7 +7,7 @@
             <p class="text-secondary text-[14px] text-right sm:text-left">{{$question->updated_at}}</p>
         </div>
         <p class="font-light break-words">
-            {{$question->answer_text}}
+            {{$question->answer_text ?? "Администратор еще не ответил на этот вопрос"}}
         </p>
     </article>
 @endforeach

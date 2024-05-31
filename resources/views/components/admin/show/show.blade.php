@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 sm:grid-cols-[minmax(200px,420px)_auto]">
+<div class="w-full grid grid-cols-1 sm:grid-cols-[minmax(200px,420px)_auto]">
     {{$slot}}
 </div>
 <div class="flex flex-col sm:flex-row justify-end gap-3">

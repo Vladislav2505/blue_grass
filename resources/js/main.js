@@ -1,3 +1,4 @@
+import './recaptcha.js'
 import './main/burgerMenu.js'
 import './main/questionModal.js'
 import './main/requestModal.js'

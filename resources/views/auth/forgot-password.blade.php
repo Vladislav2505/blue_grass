@@ -10,6 +10,7 @@
             <p class="text-error font-bold text-center">{{$errors->first('status')}}</p>
             <x-forms.input input-name="email" input-label="E-mail" input-placeholder="Введите E-mail"
                            input-type="email" :input-value="old('email')"/>
+        <x-main.recaptcha recaptcha-id="forgotPasswordRecaptcha" class="mx-auto"/>
             <x-forms.submit submit-label="Отправить код"/>
         @endif
     </x-forms.auth-form>

@@ -18,7 +18,7 @@
                 </div>
             @endif
         @else
-            <h4 class="font-medium text-2xl text-center">На данный момент список партнеров пуст</h4>
+            <h4 class="font-medium text-2xl text-center">На данный момент галерея пуста</h4>
         @endif
     </section>
 @endsection

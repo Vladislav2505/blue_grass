@@ -72,7 +72,7 @@ final class EventDetailController extends Controller
             'user_id' => ['sometimes', 'integer', 'exists:users,id'],
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email:rfc,dns', 'max:80'],
-            'phone' => ['required', 'string', 'regex:/^\+\d{11}$/'],
+            'phone' => ['required', 'string', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/'],
             'date_of_birth' => ['required', 'date_format:Y-m-d', 'before_or_equal:today'],
             'address' => ['required', 'string', 'max:255'],
             'supervisor_full_name' => ['required', 'string', 'max:255'],

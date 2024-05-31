@@ -71,6 +71,11 @@ if (questionButtons.length !== 0) {
                     showErrors(errorMsg);
                 }
             })
+
+        if (document.getElementById('questionRecaptcha')) {
+            grecaptcha.reset(document.getElementById('questionRecaptcha')
+                .getAttribute('opt_widget_id'));
+        }
     }
 
     function showErrors(message) {

@@ -55,7 +55,7 @@ final class UserController extends Controller
             'patronymic' => ['nullable', 'string', 'max:180'],
             'email' => ['required', 'email:rfc,dns', 'max:80', Rule::unique('users')],
             'password' => ['required', 'string', Password::min(8)->max(255)->letters()->numbers()->symbols()],
-            'phone' => ['nullable', 'string', 'regex:/^\+\d{11}$/'],
+            'phone' => ['nullable', 'string', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/'],
             'age' => ['nullable', 'integer', 'between:1,100'],
             'address' => ['nullable', 'string', 'max:180'],
             'is_admin' => ['nullable', 'in:true,on'],
@@ -128,7 +128,7 @@ final class UserController extends Controller
             'first_name' => ['required', 'string', 'max:180'],
             'patronymic' => ['nullable', 'string', 'max:180'],
             'email' => ['required', 'email:rfc,dns', 'max:80', Rule::unique('users')->ignore($user->id)],
-            'phone' => ['nullable', 'string', 'regex:/^\+\d{11}$/'],
+            'phone' => ['nullable', 'string', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/'],
             'age' => ['nullable', 'integer', 'between:1,100'],
             'address' => ['nullable', 'string', 'max:180'],
         ]);
