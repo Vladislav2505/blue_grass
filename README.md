@@ -1,66 +1,161 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blue Grass
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Installation
 
-## About Laravel
+If use Docker - do it in docker containers
+```
+composer install
+npm install
+./artisan key:generate
+./artisan storage:link
+cp .env.example .env
+```
+Then create DB and User and fill .env (see MySQL docs)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Create DB
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```
+./artisan migrate --seed
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Recreate DB
+If you need to update or recreate DB
+```
+./artisan migrate:fresh --seed
+```
 
-## Learning Laravel
+## If use Docker
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+docker compose build
+docker compose up -d
+docker compose down
+docker compose restart
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# If don't use Docker
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## PHP config
+```
+post_max_size = 60M
+upload_max_filesize = 60M
+max_execution_time = 180
+```
 
-## Laravel Sponsors
+## Nginx
+For using HTTP
+```
+server {
+    listen 80;
+    server_name SERVER NAME;
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    root PROJECT PATH;
+    index index.php index.html index.htm;
 
-### Premium Partners
+    client_max_body_size 60M;
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    # Доступ к статическим файлам
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
 
-## Contributing
+    # Обработка PHP файлов через PHP-FPM
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    # Блокировка доступа к скрытым файлам и папкам
+    location ~ /\.ht {
+        deny all;
+    }
 
-## Code of Conduct
+    location ~ /\.(git|svn) {
+        deny all;
+    }
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    # Безопасность и оптимизация
+    location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml|svg|woff|ttf|eot|pdf)$ {
+        access_log off;
+        expires max;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        add_header Access-Control-Allow-Origin "*";
+    }
+}
+```
+For using HTTPS
+```
+server {
+    server_name SERVER NAME;
 
-## Security Vulnerabilities
+    root PROJECT PATH;
+    index index.php index.html index.htm;
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    client_max_body_size 60M;
 
-## License
+    # Доступ к статическим файлам
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    # Обработка PHP файлов через PHP-FPM
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    # Блокировка доступа к скрытым файлам и папкам
+    location ~ /\.ht {
+        deny all;
+    }
+
+    location ~ /\.(git|svn) {
+        deny all;
+    }
+
+    # Безопасность и оптимизация
+    location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml|svg|woff|ttf|eot|pdf)$ {
+        access_log off;
+        expires max;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        add_header Access-Control-Allow-Origin "*";
+    }
+
+    listen 443 ssl;
+    PATH TO SSL CERTIFICATES
+
+} server {
+    if ($host = WWW SERVER NAME) {
+        return 301 https://$host$request_uri;
+    }
+
+    if ($host = SERVER NAME) {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 80;
+    server_name SERVER NAME;
+    return 404;
+}
+```
+
+## Supervisor
+```
+sudo apt install supervisor
+nano /etc/supervisor/conf.d/laravel_queue_worker.conf
+```
+paste in supervisor .conf file
+```
+[program:laravel_queue_worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /PROJECT_PATH/artisan queue:work database --sleep=3 --tries=3 --verbose --timeout=20
+autostart=true
+autorestart=true
+user=YOUR_USER
+redirect_stderr=true
+stdout_logfile=/home/YOUR_USER/logs/laravel_queue_worker.log
+```
