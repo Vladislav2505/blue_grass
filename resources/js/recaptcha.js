@@ -29,3 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     script.defer = true;
     document.head.appendChild(script);
 });
+
+
+export function resetCaptcha(grecaptchaId) {
+    if (document.getElementById(grecaptchaId)) {
+        grecaptcha.reset(document.getElementById(grecaptchaId)
+            .getAttribute('opt_widget_id'));
+    }
+}

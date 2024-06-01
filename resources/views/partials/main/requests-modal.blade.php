@@ -4,10 +4,8 @@
               class="invisible-scrollbar flex flex-col justify-between gap-4 py-5 px-5 sm:px-6 overflow-hidden h-full max-h-full">
             @csrf
             <div class="flex flex-col gap-2 overflow-hidden h-[600px]">
-                <div id="requestFormMessage"
-                     class="hidden text-error text-[12px] overflow-auto"></div>
                 <input type="hidden" name="event_id" value="{{$event->id}}">
-                <div class="flex flex-col justify-between gap-4 overflow-auto">
+                <div class="flex flex-col justify-between gap-3 overflow-auto">
                     <x-forms.input input-name="full_name" input-label="ФИО" input-placeholder="Введите ФИО"
                                    :is-required="true"/>
                     <x-forms.input input-name="email" input-label="Email" input-placeholder="Введите Email"
@@ -51,11 +49,9 @@
 
     @auth
         <form id="requestForm" method="POST" action="{{route('main.event.request')}}"
-              class="invisible-scrollbar flex flex-col justify-between gap-4 py-5 px-5 sm:px-6 overflow-hidden h-full max-h-full">
+              class="invisible-scrollbar flex flex-col justify-between gap-3 py-5 px-5 sm:px-6 overflow-hidden h-full max-h-full">
             @csrf
             <div class="flex flex-col gap-2 overflow-hidden">
-                <div id="requestFormMessage"
-                     class="hidden text-error text-[12px] overflow-auto"></div>
                 <input type="hidden" name="event_id" value="{{$event->id}}">
                 <div class="flex flex-col justify-between gap-4 overflow-auto">
                     @if(!$user->profile->phone)
@@ -93,4 +89,5 @@
             <x-forms.submit submit-label="Отправить" class="w-1/2"/>
         </form>
     @endauth
+    <div id="requestSuccess" class="hidden m-auto text-xl text-center p-5 text-success"></div>
 </x-main.modal-wrapper>
