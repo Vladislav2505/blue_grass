@@ -38,7 +38,9 @@
                             <p><b>Тема:</b> {{$event->theme->name}}</p>
                             <p><b>Место проведения:</b> {{$event->location->name}}</p>
                             <p><b>Номинации:</b> {{$event->nomination_names_string}}</p>
-                            <p><b>Главный приз:</b> {{$event->award}}</p>
+                            @if($event->award)
+                                <p><b>Главный приз:</b> {{$event->award}}</p>
+                            @endif
                             @if($event->file)
                                 <p><a href="{{route('download.file', ['path' => $event->file])}}"
                                       class="text-lightblue">Скачать положение</a></p>

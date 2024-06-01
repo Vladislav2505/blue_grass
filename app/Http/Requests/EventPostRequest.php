@@ -37,7 +37,7 @@ final class EventPostRequest extends FormRequest
         $rules = [
             'name' => ['required', 'string', 'max:180'],
             'date_of' => ['required', 'date_format:"Y-m-d H:i:s"'],
-            'award' => ['nullable', 'string', 'max:80'],
+            'award' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:100000'],
             'request_access' => ['nullable', 'boolean'],
             'is_active' => ['nullable', 'boolean'],
