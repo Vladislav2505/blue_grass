@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $adminUser = User::create([
             'email' => config('site.admin_email'),
-            'password' => Hash::make('123123q-'),
+            'password' => Hash::make(config('site.admin_password')),
             'email_verified_at' => now(),
             'is_admin' => true,
         ]);

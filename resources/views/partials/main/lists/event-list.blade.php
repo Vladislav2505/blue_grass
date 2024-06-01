@@ -16,7 +16,7 @@
                 <p>{{$event->location->name}}</p>
             </div>
 
-            @if($event->request_access)
+            @if($event->request_access && !Auth::user()?->whereRelation('requests', 'event_id', '=', $event->id)->exists())
                 <a href="{{route('main.event.show', ['event' => $event->slug])}}"
                    class="text-lightblue uppercase">Оставить заявку »</a>
             @endif

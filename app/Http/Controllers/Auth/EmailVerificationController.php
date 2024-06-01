@@ -29,6 +29,7 @@ final class EmailVerificationController extends Controller
     {
         if ($request->has('logout')) {
             (new UserService())->logout($request);
+
             return Redirect::route('login.render');
         }
 

@@ -8,4 +8,5 @@ return [
     'vk' => 'https://vk.com/art_blue_grass',
     'tg' => 'https://t.me/bluegrass2017',
     'admin_email' => env('APP_ADMIN_EMAIL', 'admin@bluegrass.com'),
+    'admin_password' => env('APP_ADMIN_PASSWORD', 'admin'),
 ];
