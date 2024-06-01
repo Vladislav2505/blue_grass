@@ -30,6 +30,8 @@
                 @endforeach
             </x-admin.tables.table>
             <x-admin.tables.pagination :items="$collections"/>
+        @else
+            <h3 class="font-medium text-2xl text-center">Список пуст</h3>
         @endif
     </div>
 @endsection
