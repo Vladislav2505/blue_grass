@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         VerifyEmail::toMailUsing(static function ($notifiable, string $url) {
+
+            if (Str::contains($url, 'http://localhost')) {
+                $url = (string) Str::replace('http://localhost', config('app.url'), $url);
+            }
+
             return (new MailMessage)
                 ->subject('Подтверждение адреса электронной почты')
                 ->greeting('Здравствуйте!')
