@@ -4,7 +4,8 @@ Disallow: /profile/
 Disallow: /login
 Disallow: /register
 Disallow: /forgot-password
+Disallow: /*download-file*
 
 Allow: /
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://bluegrass71.ru/sitemap.xml
