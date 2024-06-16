@@ -19,8 +19,8 @@
             @guest
                 <x-main.recaptcha recaptcha-id="questionRecaptcha"/>
                 <x-forms.checkbox checkbox-name="question-personal-data">
-                    Я согласен на обработку <a href="{{route('main.policy')}}" class="text-lightblue">персональных
-                        данных</a>
+                    Я согласен с условиями <a href="{{route('main.policy')}}" class="text-lightblue"> политики
+                        конфиденциальности</a>
                 </x-forms.checkbox>
             @endguest
             <x-forms.submit submit-label="Отправить" class="w-1/2"/>

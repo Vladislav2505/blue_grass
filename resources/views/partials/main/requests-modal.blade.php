@@ -39,8 +39,8 @@
             <div class="flex flex-col gap-3">
                 <x-main.recaptcha recaptcha-id="requestRecaptcha"/>
                 <x-forms.checkbox checkbox-name="request-personal-data">
-                    Я согласен на обработку <a href="{{route('main.policy')}}" class="text-lightblue">персональных
-                        данных</a>
+                    Я согласен с условиями <a href="{{route('main.policy')}}" class="text-lightblue"> политики
+                        конфиденциальности</a>
                 </x-forms.checkbox>
                 <x-forms.submit submit-label="Отправить"/>
             </div>

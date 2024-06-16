@@ -22,7 +22,8 @@
                        input-placeholder="Подтвердите пароль" input-type="password"/>
         <x-main.recaptcha class="mx-auto" recaptcha-id="registerRecaptcha"/>
         <x-forms.checkbox checkbox-name="personal-data">
-            Я согласен на обработку <a href="{{route('main.policy')}}" class="text-lightblue">персональных данных</a>
+            Я согласен с условиями <a href="{{route('main.policy')}}" class="text-lightblue"> политики
+                конфиденциальности</a>
         </x-forms.checkbox>
         <x-forms.submit submit-label="Зарегистрироваться"/>
     </x-forms.auth-form>
