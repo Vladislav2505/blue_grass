@@ -57,7 +57,7 @@ final class IndexController extends Controller
     {
         $protocols = Protocol::query()
             ->where('is_active', true)
-            ->orderByDesc('date')
+            ->orderByDesc('updated_at')
             ->paginate($this->protocolsPerPage);
 
         if ($request->ajax()) {
