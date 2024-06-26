@@ -3,9 +3,11 @@
         <div class="h-full flex flex-col justify-between gap-5 p-4 border-t border-t-lightgray">
             <h3 class="font-medium text-center text-xl">{{$protocol->name}}</h3>
 
-            <div class="text-secondary text-center">
-                <p>{{$protocol->date}}</p>
-            </div>
+            @if($protocol->date)
+                <div class="text-secondary text-center">
+                    <p>{{$protocol->date}}</p>
+                </div>
+            @endif
 
             <div class="mx-auto">
                 <a href="{{route('download.file', ['path' => $protocol->file])}}">

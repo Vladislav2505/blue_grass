@@ -13,7 +13,7 @@
         <x-admin.forms.file-input input-name="file" input-label="Файл" :is-required="true"
                                   input-accept=".docx, .doc, .pdf"
                                   :input-value="$protocol->file"/>
-        <x-admin.forms.date-input input-label="Дата постановления" input-name="date" :is-required="true"
+        <x-admin.forms.date-input input-label="Дата постановления" input-name="date"
                                   :input-value="$protocol->date"/>
         <x-admin.forms.checkbox-input input-name="is_active" input-label="Активность"
                                       :input-is-checked="$protocol->is_active"/>

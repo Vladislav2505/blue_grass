@@ -24,7 +24,7 @@ final class ProtocolPostRequest extends FormRequest
 
         $rules = [
             'name' => ['required', 'string', 'max:80'],
-            'date' => ['required', 'date_format:Y-m-d'],
+            'date' => ['nullable', 'date_format:Y-m-d'],
             'is_active' => ['nullable', 'boolean'],
         ];
 
