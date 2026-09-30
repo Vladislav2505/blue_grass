@@ -7,6 +7,8 @@
     </div>
 
     <div class="flex flex-col gap-4">
+        <x-admin.requests.filters :events="$events"/>
+
         @if($requests->isNotEmpty())
             <x-admin.tables.table :table-headers="$tableHeaders">
                 @foreach($requests->getCollection() as $row)
